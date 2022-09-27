@@ -350,3 +350,6 @@ exe "hi NotifyWARNBody guibg="s:nvstarbg_alt. " guifg="s:nvstarfg_gui
 exe "hi NotifyINFOBody guibg="s:nvstarbg_alt. " guifg="s:nvstarfg_gui
 exe "hi NotifyDEBUGBody guibg="s:nvstarbg_alt. " guifg="s:nvstarfg_gui
 exe "hi NotifyTRACEBody guibg="s:nvstarbg_alt. " guifg="s:nvstarfg_gui
+
+" NVim GUI
+exe "hi SignColumn guibg=#0f0f0f"

@@ -160,7 +160,8 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- File Tree Pawn
-keymap("n", "<C-e>", ":NvimTreeToggle<cr>", opts)
+-- keymap("n", "<C-e>", ":NvimTreeToggle<CR>", opts) -- This works partially ??
+keymap('n', '<C-b>', ':NvimTreeToggle<CR>', opts) -- This works completely fine
 
 -- For Alligning of Text Easliy
 keymap("v", "sa", ":SimpleAlign ", opts) -- For Alligning items, need to put any character whose respect to which it Align
@@ -211,3 +212,4 @@ vim.cmd([[inoreabbrev idate <C-R>=strftime("%b %d %Y %H:%M")<CR>]])
 keymap("n","n", "nzzzv",opts)
 keymap("n","N", "Nzzzv",opts)
 keymap("n","G", "Gzz",opts)
+

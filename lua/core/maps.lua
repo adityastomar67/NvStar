@@ -51,19 +51,6 @@ keymap('n', '-', '<C-x>',opts)
 -- Delete a word backwards
 keymap('n', 'db', 'vb"_d', opts)
 
--- LazyGit Inside the Terminal
-keymap("n", "<leader>lg", ":LazyGit<CR>", opts)
-
--- Pawning the Terminal
-keymap("n" , "<leader>tt" , ':TermExec size=30 direction=float cmd="clear"<CR>' , opts)
-keymap("n" , "<leader>th" , ':TermExec size=8 direction=horizontal cmd="clear"<CR>'   , opts)
-
--- Shell file Runner
-keymap("n", "<leader>sh", ":!chmod +x % && source %<CR>", opts)
-
--- Source init.lua
-keymap("n", "<leader>so", ":so %<CR>", opts)
-
 -- Remove the Highlighting from the search
 keymap("n", "<CR>", ":noh<CR><CR>", opts)
 
@@ -74,12 +61,6 @@ keymap("n", "U", "<C-r>", opts)
 keymap("n" , "f"     , ":HopWord<CR>"      , opts)
 keymap("n" , "F"     , ":HopLine<CR>"      , opts)
 keymap("i" , "<C-F>" , "<ESC>:HopLine<CR>" , opts)
-
--- Telescope Stuff
-keymap("n" , "<C-o>"      , ":Telescope find_files<CR>" , opts)
-keymap("n" , "<leader>fg" , ":Telescope live_grep<CR>"  , opts)
-keymap("n" , "<leader>fb" , ":Telescope buffers<CR>"    , opts)
-keymap("n" , "<leader>ft" , ":Telescope tags<CR>"       , opts)
 
 -- For not yanking when deleting chars
 keymap('n', 'x', '"_x', opts)
@@ -180,9 +161,6 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- File Tree Pawn
 keymap("n", "<C-e>", ":NvimTreeToggle<cr>", opts)
-
--- Syncing The Plugins
-keymap("n", "<leader>ps", ":PackerSync<CR>", opts)
 
 -- For Alligning of Text Easliy
 keymap("v", "sa", ":SimpleAlign ", opts) -- For Alligning items, need to put any character whose respect to which it Align

@@ -36,10 +36,21 @@ packer.init({
 return packer.startup(function(use)
     use("wbthomason/packer.nvim") -- Have packer manage itself
     use("folke/which-key.nvim")
+    use("kyazdani42/nvim-web-devicons")
+    use("kdheepak/lazygit.nvim")  
+
+    -- Treesitter
+    use("nvim-treesitter/nvim-treesitter")
+    use('nvim-treesitter/nvim-treesitter-context')
+
+    -- Telescope
+    use("nvim-telescope/telescope.nvim")
+    use("xiyaowong/telescope-emoji.nvim")
+    use("nvim-telescope/telescope-media-files.nvim")
 
     use({"akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons"})
     use({"lewis6991/impatient.nvim", config = "require('impatient')"})
-    use("nvim-treesitter/nvim-treesitter")
+
     use("tamton-aquib/staline.nvim")
     use("kyazdani42/nvim-tree.lua")
     use({
@@ -48,10 +59,9 @@ return packer.startup(function(use)
         after = "nvim-cmp"
     })
     use("norcalli/nvim-colorizer.lua")
-    use("xiyaowong/telescope-emoji.nvim")
-    use("nvim-telescope/telescope-media-files.nvim")
+
     use("nvim-lua/plenary.nvim")
-    use("nvim-telescope/telescope.nvim")
+
     use("goolord/alpha-nvim")
     use("neovim/nvim-lspconfig")
     use("hrsh7th/nvim-cmp")
@@ -64,7 +74,7 @@ return packer.startup(function(use)
     use("elkowar/yuck.vim")
     use("dstein64/vim-startuptime")
     use("nathom/filetype.nvim")
-    use("kyazdani42/nvim-web-devicons")
+
     use("williamboman/nvim-lsp-installer")
     use("akinsho/toggleterm.nvim")
     use("rcarriga/nvim-notify")

@@ -230,39 +230,39 @@ exe "hi TSVariable guifg="s:nvstar7_gui
 exe "hi TSVariableBuiltin guifg="s:nvstar4_gui
 
 " C Language Higlights
-exe "hi cConstant guifg="s:nvstar4_gui
-exe "hi cCppBracket guifg="s:nvstar7_gui
-exe "hi cCppInElse guifg="s:nvstar7_gui
-exe "hi cCppInElse2 guifg="s:nvstar7_gui
-exe "hi cCppInIf guifg="s:nvstar4_gui
-exe "hi cCppInSkip guifg="s:nvstar7_gui
-exe "hi cCppInWapper guifg="s:nvstar5_gui
-exe "hi cCppOutElse guifg="s:nvstar7_gui
-exe "hi cCppOutIf guifg="s:nvstar8_gui
-exe "hi cCppOutIf2 guifg="s:nvstar8_gui
-exe "hi cCppOutInGroup guifg="s:nvstar8_gui
-exe "hi cCppOutSkip guifg="s:nvstar8_gui
-exe "hi cCppOutWrapper guifg="s:nvstar5_gui
-exe "hi cCppParen guifg="s:nvstar7_gui
-exe "hi cCppString guifg="s:nvstar2_gui
-exe "hi cCurlyError guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
-exe "hi cErrInBracket guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
-exe "hi cErrInParen guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
-exe "hi cFloat guifg="s:nvstar8_gui
-exe "hi cFormat guifg="s:nvstar4_gui
-exe "hi cMutli guifg="s:nvstar3_gui
-exe "hi cOperator guifg="s:nvstar4_gui
-exe "hi cParen guifg="s:nvstar3_gui
-exe "hi cParenError guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
-exe "hi PreProcGroup guifg="s:nvstar4_gui
-exe "hi cSpaceError guifg="s:nvstar1_gui
-exe "hi cSpecial guifg="s:nvstar4_gui
-exe "hi cSpecialCharacter guifg="s:nvstar4_gui
-exe "hi cStatement guifg="s:nvstar5_gui
-exe "hi cStorageClass guifg="s:nvstar3_gui
-exe "hi cString guifg="s:nvstar2_gui
-exe "hi cType guifg="s:nvstar3_gui
-exe "hi cUserCont guifg="s:nvstar7_gui
+"exe "hi cConstant guifg="s:nvstar4_gui
+"exe "hi cCppBracket guifg="s:nvstar7_gui
+"exe "hi cCppInElse guifg="s:nvstar7_gui
+"exe "hi cCppInElse2 guifg="s:nvstar7_gui
+"exe "hi cCppInIf guifg="s:nvstar4_gui
+"exe "hi cCppInSkip guifg="s:nvstar7_gui
+"exe "hi cCppInWapper guifg="s:nvstar5_gui
+"exe "hi cCppOutElse guifg="s:nvstar7_gui
+"exe "hi cCppOutIf guifg="s:nvstar8_gui
+"exe "hi cCppOutIf2 guifg="s:nvstar8_gui
+"exe "hi cCppOutInGroup guifg="s:nvstar8_gui
+"exe "hi cCppOutSkip guifg="s:nvstar8_gui
+"exe "hi cCppOutWrapper guifg="s:nvstar5_gui
+"exe "hi cCppParen guifg="s:nvstar7_gui
+"exe "hi cCppString guifg="s:nvstar2_gui
+"exe "hi cCurlyError guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
+"exe "hi cErrInBracket guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
+"exe "hi cErrInParen guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
+"exe "hi cFloat guifg="s:nvstar8_gui
+"exe "hi cFormat guifg="s:nvstar4_gui
+"exe "hi cMutli guifg="s:nvstar3_gui
+"exe "hi cOperator guifg="s:nvstar4_gui
+"exe "hi cParen guifg="s:nvstar3_gui
+"exe "hi cParenError guifg="s:nvstar7_gui." guibg="s:nvstar9_gui
+"exe "hi PreProcGroup guifg="s:nvstar4_gui
+"exe "hi cSpaceError guifg="s:nvstar1_gui
+"exe "hi cSpecial guifg="s:nvstar4_gui
+"exe "hi cSpecialCharacter guifg="s:nvstar4_gui
+"exe "hi cStatement guifg="s:nvstar5_gui
+"exe "hi cStorageClass guifg="s:nvstar3_gui
+"exe "hi cString guifg="s:nvstar2_gui
+"exe "hi cType guifg="s:nvstar3_gui
+"exe "hi cUserCont guifg="s:nvstar7_gui
 
 " GoLang Highlight Groups
 exe "hi goBlock guifg="s:nvstar7_gui

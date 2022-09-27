@@ -167,9 +167,9 @@ keymap('n', '<C-b>', ':NvimTreeToggle<CR>', opts) -- This works completely fine
 keymap("v", "sa", ":SimpleAlign ", opts) -- For Alligning items, need to put any character whose respect to which it Align
 
 -- For editing files
-keymap("n", "<leader>1", ":e ~/.config/nvim/init.lua<CR>", opts)
-keymap("n", "<leader>2", ":e ~/.zshrc<CR>", opts)
-keymap("n", "<leader>3", ":e ~/.bashrc<CR>", opts)
+-- keymap("n", "<leader>1", ":e ~/.config/nvim/init.lua<CR>", opts)
+-- keymap("n", "<leader>2", ":e ~/.zshrc<CR>", opts)
+-- keymap("n", "<leader>3", ":e ~/.bashrc<CR>", opts)
 
 -- For Conceal enable/disable
 vim.keymap.set("n",  "<F10>" , function()

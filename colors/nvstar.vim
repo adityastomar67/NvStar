@@ -91,7 +91,7 @@ exe "hi WhichKeySeparator guifg="s:nvstar5_gui. " guibg="s:nvstarbg_alt
 exe "hi WhichKeyDesc guifg="s:nvstar9_gui. " guibg="s:nvstarbg_alt
 
 " Syntax Highlighting
-exe "hi CursorLineNR guifg=" s:nvstarfg_gui." guibg="s:nvstarbg_gui
+exe "hi CursorLineNR guifg=#F96666 guibg="s:nvstarbg_gui
 exe "hi CursorLine guibg=" s:nvstarbg_gui
 exe "hi ErrorMsg guifg=" s:nvstar1_gui." guibg="s:nvstar8_gui
 exe "hi WarningMsg guifg=" s:nvstar0_gui

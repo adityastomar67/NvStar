@@ -104,7 +104,7 @@ end
 
 local transparency = 0
 M.toggle_transparency = function()
-    if transparency ==  0 then
+    if transparency == 0 then
         vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
         local transparency = 1
     else
@@ -132,7 +132,8 @@ M.ToggleQuickFix = function()
         vim.cmd([[copen]])
     end
 end
-vim.cmd([[command! -nargs=0 -bar ToggleQuickFix lua require('core.utils').ToggleQuickFix()]])
+vim.cmd(
+    [[command! -nargs=0 -bar ToggleQuickFix lua require('core.utils').ToggleQuickFix()]])
 vim.cmd([[cnoreab TQ ToggleQuickFix]])
 vim.cmd([[cnoreab tq ToggleQuickFix]])
 
@@ -229,7 +230,7 @@ M.choose_colors = function()
     local opts = {
 
         finder = finders.new_table({
-            "nvstar", "wave", "onedark", "gruvbox", "tokyonight", "nord",
+            "nvstar", "wave", "onedark", "gruvbox", "tokyonight", "nord"
         }),
 
         -- finder = finders.new_table(colors),

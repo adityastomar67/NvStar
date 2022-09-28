@@ -34,11 +34,15 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-    use("wbthomason/packer.nvim") -- Have packer manage itself
+
+    -- Core
+    use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim") 
     use("lewis6991/impatient.nvim")
     use("folke/which-key.nvim")
+    use("akinsho/toggleterm.nvim")
     use("kdheepak/lazygit.nvim")  
+    use("kyazdani42/nvim-tree.lua")
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter")
@@ -49,26 +53,55 @@ return packer.startup(function(use)
     use("xiyaowong/telescope-emoji.nvim")
     use("nvim-telescope/telescope-media-files.nvim")
     use('nvim-telescope/telescope-ui-select.nvim')
+    use("nvim-telescope/telescope-file-browser.nvim")
 
     -- UI Elements
-    use {'stevearc/dressing.nvim'}
     use("junegunn/limelight.vim")  
     use("kyazdani42/nvim-web-devicons")
+    use("psliwka/vim-smoothie")
+    use({"akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons"})
+    use("tamton-aquib/staline.nvim")
+    use("goolord/alpha-nvim")
+    use("rcarriga/nvim-notify")
 
     -- Coding Assistance
     use("RishabhRD/nvim-cheat.sh")
     use("RishabhRD/popfix")
 
+    -- LSP, Linters, Formatters
+    use("neovim/nvim-lspconfig")
+    use("onsails/lspkind-nvim")
+    use("williamboman/mason.nvim")
+    use("williamboman/mason-lspconfig.nvim")
+    use('mfussenegger/nvim-dap')
+    use("jose-elias-alvarez/null-ls.nvim") 
+
+
+    -- Snippets
+    use("L3MON4D3/LuaSnip")                           
+    use("rafamadriz/friendly-snippets")          
+    use("notomo/cmp-neosnippet")
+
+    -- CMP
+    use("hrsh7th/nvim-cmp")
+    use("hrsh7th/cmp-buffer")                          
+    use("hrsh7th/cmp-path")                        
+    use("hrsh7th/cmp-cmdline")            
+    use("saadparwaiz1/cmp_luasnip") 
+    use("hrsh7th/cmp-nvim-lsp") 
+    use("hrsh7th/cmp-nvim-lua")
+    use("hrsh7th/cmp-vsnip")
+    use("hrsh7th/cmp-copilot")
+
+    -- Others
+    use("kg8m/vim-simple-align")
+    use("github/copilot.vim")
 
 
 
 
 
-    use({"akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons"})
-
-
-    use("tamton-aquib/staline.nvim")
-    use("kyazdani42/nvim-tree.lua")
+    
     use({
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup({}) end,
@@ -76,25 +109,15 @@ return packer.startup(function(use)
     })
     use("norcalli/nvim-colorizer.lua")
 
-    use("nvim-lua/plenary.nvim")
+    
 
-    use("goolord/alpha-nvim")
-    use("neovim/nvim-lspconfig")
-    use("hrsh7th/nvim-cmp")
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-vsnip")
-    use("hrsh7th/vim-vsnip")
-    use("onsails/lspkind-nvim")
     use("elkowar/yuck.vim")
-    use("dstein64/vim-startuptime")
     use("nathom/filetype.nvim")
 
     use("williamboman/nvim-lsp-installer")
-    use("akinsho/toggleterm.nvim")
-    use("rcarriga/nvim-notify")
-    use("kg8m/vim-simple-align")
+    
+
+
     
 
     -- Automatically set up your configuration after cloning packer.nvim

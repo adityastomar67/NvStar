@@ -88,7 +88,7 @@ O.scrolloff                   = 0
 O.sidescrolloff               = 5
 O.mouse                       = "a"
 wo.wrap                       = false
-wo.relativenumber                     = true
+-- wo.relativenumber                     = true
 O.cursorline                  = true
 O.tabstop                     = 2
 vim.bo.tabstop                    = 2
@@ -179,3 +179,6 @@ for _, provider in ipairs(default_providers) do
 end
 
 vim.cmd([[let &statusline='%#Normal# ']])
+
+-- vim.ui.select = require"popui.ui-overrider"
+-- vim.ui.input = require"popui.input-overrider"

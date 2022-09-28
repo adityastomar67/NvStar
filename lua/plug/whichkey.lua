@@ -64,10 +64,22 @@ local n_opts = {prefix = "<leader>", mode = "n"}
 local v_opts = {prefix = "<leader>", mode = "v"}
 local i_opts = {prefix = "<leader>", mode = "i"}
 
-local v_mappings = {s = {name = "Text", a = {":SimpleAlign ", "Align Text"}}}
-local i_mappings = {    r = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},}
+local v_mappings = {
+    s = {
+        name = "Text",
+        a = {":SimpleAlign ", "Align Text"},
+        r = {
+            ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+            "Replace Instances"
+        }
+    }
+}
+local i_mappings = {
+    r = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
+}
 local n_mappings = {
     r = {"<cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},
+    z = {"<cmd>set invrnu invnu<CR>", "Toggle Line Numbers"},
     q = {
         name = "File Options",
         q = {"<cmd>q!<cr>", "Quit"},
@@ -118,11 +130,7 @@ local n_mappings = {
     s = {
         name = "Something Else",
         h = {"<cmd>!chmod +x % && source %<CR>", "Run Shell Script"},
-        o = {"<cmd>so %<CR>", "Source Current File"},
-        r = {
-            "<cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
-            "Replace Instances"
-        }
+        o = {"<cmd>so %<CR>", "Source Current File"}
     }
 }
 

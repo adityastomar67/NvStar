@@ -37,16 +37,9 @@ keymap("n", "gV", "`[v`]", opts )
 keymap("n", "<F1>", 'oThis file was created on <C-R>=strftime("%b %d %Y %H:%M")<CR><ESC>', opts)
 keymap("i", "<F1>", 'oThis file was created on <C-R>=strftime("%b %d %Y %H:%M")<CR>', opts)
 
--- Mapping for Cheat sheet and stackexchange assistance
-keymap("n", "<leader>?", "<cmd>Cheat<CR>", opts)
-keymap("n", "<leader>!", "<cmd>lua require('core.utils').so_input()<CR>", opts)
-
--- Show/Unshow Relative line Numbers
-keymap("n", "<leader>z", ":set invrnu invnu<CR>", opts)
-
 -- Increment/decrement
-keymap('n', '+', '<C-a>',opts)
-keymap('n', '-', '<C-x>',opts)
+keymap('n', '+', '<C-a>', opts)
+keymap('n', '-', '<C-x>', opts)
 
 -- Delete a word backwards
 keymap('n', 'db', 'vb"_d', opts)
@@ -65,9 +58,6 @@ keymap("i" , "<C-F>" , "<ESC>:HopLine<CR>" , opts)
 -- For not yanking when deleting chars
 keymap('n', 'x', '"_x', opts)
 
--- For Running the current buffer
-keymap("n" , "<leader>pr" , ':TermExec cmd="clear && prog %"<CR>'      , opts)
-keymap("i" , "<leader>pr" , '<ESC>:TermExec cmd="clear && prog %"<CR>' , opts)
 
 -- For Easier Splitting of buffer
 keymap("n", "<leader>|", "<C-w>v", opts)

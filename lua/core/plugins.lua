@@ -35,8 +35,9 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
     use("wbthomason/packer.nvim") -- Have packer manage itself
+    use("nvim-lua/plenary.nvim") 
+    use("lewis6991/impatient.nvim")
     use("folke/which-key.nvim")
-    use("kyazdani42/nvim-web-devicons")
     use("kdheepak/lazygit.nvim")  
 
     -- Treesitter
@@ -47,9 +48,24 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope.nvim")
     use("xiyaowong/telescope-emoji.nvim")
     use("nvim-telescope/telescope-media-files.nvim")
+    use('nvim-telescope/telescope-ui-select.nvim')
+
+    -- UI Elements
+    use {'stevearc/dressing.nvim'}
+    use("junegunn/limelight.vim")  
+    use("kyazdani42/nvim-web-devicons")
+
+    -- Coding Assistance
+    use("RishabhRD/nvim-cheat.sh")
+    use("RishabhRD/popfix")
+
+
+
+
+
 
     use({"akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons"})
-    use({"lewis6991/impatient.nvim", config = "require('impatient')"})
+
 
     use("tamton-aquib/staline.nvim")
     use("kyazdani42/nvim-tree.lua")
@@ -79,7 +95,7 @@ return packer.startup(function(use)
     use("akinsho/toggleterm.nvim")
     use("rcarriga/nvim-notify")
     use("kg8m/vim-simple-align")
-    use("RishabhRD/nvim-cheat.sh")
+    
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

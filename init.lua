@@ -7,7 +7,9 @@ for _, source in ipairs({
   -- CORE
   "core.plugins",
   "core.maps",
-  "core.options",
+  "core.options",  
+  "core.utils",
+  "core.autocmds",
 
   -- PLUGS
   "plug.whichkey",
@@ -15,7 +17,7 @@ for _, source in ipairs({
   "plug.ts-context",
   "plug.terminal",
   "plug.telescope",
-
+  "plug.ui",
 }) do
 local status_ok, fault = pcall(require, source)
 if not status_ok then

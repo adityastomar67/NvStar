@@ -104,14 +104,11 @@ local options = {
     extensions = {
         emoji = {
             action = function(emoji)
-                -- argument emoji is a table.
-                -- {name="", value="", cagegory="", description=""}
-
-                vim.fn.setreg("*", emoji.value)
-                print([[Press p or "*p to paste this emoji]] .. emoji.value)
+                -- vim.fn.setreg("*", emoji.value)
+                -- print([[Press p or "*p to paste this emoji]] .. emoji.value)
 
                 -- insert emoji when picked
-                -- vim.api.nvim_put({ emoji.value }, 'c', false, true)
+                vim.api.nvim_put({ emoji.value }, 'c', false, true)
             end
         },
         media_files = {
@@ -129,37 +126,118 @@ require("telescope").load_extension("emoji")
 require("telescope").load_extension("media_files")
 
 local M = {}
+M.xdg_config = function()
+    require("telescope.builtin").find_files({
+        prompt_title         = "XDG-CONFIG",
+        prompt_prefix        = "▶  ",
+        find_command         = { "fd", "--no-ignore-vcs" },
+        sorting_strategy     = "ascending",
+        file_ignore_patterns = { "lua-language-server", "chromium" },
+        cwd                  = "~/.dotfiles",
+        layout_config        = { width = 0.7, height = 0.3 },
+        results_height       = 20,
+        hidden               = true,
+        previewer            = false,
+        borderchars          = {
+            { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+            preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        },
+    })
+end
+
+M.buffers = function()
+    require("telescope.builtin").buffers({
+        prompt_title         = "BUFFERS",
+        prompt_prefix        = "▶  ",
+        sorting_strategy     = "ascending",
+        file_ignore_patterns = { "lua-language-server", "chromium" },
+        previewer            = false,
+        layout_config        = { width = 0.5, height = 0.3 },
+        hidden               = true,
+    })
+end
+
+M.nvim_files = function()
+    require("telescope.builtin").find_files({
+        prompt_title         = "NVIM-FILES",
+        -- prompt_prefix        = "▶  ",
+        previewer            = false,
+        find_command         = { "fd", "--no-ignore-vcs" },
+        sorting_strategy     = "ascending",
+        file_ignore_patterns = { ".git" },
+        cwd                  = "~/.config/nvim",
+        hidden               = true,
+    })
+end
+
 M.search_dotfiles = function()
     require("telescope.builtin").find_files({
-        prompt_title = "< VimRC >",
-        -- winblend = 5,
-        -- border = true,
-        -- cwd = '$HOME/.config/nvim/',
-        -- find_command={ 'rg', '--files'},
-        search_dirs = {
-            vim.fn.stdpath("config"), "~/.config/zsh/scripts",
-            "~/.config/zsh/commands/", "~/.config/zsh/configs/"
-        }
+        prompt_title     = "DOTFILES",
+        -- prompt_prefix    = "▶  ",
+        find_command     = { "fd", "--no-ignore-vcs" },
+        shorten_path     = true,
+        sorting_strategy = "ascending",
+        cwd              = vim.env.DOTFILES,
+        hidden           = true,
+        previewer        = false,
+        layout_config    = { height = 0.3, width = 0.5 },
     })
+end
+
+M.search_oldfiles = function()
+    require("telescope.builtin").oldfiles({
+        prompt_title     = "OLDFILES",
+        -- prompt_prefix    = "▶  ",
+        previewer        = false,
+        shorten_path     = true,
+        sorting_strategy = "ascending",
+        hidden           = true,
+        layout_config    = { height = 0.3, width = 0.5 },
+    })
+end
+
+M.grep_dotfiles = function()
+    require("telescope.builtin").live_grep({
+        prompt_title     = "GREP-DOTFILES",
+        -- prompt_prefix    = "▶  ",
+        shorten_path     = true,
+        sorting_strategy = "ascending",
+        cwd              = vim.env.DOTFILES,
+        hidden           = true,
+    })
+end
+
+M.grep_wiki = function()
+    local opts = {}
+    opts.hidden        = true
+    opts.search_dirs   = { "~/.dotfiles/wiki" }
+    -- opts.prompt_prefix = "▶  "
+    opts.prompt_title  = "GREP-WIKI"
+    opts.path_display  = { "smart" }
+    require("telescope.builtin").live_grep(opts)
 end
 
 M.git_branches = function()
-    require("telescope.builtin").git_branches({
-        attach_mappings = function(prompt_bufnr, map)
-            map("i", "<c-d>", actions.git_delete_branch)
-            map("n", "dd", actions.git_delete_branch)
-            return true
-        end
-    })
+    local opts = {}
+    -- opts.prompt_prefix = "▶  "
+    opts.prompt_title  = "GIT-BRANCHES"
+    opts.path_display  = { "smart" }
+    opts.attach_mappings = function(prompt_bufnr, map)
+        map("i", "<c-d>", actions.git_delete_branch)
+        map("n", "dd", actions.git_delete_branch)
+        return true
+    end
+    require("telescope.builtin").git_branches(opts)
 end
 
 M.installed_plugins = function()
-    require("telescope.builtin").find_files(
-        require("telescope.themes").get_dropdown({
-            -- winblend = 5,
-            border = true,
-            cwd = vim.fn.stdpath("data") .. "/site/pack/packer/start/"
-        }))
+    local opts = {}
+    opts.hidden        = true
+    opts.cwd           = vim.fn.stdpath("data") .. "/site/pack/packer/start/"
+    -- opts.prompt_prefix = "▶  "
+    opts.prompt_title  = "INSTALLED-PLUGS"
+    opts.path_display  = { "smart" }
+    require("telescope.builtin").find_files(opts)         
 end
 
 return M

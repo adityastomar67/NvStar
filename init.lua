@@ -4,6 +4,7 @@ if impatient_ok then
 end
 
 for _, source in ipairs({
+  
   -- CORE
   "core.plugins",
   "core.maps",
@@ -16,8 +17,12 @@ for _, source in ipairs({
   "plug.nvim-tree",
   "plug.ts-context",
   "plug.terminal",
-  "plug.telescope",
-  "plug.ui",
+  "plug.telescope",  
+  "plug.mason",
+  "plug.cmp",
+  "plug.lsp",
+  "plug.lsp-installer",
+  
 }) do
 local status_ok, fault = pcall(require, source)
 if not status_ok then

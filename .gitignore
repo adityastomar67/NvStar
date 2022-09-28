@@ -1,1 +1,5 @@
 plugin
+friendly-snippets
+.gitignore
+
+bin/luasnippets

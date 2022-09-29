@@ -163,10 +163,10 @@ exe "hi DiffDelete guifg="s:nvstar1_gui." guibg="s:nvstarbg_gui
 exe "hi DiffText guifg="s:nvstar2_gui." guibg="s:nvstarbg_gui
 
 " GitGutter Highlightings
-exe "hi GitGutterAdd guifg="s:nvstar3_gui
-exe "hi GitGutterChange guifg="s:nvstar1_gui
-exe "hi GitGutterDelete guifg="s:nvstar3_gui
-exe "hi GitGutterChangeDelete guifg="s:nvstar4_gui
+exe "hi GitGutterAdd guifg=#367E18"
+exe "hi GitGutterChange guifg=#F57328"
+exe "hi GitGutterDelete guifg=#CC3636"
+exe "hi GitGutterChangeDelete guifg=#F2D388"
 exe "hi GitGutterLineHighlightsEnable guifg="s:nvstar9_gui." guibg="s:nvstar8_gui
 
 " Nvim-Treesitter Highlights

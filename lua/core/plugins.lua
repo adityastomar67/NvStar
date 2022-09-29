@@ -37,11 +37,11 @@ return packer.startup(function(use)
 
     -- Core
     use("wbthomason/packer.nvim")
-    use("nvim-lua/plenary.nvim") 
+    use("nvim-lua/plenary.nvim")
     use("lewis6991/impatient.nvim")
     use("folke/which-key.nvim")
     use("akinsho/toggleterm.nvim")
-    use("kdheepak/lazygit.nvim")  
+    use("kdheepak/lazygit.nvim")
     use("kyazdani42/nvim-tree.lua")
 
     -- Treesitter
@@ -56,13 +56,26 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope-file-browser.nvim")
 
     -- UI Elements
-    use("junegunn/limelight.vim")  
+    use("junegunn/limelight.vim")
     use("kyazdani42/nvim-web-devicons")
     use("psliwka/vim-smoothie")
-    use({"akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons"})
+    use("akinsho/bufferline.nvim")
     use("tamton-aquib/staline.nvim")
     use("goolord/alpha-nvim")
     use("rcarriga/nvim-notify")
+    use('lewis6991/gitsigns.nvim')
+    use("folke/todo-comments.nvim")
+
+    -- Colorscheme
+    use("rebelot/kanagawa.nvim") 
+    use('navarasu/onedark.nvim')
+    use('folke/tokyonight.nvim')
+    use("ellisonleao/gruvbox.nvim")
+    use("shaunsingh/nord.nvim")
+    use("marko-cerovac/material.nvim")
+    use("sainnhe/sonokai")
+    use("sainnhe/edge")
+    use("sainnhe/everforest")
 
     -- Coding Assistance
     use("RishabhRD/nvim-cheat.sh")
@@ -74,21 +87,21 @@ return packer.startup(function(use)
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
     use('mfussenegger/nvim-dap')
-    use("jose-elias-alvarez/null-ls.nvim") 
-
+    use("jose-elias-alvarez/null-ls.nvim")
+    use("williamboman/nvim-lsp-installer")
 
     -- Snippets
-    use("L3MON4D3/LuaSnip")                           
-    use("rafamadriz/friendly-snippets")          
+    use("L3MON4D3/LuaSnip")
+    use("rafamadriz/friendly-snippets")
     use("notomo/cmp-neosnippet")
 
     -- CMP
     use("hrsh7th/nvim-cmp")
-    use("hrsh7th/cmp-buffer")                          
-    use("hrsh7th/cmp-path")                        
-    use("hrsh7th/cmp-cmdline")            
-    use("saadparwaiz1/cmp_luasnip") 
-    use("hrsh7th/cmp-nvim-lsp") 
+    use("hrsh7th/cmp-buffer")
+    use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-cmdline")
+    use("saadparwaiz1/cmp_luasnip")
+    use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-vsnip")
     use("hrsh7th/cmp-copilot")
@@ -101,24 +114,24 @@ return packer.startup(function(use)
 
 
 
-    
-    use({
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup({}) end,
-        after = "nvim-cmp"
-    })
-    use("norcalli/nvim-colorizer.lua")
 
-    
-
-    use("elkowar/yuck.vim")
-    use("nathom/filetype.nvim")
-
-    use("williamboman/nvim-lsp-installer")
-    
+    -- use({
+    --     "windwp/nvim-autopairs",
+    --     config = function() require("nvim-autopairs").setup({}) end,
+    --     after = "nvim-cmp"
+    -- })
+    -- use("norcalli/nvim-colorizer.lua")
 
 
-    
+
+    -- use("elkowar/yuck.vim")
+    -- use("nathom/filetype.nvim")
+
+
+
+
+
+
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

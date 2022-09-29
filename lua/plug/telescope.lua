@@ -1,17 +1,11 @@
 local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-    return
-end
+if not status_ok then return end
 
 local status_ok, actions = pcall(require, "telescope.actions")
-if not status_ok then
-    return
-end
+if not status_ok then return end
 
 local status_ok, builtin = pcall(require, "telescope.builtin")
-if not status_ok then
-    return
-end
+if not status_ok then return end
 
 local opt = {
     defaults = {
@@ -122,7 +116,7 @@ local opt = {
                 -- print([[Press p or "*p to paste this emoji]] .. emoji.value)
 
                 -- insert emoji when picked
-                vim.api.nvim_put({ emoji.value }, 'c', false, true)
+                vim.api.nvim_put({emoji.value}, 'c', false, true)
             end
         },
         media_files = {
@@ -130,6 +124,10 @@ local opt = {
             -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
             filetypes = {"png", "webp", "jpg", "jpeg"},
             find_cmd = "rg" -- find command (defaults to `fd`)
+        },
+        file_browser = {
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
         }
     },
     extensions_list = {"themes", "terms"}
@@ -139,104 +137,105 @@ telescope.setup(opt)
 telescope.load_extension("emoji")
 telescope.load_extension("media_files")
 telescope.load_extension("ui-select")
+telescope.load_extension("file_browser")
 
 local M = {}
 M.xdg_config = function()
     builtin.find_files({
-        prompt_title         = "XDG-CONFIG",
-        prompt_prefix        = "▶  ",
-        find_command         = { "fd", "--no-ignore-vcs" },
-        sorting_strategy     = "ascending",
-        file_ignore_patterns = { "lua-language-server", "chromium" },
-        cwd                  = "~/.dotfiles",
-        layout_config        = { width = 0.7, height = 0.3 },
-        results_height       = 20,
-        hidden               = true,
-        previewer            = false,
-        borderchars          = {
-            { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-            preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-        },
+        prompt_title = "XDG-CONFIG",
+        prompt_prefix = "▶  ",
+        find_command = {"fd", "--no-ignore-vcs"},
+        sorting_strategy = "ascending",
+        file_ignore_patterns = {"lua-language-server", "chromium"},
+        cwd = "~/.dotfiles",
+        layout_config = {width = 0.7, height = 0.3},
+        results_height = 20,
+        hidden = true,
+        previewer = false,
+        borderchars = {
+            {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
+            preview = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"}
+        }
     })
 end
 
 M.buffers = function()
     builtin.buffers({
-        prompt_title         = "BUFFERS",
-        prompt_prefix        = "▶  ",
-        sorting_strategy     = "ascending",
-        file_ignore_patterns = { "lua-language-server", "chromium" },
-        previewer            = false,
-        layout_config        = { width = 0.5, height = 0.3 },
-        hidden               = true,
+        prompt_title = "BUFFERS",
+        prompt_prefix = "▶  ",
+        sorting_strategy = "ascending",
+        file_ignore_patterns = {"lua-language-server", "chromium"},
+        previewer = false,
+        layout_config = {width = 0.5, height = 0.3},
+        hidden = true
     })
 end
 
 M.nvim_files = function()
     builtin.find_files({
-        prompt_title         = "NVIM-FILES",
+        prompt_title = "NVIM-FILES",
         -- prompt_prefix        = "▶  ",
-        previewer            = false,
-        find_command         = { "fd", "--no-ignore-vcs" },
-        sorting_strategy     = "ascending",
-        file_ignore_patterns = { ".git" },
-        cwd                  = "~/.config/nvim",
-        hidden               = true,
+        previewer = false,
+        find_command = {"fd", "--no-ignore-vcs"},
+        sorting_strategy = "ascending",
+        file_ignore_patterns = {".git"},
+        cwd = "~/.config/nvim",
+        hidden = true
     })
 end
 
 M.search_dotfiles = function()
     builtin.find_files({
-        prompt_title     = "DOTFILES",
+        prompt_title = "DOTFILES",
         -- prompt_prefix    = "▶  ",
-        find_command     = { "fd", "--no-ignore-vcs" },
-        shorten_path     = true,
+        find_command = {"fd", "--no-ignore-vcs"},
+        shorten_path = true,
         sorting_strategy = "ascending",
-        cwd              = vim.env.DOTFILES,
-        hidden           = true,
-        previewer        = false,
-        layout_config    = { height = 0.3, width = 0.5 },
+        cwd = vim.env.DOTFILES,
+        hidden = true,
+        previewer = false,
+        layout_config = {height = 0.3, width = 0.5}
     })
 end
 
 M.search_oldfiles = function()
     builtin.oldfiles({
-        prompt_title     = "OLDFILES",
+        prompt_title = "OLDFILES",
         -- prompt_prefix    = "▶  ",
-        previewer        = false,
-        shorten_path     = true,
+        previewer = false,
+        shorten_path = true,
         sorting_strategy = "ascending",
-        hidden           = true,
-        layout_config    = { height = 0.3, width = 0.5 },
+        hidden = true,
+        layout_config = {height = 0.3, width = 0.5}
     })
 end
 
 M.grep_dotfiles = function()
     local opts = {}
-    opts.prompt_title     = "GREP-DOTFILES"
+    opts.prompt_title = "GREP-DOTFILES"
     -- opts.prompt_prefix    = "▶  "
-    opts.shorten_path     = true
+    opts.shorten_path = true
     opts.sorting_strategy = "ascending"
-    opts.cwd              = vim.env.DOTFILES
-    opts.hidden           = true
+    opts.cwd = vim.env.DOTFILES
+    opts.hidden = true
     builtin.live_grep(opts)
 end
 
 M.grep_wiki = function()
     local opts = {}
-    opts.hidden        = true
-    opts.search_dirs   = { "~/.dotfiles/wiki" }
+    opts.hidden = true
+    opts.search_dirs = {"~/.dotfiles/wiki"}
     -- opts.prompt_prefix = "▶  "
-    opts.prompt_title  = "GREP-WIKI"
-    opts.path_display  = { "smart" }
+    opts.prompt_title = "GREP-WIKI"
+    opts.path_display = {"smart"}
     builtin.live_grep(opts)
 end
 
 M.git_branches = function()
     local opts = {}
     -- opts.prompt_prefix = "▶  "
-    opts.prompt_title  = "GIT-BRANCHES"
-    opts.path_display  = { "smart" }
+    opts.prompt_title = "GIT-BRANCHES"
+    opts.path_display = {"smart"}
     opts.attach_mappings = function(prompt_bufnr, map)
         map("i", "<c-d>", actions.git_delete_branch)
         map("n", "dd", actions.git_delete_branch)
@@ -247,12 +246,12 @@ end
 
 M.installed_plugins = function()
     local opts = {}
-    opts.hidden        = true
-    opts.cwd           = vim.fn.stdpath("data") .. "/site/pack/packer/start/"
+    opts.hidden = true
+    opts.cwd = vim.fn.stdpath("data") .. "/site/pack/packer/start/"
     -- opts.prompt_prefix = "▶  "
-    opts.prompt_title  = "INSTALLED-PLUGS"
-    opts.path_display  = { "smart" }
-    builtin.find_files(opts)         
+    opts.prompt_title = "INSTALLED-PLUGS"
+    opts.path_display = {"smart"}
+    builtin.find_files(opts)
 end
 
 return M

@@ -96,8 +96,9 @@ function collapse(sep)
     vim.api.nvim_win_set_cursor(0, {curr_row, curr_ln_len})
 end
 
-function show_virtual_diagnostics() vim.diagnostic
-    .config({virtual_lines = true}) end
+function show_virtual_diagnostics() 
+    vim.diagnostic.config({virtual_lines = true}) 
+end
 
 function hide_virtual_diagnostics()
     vim.diagnostic.config({virtual_lines = false})

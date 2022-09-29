@@ -65,6 +65,7 @@ local v_opts = {prefix = "<leader>", mode = "v"}
 local i_opts = {prefix = "<leader>", mode = "i"}
 
 local v_mappings = {
+    I = {"<cmd>lua require(\"plug.toggle\").toggle()<CR>", "Toggle Inverse"},
     s = {
         name = "Text",
         a = {":SimpleAlign ", "Align Text"},
@@ -75,11 +76,14 @@ local v_mappings = {
     }
 }
 local i_mappings = {
-    r = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
+    R = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
 }
 local n_mappings = {
-    r = {"<cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},
-    z = {"<cmd>set invrnu invnu<CR>", "Toggle Line Numbers"},
+    R = {"<cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},
+    C = {"<cmd>lua require(\"core.utils\").choose_colors()<CR>", "Choose Theme"},
+    Z = {"<cmd>set invrnu invnu<CR>", "Toggle Line Numbers"},
+    T = {"<cmd>lua require(\"core.utils\").toggle_transparency()<CR>", "Toggle Transparency"},
+    I = {"<cmd>lua require(\"plug.toggle\").toggle()<CR>", "Toggle Inverse"},
     q = {
         name = "File Options",
         q = {"<cmd>q!<cr>", "Quit"},
@@ -96,14 +100,15 @@ local n_mappings = {
     },
     f = {
         name = "Telescope",
-        b = {'<cmd>lua require("core.file").buffers()<cr>', "Buffers"},
-        d = {'<cmd>lua require("core.file").xdg_config()<cr>', "Dotfiles"},
-        n = {'<cmd>lua require("core.file").nvim_files()<cr>', "Nvim Files"},
+        b = {'<cmd>lua require("plug.telescope").buffers()<cr>', "Buffers"},
+        d = {'<cmd>lua require("plug.telescope").xdg_config()<cr>', "Dotfiles"},
+        n = {'<cmd>lua require("plug.telescope").nvim_files()<cr>', "Nvim Files"},
         e = {"<cmd>Telescope emoji<cr>", "Emoji Picker"},
         f = {"<cmd>Telescope find_files<cr>", "Find Files"},
         g = {"<cmd>Telescope oldfiles<cr>", "Recently Opened"},
         m = {"<cmd>Telescope media_files<cr>", "Find Media"},
-        r = {"<cmd>Telescope live_grep<cr>", "Find String"}
+        r = {"<cmd>Telescope live_grep<cr>", "Find with Word"},
+        t = {"<cmd>Telescope file_browser<cr>", "Browser"}
     },
     t = {
         name = "Terminal",

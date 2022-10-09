@@ -24,7 +24,7 @@ opt.undofile       = true                      -- enable persistent undo
 opt.updatetime     = 300                       -- faster completion (4000ms default)
 opt.expandtab      = true                      -- convert tabs to spaces
 opt.shiftwidth     = 4                         -- the number of spaces inserted for each indentation
-opt.tabstop        = 4                         -- insert 2 spaces for a tab
+opt.tabstop        = 8                         -- insert 2 spaces for a tab
 opt.number         = false                     -- set numbered lines
 opt.relativenumber = false                     -- set relative numbered lines
 opt.numberwidth    = 1                         -- set number column width to 2 {default 4}
@@ -88,7 +88,6 @@ O.scrolloff                   = 0
 O.sidescrolloff               = 5
 O.mouse                       = "a"
 wo.wrap                       = false
--- wo.relativenumber                     = true
 O.cursorline                  = true
 O.tabstop                     = 2
 vim.bo.tabstop                    = 2
@@ -98,12 +97,11 @@ vim.bo.shiftwidth                 = 0
 O.autoindent                  = true
 vim.bo.autoindent                 = true
 O.expandtab                   = true
-opt.fillchars:append("eob: ")
+-- opt.fillchars:append("eob: ")
 vim.bo.expandtab                  = true
 vim.opt_local.bufhidden           = "wipe"
 vim.opt_local.buflisted           = false
 opt.laststatus                = 3
-vim.diagnostic.config({ signs = false })
 cmd("set lazyredraw")
 cmd("filetype plugin indent on")
 cmd("colorscheme nvstar")
@@ -120,8 +118,8 @@ vim.g.matchparen_timeout        = 20
 vim.g.matchparen_insert_timeout = 20
 vim.g.do_filetype_lua           = 1
 vim.g.did_load_filetypes        = 0
-opt.pyxversion              = 3
-opt.pyxversion              = 3
+opt.pyxversion                  = 3
+opt.pyxversion                  = 3
 
 -- Give me some fenced codeblock goodness
 vim.g.markdown_fenced_languages = {
@@ -179,6 +177,3 @@ for _, provider in ipairs(default_providers) do
 end
 
 vim.cmd([[let &statusline='%#Normal# ']])
-
--- vim.ui.select = require"popui.ui-overrider"
--- vim.ui.input = require"popui.input-overrider"

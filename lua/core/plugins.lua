@@ -67,7 +67,7 @@ return packer.startup(function(use)
     use("folke/todo-comments.nvim")
 
     -- Colorscheme
-    use("rebelot/kanagawa.nvim") 
+    use("rebelot/kanagawa.nvim")
     use('navarasu/onedark.nvim')
     use('folke/tokyonight.nvim')
     use("ellisonleao/gruvbox.nvim")
@@ -109,18 +109,18 @@ return packer.startup(function(use)
     -- Others
     use("kg8m/vim-simple-align")
     use("github/copilot.vim")
+    use("norcalli/nvim-colorizer.lua")
 
 
 
 
 
 
-    -- use({
-    --     "windwp/nvim-autopairs",
-    --     config = function() require("nvim-autopairs").setup({}) end,
-    --     after = "nvim-cmp"
-    -- })
-    -- use("norcalli/nvim-colorizer.lua")
+    use({
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup({}) end,
+        after = "nvim-cmp"
+    })
 
 
 

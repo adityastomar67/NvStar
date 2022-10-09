@@ -91,13 +91,13 @@ keymap("n" , "<S-l>" , ":bnext<CR>"     , opts)
 keymap("n" , "<S-h>" , ":bprevious<CR>" , opts)
 
 -- Braces pairing
-keymap("i" , "<>" , "<><Left>" , opts)
-keymap("i" , "{}" , "{}<Left>" , opts)
-keymap("i" , "()" , "()<Left>" , opts)
-keymap("i" , "[]" , "[]<Left>" , opts)
-keymap("i" , '""' , '""<Left>' , opts)
-keymap("i" , "''" , "''<Left>" , opts)
-keymap("i" , "``" , "``<Left>" , opts)
+--keymap("i" , "<>" , "<><Left>" , opts)
+--keymap("i" , "{}" , "{}<Left>" , opts)
+--keymap("i" , "()" , "()<Left>" , opts)
+--keymap("i" , "[]" , "[]<Left>" , opts)
+--keymap("i" , '""' , '""<Left>' , opts)
+--keymap("i" , "''" , "''<Left>" , opts)
+--keymap("i" , "``" , "``<Left>" , opts)
 
 -- Press qq/q fast to enter Normal Mode
 keymap("i", "qq", "<ESC>", opts)

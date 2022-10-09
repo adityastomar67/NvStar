@@ -6,6 +6,7 @@
 -- nvim_del_autocmd         — Delete an autocmd by id.
 -- nvim_do_autocmd          — Do one autocmd.
 -- nvim_get_autocmds        — Get autocmds that match the requirements.
+
 local api = vim.api
 local opt = vim.opt -- global
 local g = vim.g -- global for let options
@@ -150,7 +151,7 @@ vim.cmd([[command! SaveAsRoot w !doas tee %]])
 vim.cmd([[cmap w!! w !doas tee % >/dev/null]]) -- save as root, in my case I use the command 'doas'
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[au BufNewFile,BufRead *.ejs set filetype=html]])
-vim.cmd([[autocmd BufEnter *\(.out\|NvimTree*\)\@<! echo expand('%:t')]])
+-- vim.cmd([[autocmd BufEnter *\(.out\|NvimTree*\)\@<! echo expand('%:t')]])
 -- vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
 -- vim.cmd("hi normal guibg=NONE ctermbg=NONE")
 -- vim.cmd([[command! -bar -nargs=1 Grep silent grep <q-args> | redraw! | cw]])
@@ -180,11 +181,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- })
 
 -- Highlight on yank
-local yankGrp = api.nvim_create_augroup("YankHighlight", {clear = true})
-api.nvim_create_autocmd("TextYankPost", {
-    command = "silent! lua vim.highlight.on_yank()",
-    group = yankGrp
-})
+-- local yankGrp = api.nvim_create_augroup("YankHighlight", {clear = true})
+-- api.nvim_create_autocmd("TextYankPost", {
+--     command = "silent! lua vim.highlight.on_yank()",
+--     group = yankGrp
+-- })
 
 -- Last loc when opening a buffer
 api.nvim_create_autocmd("BufReadPost", {

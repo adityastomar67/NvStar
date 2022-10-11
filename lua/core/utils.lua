@@ -288,7 +288,7 @@ M.packer_lazy_load = function(plugin, timer)
         vim.defer_fn(function() require("packer").loader(plugin) end, timer)
     end
 end
-
+--------------------------- Coding Assistance ---------------------------
 -- For StackOverflow Assistance
 function M.so_input()
     local buf = vim.api.nvim_get_current_buf()
@@ -323,5 +323,66 @@ function M.so_cmd(cmd)
     local so_cmd = "clr && so " .. cmd
     vim.api.nvim_chan_send(chan_id, so_cmd .. "\n")
 end
+
+-- Cheatsheet
+local lang = ""
+local file_type = ""
+local function cht_on_open(term)
+    vim.cmd "stopinsert"
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>",
+                                {noremap = true, silent = true})
+    vim.api.nvim_buf_set_name(term.bufnr, "cheatsheet-" .. term.bufnr)
+    vim.api.nvim_buf_set_option(term.bufnr, "filetype", "cheat")
+    vim.api.nvim_buf_set_option(term.bufnr, "syntax", lang)
+end
+
+local function cht_on_exit(_) vim.cmd [[normal gg]] end
+
+function M.cht()
+    local buf = vim.api.nvim_get_current_buf()
+    lang = ""
+    file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+    vim.ui.input({prompt = "cht.sh input: ", default = file_type .. " "},
+                 function(input)
+        local cmd = ""
+        if input == "" or not input then
+            return
+        elseif input == "h" then
+            cmd = ""
+        else
+            local search = ""
+            local delimiter = " "
+            for w in (input .. delimiter):gmatch("(.-)" .. delimiter) do
+                if lang == "" then
+                    lang = w
+                else
+                    if search == "" then
+                        search = w
+                    else
+                        search = search .. "+" .. w
+                    end
+                end
+            end
+            cmd = lang
+            if search ~= "" then cmd = cmd .. "/" .. search end
+        end
+        cmd = "curl cht.sh/" .. cmd
+        M.open_term(cmd, {on_open = cht_on_open, on_exit = cht_on_exit})
+    end)
+end
+
+-- Interactive CheatSheet
+local navi = "navi fn welcome"
+
+local interactive_cheatsheet = Terminal:new{
+    cmd = navi,
+    dir = "git_dir",
+    hidden = true,
+    direction = "float",
+    float_opts = {border = "double"},
+    close_on_exit = true
+}
+
+function M.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
 
 return M

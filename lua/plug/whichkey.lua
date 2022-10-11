@@ -98,9 +98,10 @@ local n_mappings = {
     },
     a = {
         name = "Coding Assistance",
-        c = {"<cmd>Cheat<CR>", "Cheat.sh"},
+        c = {"<cmd>lua require('core.utils').cht()<CR>", "Cheat.sh"},
         s = {"<cmd>lua require('core.utils').so_input()<CR>", "StackOverflow"},
         g = {"<cmd>Copilot panel<CR>", "Copilot Panel"},
+        i = {"<cmd>lua require('core.utils').interactive_cheatsheet_toggle()<CR>", "Interactive Cheatsheet" },
     },
     f = {
         name = "Telescope",

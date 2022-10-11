@@ -117,7 +117,7 @@ local opts = {
         documentation = cmp.config.window.bordered(),
         completion    = cmp.config.window.bordered(),
     },
-    experimental = { ghost_text = true, native_menu = false },
+    experimental = { ghost_text = false, native_menu = false },
 }
 
 cmp.setup(opts)

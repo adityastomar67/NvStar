@@ -33,6 +33,11 @@ vim.g.maplocalleader = " "
 -- Reselect the previous visual block
 keymap("n", "gV", "`[v`]", opts )
 
+--Formatting
+keymap("n", "<leader>=", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+keymap("i", "<C-r>", "<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", opts)
+
 -- File creation date
 keymap("n", "<F1>", 'oThis file was created on <C-R>=strftime("%b %d %Y %H:%M")<CR><ESC>', opts)
 keymap("i", "<F1>", 'oThis file was created on <C-R>=strftime("%b %d %Y %H:%M")<CR>', opts)

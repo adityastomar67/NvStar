@@ -15,7 +15,7 @@ local opts = {
             operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
             motions = true, -- adds help for motions
             text_objects = true, -- help for text objects triggered after entering an operator
-            windows = true, -- default bindings on <c-w>
+            windows = false, -- default bindings on <c-w>
             nav = true, -- misc bindings to work with windows
             z = true, -- bindings for folds, spelling and others prefixed with z
             g = true -- bindings for prefixed with g
@@ -75,14 +75,17 @@ local v_mappings = {
         }
     }
 }
-local i_mappings = {
-    R = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
-}
+-- local i_mappings = {
+--     R = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
+-- }
 local n_mappings = {
     R = {"<cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},
     C = {"<cmd>lua require(\"core.utils\").choose_colors()<CR>", "Choose Theme"},
     Z = {"<cmd>set invrnu invnu<CR>", "Toggle Line Numbers"},
-    T = {"<cmd>lua require(\"core.utils\").toggle_transparency()<CR>", "Toggle Transparency"},
+    T = {
+        "<cmd>lua require(\"core.utils\").toggle_transparency()<CR>",
+        "Toggle Transparency"
+    },
     I = {"<cmd>lua require(\"plug.toggle\").toggle()<CR>", "Toggle Inverse"},
     q = {
         name = "File Options",
@@ -96,13 +99,16 @@ local n_mappings = {
     a = {
         name = "Coding Assistance",
         c = {"<cmd>Cheat<CR>", "Cheat.sh"},
-        s = {"<cmd>lua require('core.utils').so_input()<CR>", "StackOverflow"}
+        s = {"<cmd>lua require('core.utils').so_input()<CR>", "StackOverflow"},
+        g = {"<cmd>Copilot panel<CR>", "Copilot Panel"},
     },
     f = {
         name = "Telescope",
         b = {'<cmd>lua require("plug.telescope").buffers()<cr>', "Buffers"},
         d = {'<cmd>lua require("plug.telescope").xdg_config()<cr>', "Dotfiles"},
-        n = {'<cmd>lua require("plug.telescope").nvim_files()<cr>', "Nvim Files"},
+        n = {
+            '<cmd>lua require("plug.telescope").nvim_files()<cr>', "Nvim Files"
+        },
         e = {"<cmd>Telescope emoji<cr>", "Emoji Picker"},
         f = {"<cmd>Telescope find_files<cr>", "Find Files"},
         g = {"<cmd>Telescope oldfiles<cr>", "Recently Opened"},
@@ -136,10 +142,195 @@ local n_mappings = {
         name = "Something Else",
         h = {"<cmd>!chmod +x % && source %<CR>", "Run Shell Script"},
         o = {"<cmd>so %<CR>", "Source Current File"}
+    },
+    l = {
+        name = "LSP",
+        R = {"<cmd>Trouble lsp_references<cr>", "Trouble References"},
+        a = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
+        d = {
+            "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
+            "Diagnostics"
+        },
+        f = {"<cmd>Lspsaga lsp_finder<CR>", "Finder"},
+        i = {"<cmd>LspInfo<CR>", "Lsp Info"},
+        n = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename"},
+        r = {
+            "<cmd>lua require('telescope.builtin').lsp_references()<CR>",
+            "References"
+        },
+        s = {
+            "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
+            "Document Symbols"
+        },
+        t = {"<cmd>TroubleToggle document_diagnostics<CR>", "Trouble"},
+        L = {"<cmd>lua vim.lsp.codelens.refresh()<CR>", "Refresh CodeLens"},
+        l = {"<cmd>lua vim.lsp.codelens.run()<CR>", "Run CodeLens"},
+        D = {
+            "<cmd>lua require('core.utils').toggle_diagnostics()<CR>",
+            "Toggle Inline Diagnostics"
+        }
+    },
+    g = {
+        name = "Goto",
+        d = {"<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition"},
+        -- d = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "Definition" },
+        D = {"<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration"},
+        h = {"<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help"},
+        I = {"<cmd>Telescope lsp_implementations<CR>", "Goto Implementation"},
+        b = {
+            "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition"
+        }
+        -- b = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", "Goto Type Definition" },
     }
 }
+local function code_keymap()
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "*",
+        callback = function() vim.schedule(CodeRunner) end
+    })
+
+    function CodeRunner()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+        local fname = vim.fn.expand "%:p:t"
+        local keymap_c = {} -- normal key map
+        local keymap_c_v = {} -- visual key map
+
+        if ft == "python" then
+            keymap_c = {
+                name = "Code",
+                -- r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" },
+                -- r = { "<cmd>update<CR><cmd>TermExec cmd='python3 %'<cr>", "Run" },
+                i = {
+                    "<cmd>cexpr system('refurb --quiet ' . shellescape(expand('%'))) | copen<cr>",
+                    "Inspect"
+                },
+                r = {
+                    "<cmd>update<cr><cmd>lua require('core.utils').open_term([[python3 ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
+                    "Run"
+                },
+                m = {"<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor"}
+            }
+        elseif ft == "lua" then
+            keymap_c = {name = "Code", r = {"<cmd>luafile %<cr>", "Run"}}
+        elseif ft == "rust" then
+            keymap_c = {
+                name = "Code",
+                r = {"<cmd>execute 'Cargo run' | startinsert<cr>", "Run"},
+                D = {"<cmd>RustDebuggables<cr>", "Debuggables"},
+                h = {"<cmd>RustHoverActions<cr>", "Hover Actions"},
+                R = {"<cmd>RustRunnables<cr>", "Runnables"}
+            }
+        elseif ft == "go" then
+            keymap_c = {name = "Code", r = {"<cmd>GoRun<cr>", "Run"}}
+        elseif ft == "typescript" or ft == "typescriptreact" or ft ==
+            "javascript" or ft == "javascriptreact" then
+            keymap_c = {
+                name = "Code",
+                o = {"<cmd>TypescriptOrganizeImports<cr>", "Organize Imports"},
+                r = {"<cmd>TypescriptRenameFile<cr>", "Rename File"},
+                i = {"<cmd>TypescriptAddMissingImports<cr>", "Import Missing"},
+                F = {"<cmd>TypescriptFixAll<cr>", "Fix All"},
+                u = {"<cmd>TypescriptRemoveUnused<cr>", "Remove Unused"},
+                R = {
+                    "<cmd>lua require('config.neotest').javascript_runner()<cr>",
+                    "Choose Test Runner"
+                }
+                -- s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" },
+                -- t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" },
+            }
+        elseif ft == "java" then
+            keymap_c = {
+                name = "Code",
+                o = {
+                    "<cmd>lua require'jdtls'.organize_imports()<cr>",
+                    "Organize Imports"
+                },
+                v = {
+                    "<cmd>lua require('jdtls').extract_variable()<cr>",
+                    "Extract Variable"
+                },
+                c = {
+                    "<cmd>lua require('jdtls').extract_constant()<cr>",
+                    "Extract Constant"
+                },
+                t = {"<cmd>lua require('jdtls').test_class()<cr>", "Test Class"},
+                n = {
+                    "<cmd>lua require('jdtls').test_nearest_method()<cr>",
+                    "Test Nearest Method"
+                }
+            }
+            keymap_c_v = {
+                name = "Code",
+                v = {
+                    "<cmd>lua require('jdtls').extract_variable(true)<cr>",
+                    "Extract Variable"
+                },
+                c = {
+                    "<cmd>lua require('jdtls').extract_constant(true)<cr>",
+                    "Extract Constant"
+                },
+                m = {
+                    "<cmd>lua require('jdtls').extract_method(true)<cr>",
+                    "Extract Method"
+                }
+            }
+        end
+
+        if fname == "package.json" then
+            keymap_c.v = {
+                "<cmd>lua require('package-info').show()<cr>", "Show Version"
+            }
+            keymap_c.c = {
+                "<cmd>lua require('package-info').change_version()<cr>",
+                "Change Version"
+            }
+            -- keymap_c.s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" }
+            -- keymap_c.t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" }
+        end
+
+        if fname == "Cargo.toml" then
+            keymap_c.u = {
+                "<cmd>lua require('crates').upgrade_all_crates()<cr>",
+                "Upgrade All Crates"
+            }
+        end
+
+        if next(keymap_c) ~= nil then
+            local k = {c = keymap_c}
+            local o = {
+                mode = "n",
+                silent = true,
+                noremap = true,
+                buffer = bufnr,
+                prefix = "<leader>",
+                nowait = true
+            }
+            wk.register(k, o)
+            -- legendary.bind_whichkey(k, o, false)
+        end
+
+        if next(keymap_c_v) ~= nil then
+            local k = {c = keymap_c_v}
+            local o = {
+                mode = "v",
+                silent = true,
+                noremap = true,
+                buffer = bufnr,
+                prefix = "<leader>",
+                nowait = true
+            }
+            wk.register(k, o)
+            -- legendary.bind_whichkey(k, o, false)
+        end
+    end
+end
+
+local keymap_l = {}
+
+code_keymap()
 
 wk.setup(opts)
 wk.register(n_mappings, n_opts)
 wk.register(v_mappings, v_opts)
-wk.register(i_mappings, i_opts)
+-- wk.register(i_mappings, i_opts)

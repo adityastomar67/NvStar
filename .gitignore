@@ -2,4 +2,4 @@ plugin
 friendly-snippets
 .gitignore
 
-bin/luasnippets
+luasnip_snippets

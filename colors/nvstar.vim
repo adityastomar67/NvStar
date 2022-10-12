@@ -27,6 +27,7 @@ let g:colors_name = "nvstar"
 set background=dark
 set t_Co=256
 hi Normal guifg=#dfdde0 ctermbg=NONE guibg=#0f0f0f gui=NONE
+hi Conceal guibg=NONE
 
 set t_Co=256
 let &t_ut=''

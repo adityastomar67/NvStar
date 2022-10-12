@@ -97,8 +97,8 @@ function collapse(sep)
     vim.api.nvim_win_set_cursor(0, {curr_row, curr_ln_len})
 end
 
-function show_virtual_diagnostics() 
-    vim.diagnostic.config({virtual_lines = true}) 
+function show_virtual_diagnostics()
+    vim.diagnostic.config({virtual_lines = true})
 end
 
 function hide_virtual_diagnostics()
@@ -136,11 +136,11 @@ end
 -- vim.cmd([[autocmd InsertEnter * norm zz]]) -- Vertically center document when entering insert mode
 vim.cmd(
     [[command! Realtime set autoread | au CursorHold * checktime | call feedkeys("lh")]]) -- Automatic update of any Buffer when not in use
-vim.cmd([[command! Cls lua require("core.utils").preserve('%s/\\s\\+$//ge')]])
-vim.cmd(
-    [[command! Reindent lua require('core.utils').preserve("sil keepj normal! gg=G")]])
-vim.cmd(
-    [[command! BufOnly lua require('core.utils').preserve("silent! %bd|e#|bd#")]])
+-- vim.cmd([[command! Cls lua require("core.utils").preserve('%s/\\s\\+$//ge')]])
+-- vim.cmd(
+--     [[command! Reindent lua require('core.utils').preserve("sil keepj normal! gg=G")]])
+-- vim.cmd(
+--     [[command! BufOnly lua require('core.utils').preserve("silent! %bd|e#|bd#")]])
 vim.cmd([[command! CloneBuffer new | 0put =getbufline('#',1,'$')]])
 vim.cmd([[command! Mappings drop ~/.config/nvim/lua/core/keymaps.lua]])
 vim.cmd([[command! Scratch new | setlocal bt=nofile bh=wipe nobl noswapfile nu]])

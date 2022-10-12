@@ -33,9 +33,6 @@ vim.g.maplocalleader = " "
 -- Reselect the previous visual block
 keymap("n", "gV", "`[v`]", opts )
 
---Formatting
-keymap("n", "<leader>=", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
 keymap("i", "<C-r>", "<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", opts)
 
 -- File creation date
@@ -56,8 +53,8 @@ keymap("n", "<CR>", ":noh<CR><CR>", opts)
 keymap("n", "U", "<C-r>", opts)
 
 -- Better Hoping then numerous keystrokes
-keymap("n" , "f"     , ":HopWord<CR>"      , opts)
-keymap("n" , "F"     , ":HopLine<CR>"      , opts)
+keymap("n" , "fw"     , ":HopWord<CR>"      , opts)
+keymap("n" , "fl"     , ":HopLine<CR>"      , opts)
 keymap("i" , "<C-F>" , "<ESC>:HopLine<CR>" , opts)
 
 -- For not yanking when deleting chars
@@ -65,11 +62,11 @@ keymap('n', 'x', '"_x', opts)
 
 
 -- For Easier Splitting of buffer
-keymap("n", "<leader>|", "<C-w>v", opts)
-keymap("n", "<leader>_", "<C-w>s", opts)
+-- keymap("n", "<leader>|", "<C-w>v", opts)
+-- keymap("n", "<leader>_", "<C-w>s", opts)
 
 -- Yank all content
-keymap("n" , "<leader>y" , "ggVGy" , opts)
+-- keymap("n" , "<leader>y" , "ggVGy" , opts)
 keymap("n" , "Y"         , "y$"    , opts)
 
 -- Writing & exiting
@@ -94,15 +91,6 @@ keymap("n" , "<C-Right>" , ":vertical resize +2<CR>" , opts)
 -- Navigate buffers
 keymap("n" , "<S-l>" , ":bnext<CR>"     , opts)
 keymap("n" , "<S-h>" , ":bprevious<CR>" , opts)
-
--- Braces pairing
---keymap("i" , "<>" , "<><Left>" , opts)
---keymap("i" , "{}" , "{}<Left>" , opts)
---keymap("i" , "()" , "()<Left>" , opts)
---keymap("i" , "[]" , "[]<Left>" , opts)
---keymap("i" , '""' , '""<Left>' , opts)
---keymap("i" , "''" , "''<Left>" , opts)
---keymap("i" , "``" , "``<Left>" , opts)
 
 -- Press qq/q fast to enter Normal Mode
 keymap("i", "qq", "<ESC>", opts)

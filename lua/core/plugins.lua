@@ -114,7 +114,22 @@ return packer.startup(function(use)
 
 
 
+    -- For Provind the Comments Functionality
+    use({
+        "terrortylor/nvim-comment",
+        config = function()
+            require("nvim_comment").setup()
+        end
+    })
 
+    -- Line & Word Hopping
+    use {
+      'phaazon/hop.nvim',
+      branch = 'v1',
+      config = function()
+        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      end
+    }
 
     use({
         "windwp/nvim-autopairs",

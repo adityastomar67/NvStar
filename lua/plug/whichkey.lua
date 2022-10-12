@@ -65,6 +65,7 @@ local v_opts = {prefix = "<leader>", mode = "v"}
 local i_opts = {prefix = "<leader>", mode = "i"}
 
 local v_mappings = {
+  ["/"] = {":'<,'>CommentToggle<CR>", "Comment Toggle"},
     I = {"<cmd>lua require(\"plug.toggle\").toggle()<CR>", "Toggle Inverse"},
     s = {
         name = "Text",
@@ -79,6 +80,10 @@ local v_mappings = {
 --     R = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
 -- }
 local n_mappings = {
+  ["_"] = { "<C-w>s", "Split Horizontally"},
+  ["|"] = { "<C-w>v", "Split Vertically"},
+  ["/"] = {"<cmd>CommentToggle<CR>", "Comment Toggle"},
+  ["="] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document"},
     R = {"<cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},
     C = {"<cmd>lua require(\"core.utils\").choose_colors()<CR>", "Choose Theme"},
     Z = {"<cmd>set invrnu invnu<CR>", "Toggle Line Numbers"},
@@ -96,6 +101,7 @@ local n_mappings = {
         S = {"<cmd>wa<cr>", "Save All Opened"},
         x = {"<cmd>bdelete<cr>", "Close"}
     },
+    y = {"ggVGy", "Yank Full Document"},
     a = {
         name = "Coding Assistance",
         c = {"<cmd>lua require('core.utils').cht()<CR>", "Cheat.sh"},

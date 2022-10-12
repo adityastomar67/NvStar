@@ -177,3 +177,4 @@ for _, provider in ipairs(default_providers) do
 end
 
 vim.cmd([[let &statusline='%#Normal# ']])
+vim.cmd([[lua vim.o.ch = 0]])

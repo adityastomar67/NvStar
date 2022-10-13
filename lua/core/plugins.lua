@@ -44,6 +44,7 @@ return packer.startup(function(use)
     use("kdheepak/lazygit.nvim")
     use("kyazdani42/nvim-tree.lua")
     use('anuvyklack/hydra.nvim')
+    use('sindrets/winshift.nvim')
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter")

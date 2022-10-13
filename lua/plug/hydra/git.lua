@@ -1,5 +1,8 @@
-local Hydra = require("hydra")
-local gitsigns = require("gitsigns")
+local status_ok, Hydra = pcall(require, "hydra")
+if not status_ok then return end
+
+local status_ok, gitsigns = pcall(require, "gitsigns")
+if not status_ok then return end
 
 local function cmd(command)
   return table.concat({ "<Cmd>", command, "<CR>" })
@@ -31,7 +34,7 @@ Hydra({
     },
   },
   mode = { "n", "x" },
-  body = "<leader>g",
+  body = "<C-g>",
   heads = {
     {
       "J",
@@ -83,5 +86,6 @@ Hydra({
     { "/", gitsigns.show, opts }, -- show the base of the file
     { "<Enter>", "<cmd>Neogit<CR>", opts },
     { "q", nil, opts },
+    { "<ESC>", nil, opts },
   },
 })

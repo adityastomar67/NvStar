@@ -1,4 +1,5 @@
-local Hydra = require("hydra")
+local status_ok, Hydra = pcall(require, "hydra")
+if not status_ok then return end
 
 local function cmd(command)
   return table.concat({ "<Cmd>", command, "<CR>" })
@@ -24,7 +25,7 @@ Hydra({
     },
   },
   mode = "n",
-  body = "<Leader>z",
+  body = "<C-z>",
   heads = {
     { "J", "]s" },
     { "K", "[s" },
@@ -32,5 +33,6 @@ Hydra({
     { "l", cmd("Telescope spell_suggest") },
     { "f", "1z=" },
     { "q", nil, { exit = true, nowait = true } },
+    { "<ESC>", nil, { exit = true, nowait = true } },
   },
 })

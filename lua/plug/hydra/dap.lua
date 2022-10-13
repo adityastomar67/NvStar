@@ -1,4 +1,5 @@
-local Hydra = require("hydra")
+local status_ok, Hydra = pcall(require, "hydra")
+if not status_ok then return end
 local dap = require("dap")
 
 local hint = [[
@@ -22,7 +23,7 @@ local dap_hydra = Hydra({
   },
   name = "dap",
   mode = { "n", "x" },
-  body = "<leader>d",
+  body = "<C-p>",
   heads = {
     { "C", "<cmd>lua require('dapui').close()<cr>:DapVirtualTextForceRefresh<cr>", { silent = true } },
     { "E", "<cmd>lua require('dapui').eval()<cr>", { silent = true } },
@@ -37,6 +38,7 @@ local dap_hydra = Hydra({
     { "s", dap.continue, { silent = true } },
     { "x", "<cmd>lua require'dap'.disconnect({ terminateDebuggee = false })<cr>", { exit = true, silent = true } },
     { "q", nil, { exit = true, nowait = true } },
+    { "<ESC>", nil, { exit = true, nowait = true } },
   },
 })
 

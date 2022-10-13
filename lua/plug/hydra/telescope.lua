@@ -41,7 +41,7 @@ Hydra({
       },
    },
    mode = 'n',
-   body = '<Leader>f',
+   body = '<C-f>',
    heads = {
 		{ "b", cmd 'lua require("plug.telescope").buffers()' , { desc = "Buffers" } },
 		{ "n", cmd 'lua require("plug.telescope").nvim_files()' , { desc = "Nvim Files" } },
@@ -65,5 +65,6 @@ Hydra({
 		{ ";", cmd "Telescope command_history" , { desc = "command-line history" } },
 		{ "<Enter>", cmd("Telescope"), { exit = true, desc = "list all pickers" } },
 		{ "q", nil, { exit = true, nowait = true }	},
+		{ "<ESC>", nil, { exit = true, nowait = true }	},
    }
 })

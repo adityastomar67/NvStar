@@ -1,5 +1,11 @@
-local Hydra = require("hydra")
-local picker = require("window-picker")
+local status_ok, Hydra = pcall(require, "hydra")
+if not status_ok then return end
+
+local status_ok, winshift = pcall(require, "winshift")
+if not status_ok then return end
+
+local status_ok, picker = pcall(require, "window-picker")
+if not status_ok then return end
 
 local function cmd(command)
   return table.concat({ "<Cmd>", command, "<CR>" })
@@ -12,8 +18,8 @@ local hint = [[
  _H_ ^ ^ _L_   _h_ ^ ^ _l_  _v_: vertically
  ^ ^ _J_ ^ ^   ^ ^ _j_ ^ ^  _c_: close
 
- _=_: equalize _m_: toggle maximize
- _p_: pick     _w_: shift   _W_: swap
+ _=_: equalize _W_: swap
+ _p_: pick     _w_: shift  
  ^
  _q_: exit
 ]]
@@ -37,27 +43,30 @@ Hydra({
     },
   },
   mode = "n",
-  body = "<leader>w",
+  body = "<C-w>",
   heads = {
     { "s", cmd("split"), opts },
     { "v", cmd("vsplit"), opts },
     { "c", cmd("close"), opts }, -- close current window
-    { "m", cmd("WindowsMaximize"), opts }, -- maximize current window
+
     -- window resizing
     { "=", cmd("wincmd =") },
     { "k", cmd("wincmd +") },
     { "j", cmd("wincmd -") },
     { "h", cmd("wincmd <") },
     { "l", cmd("wincmd >") },
+
     -- move window around
     { "H", cmd("WinShift left") },
     { "J", cmd("WinShift down") },
     { "K", cmd("WinShift up") },
     { "L", cmd("WinShift right") },
+
     { "p", pick_window, opts }, -- pick window
     -- WinShift modes
     { "w", cmd("WinShift") },
     { "W", cmd("WinShift swap") },
     { "q", nil, opts },
+    { "<ESC>", nil, opts },
   },
 })

@@ -35,6 +35,7 @@ for _, source in ipairs({
 	"plug.statusline",
 	"plug.null-ls",
 	"plug.todo-comments",
+	"plug.hydra",
 
 }) do
 	local status_ok, fault = pcall(require, source)

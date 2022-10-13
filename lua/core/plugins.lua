@@ -43,6 +43,7 @@ return packer.startup(function(use)
     use("akinsho/toggleterm.nvim")
     use("kdheepak/lazygit.nvim")
     use("kyazdani42/nvim-tree.lua")
+    use('anuvyklack/hydra.nvim')
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter")
@@ -111,7 +112,13 @@ return packer.startup(function(use)
     use("github/copilot.vim")
     use("norcalli/nvim-colorizer.lua")
 
-
+use {
+    's1n7ax/nvim-window-picker',
+    tag = 'v1.*',
+    config = function()
+        require'window-picker'.setup()
+    end,
+}
 
 
     -- For Provind the Comments Functionality
@@ -136,18 +143,6 @@ return packer.startup(function(use)
         config = function() require("nvim-autopairs").setup({}) end,
         after = "nvim-cmp"
     })
-
-
-
-    -- use("elkowar/yuck.vim")
-    -- use("nathom/filetype.nvim")
-
-
-
-
-
-
-
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins
 end)

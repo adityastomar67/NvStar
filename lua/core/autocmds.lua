@@ -158,6 +158,8 @@ vim.cmd([[au BufNewFile,BufRead *.ejs set filetype=html]])
 -- vim.cmd([[hi ActiveWindow ctermbg=16 | hi InactiveWindow ctermbg=233]])
 -- vim.cmd([[set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow]])
 
+
+
 vim.api.nvim_create_user_command("DiffOrig",
                                  "vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis",
                                  {force = true})
@@ -383,3 +385,10 @@ augroups.misc = {
         end
     }
 }
+
+vim.cmd[[highlight ExtraWhitespace ctermbg=NONE guibg=NONE]]
+vim.cmd[[match ExtraWhitespace /\s\+$/]]
+vim.cmd[[autocmd BufWinEnter * match ExtraWhitespace /\s\+$/]]
+vim.cmd[[autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/]]
+vim.cmd[[autocmd InsertLeave * match ExtraWhitespace /\s\+$/]]
+vim.cmd[[autocmd BufWinLeave * call clearmatches()]]

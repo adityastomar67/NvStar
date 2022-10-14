@@ -1,7 +1,7 @@
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then return end
 
-local opts = {
+local SETTINGS = {
     options = {
         buffer_close_icon = '',
         modified_icon = '',
@@ -21,7 +21,7 @@ local opts = {
     }
 }
 
-bufferline.setup(opts)
+bufferline.setup(SETTINGS)
 
 vim.cmd [[
   nnoremap <silent><TAB> :BufferLineCycleNext<CR>

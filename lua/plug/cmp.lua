@@ -59,7 +59,7 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
-local opts = {
+local SETTINGS = {
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -120,4 +120,4 @@ local opts = {
     experimental = { ghost_text = false, native_menu = false },
 }
 
-cmp.setup(opts)
+cmp.setup(SETTINGS)

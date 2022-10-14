@@ -3,7 +3,7 @@ if not status_ok then
     return
 end
 
-local opts = {
+local SETTINGS = {
 	size = 13,
 	open_mapping = [[<c-\>]],
 	shade_filetypes = {},
@@ -37,4 +37,4 @@ local opts = {
 	},
 }
 
-term.setup(opts)
+term.setup(SETTINGS)

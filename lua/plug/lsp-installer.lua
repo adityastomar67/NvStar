@@ -1,3 +1,6 @@
+local status_ok, installer = pcall(require, "nvim-lsp-installer")
+if not status_ok then return end
+
 local SETTINGS = {
 	-- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer", "sumneko_lua" }
 	-- This setting has no relation with the `automatic_installation` setting.
@@ -87,4 +90,4 @@ local SETTINGS = {
 	},
 }
 
-require("nvim-lsp-installer").setup(SETTINGS)
+installer.setup(SETTINGS)

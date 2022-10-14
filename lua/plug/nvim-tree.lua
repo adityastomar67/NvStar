@@ -27,7 +27,7 @@ local function dec_width()
     vim.cmd(string.format("NvimTreeResize %d", new_width))
 end
 
-local opts = {
+local SETTINGS = {
     renderer = {
         highlight_opened_files = "name",
         indent_markers = {enable = true},
@@ -99,7 +99,7 @@ local opts = {
     open_on_setup = true
 }
 
-nvim_tree.setup(opts)
+nvim_tree.setup(SETTINGS)
 
 vim.cmd([[
 autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif

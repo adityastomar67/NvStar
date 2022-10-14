@@ -3,7 +3,7 @@ if not status_ok then
     return
 end
 
-local opts = {
+local SETTINGS = {
     defaults = {
         expand_null_ls = false, -- This expands out all the null-ls sources to be shown
         left_separator = "  ",
@@ -65,4 +65,4 @@ local opts = {
     }
 }
 
-staline.setup(opts)
+staline.setup(SETTINGS)

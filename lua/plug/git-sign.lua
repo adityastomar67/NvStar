@@ -1,7 +1,7 @@
 local status_ok, gitsigns = pcall(require, "gitsigns")
 if not status_ok then return end
 
-gitsigns.setup {
+local SETTINGS = {
     signs = {
         add = {
             hl = "GitSignsAdd",
@@ -62,3 +62,5 @@ gitsigns.setup {
     },
     yadm = {enable = false}
 }
+
+gitsigns.setup(SETTINGS)

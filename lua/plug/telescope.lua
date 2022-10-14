@@ -7,7 +7,7 @@ if not status_ok then return end
 local status_ok, builtin = pcall(require, "telescope.builtin")
 if not status_ok then return end
 
-local opt = {
+local SETTINGS = {
     defaults = {
         riprep_arguments = {
             "rg", "--color=never", "--no-heading", "--with-filename",
@@ -133,7 +133,7 @@ local opt = {
     extensions_list = {"themes", "terms"}
 }
 
-telescope.setup(opt)
+telescope.setup(SETTINGS)
 telescope.load_extension("emoji")
 telescope.load_extension("media_files")
 telescope.load_extension("ui-select")

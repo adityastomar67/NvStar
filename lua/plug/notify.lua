@@ -1,7 +1,7 @@
 local status_ok, notify = pcall(require, "notify")
 if not status_ok then return end
 
-local opts = {
+local SETTINGS = {
     icons = {
         DEBUG = "  ",
         ERROR = "  ",
@@ -15,4 +15,4 @@ local opts = {
     render = "minimal"
 }
 
-notify.setup(opts)
+notify.setup(SETTINGS)

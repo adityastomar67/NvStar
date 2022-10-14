@@ -30,13 +30,14 @@ for _, source in ipairs({
 	"plug.cmp",
 	"plug.lsp",
 	"plug.lsp-installer",
+	"plug.trouble",
 	"plug.git-sign",
 	"plug.bufferline",
 	"plug.statusline",
 	"plug.null-ls",
 	"plug.todo-comments",
 	"plug.hydra",
-	"plug.luasnip"
+	"plug.luasnip",
 
 }) do
 	local status_ok, fault = pcall(require, source)

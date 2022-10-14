@@ -1,29 +1,29 @@
----------------------------------------------------------------------------------------------------+
--- Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator | Terminal | Lang-Arg |
--- ================================================================================================+
--- map  / noremap   |    @   |   -    |    -    |   @    |   @    |    @     |    -     |    -     |
--- nmap / nnoremap  |    @   |   -    |    -    |   -    |   -    |    -     |    -     |    -     |
--- map! / noremap!  |    -   |   @    |    @    |   -    |   -    |    -     |    -     |    -     |
--- imap / inoremap  |    -   |   @    |    -    |   -    |   -    |    -     |    -     |    -     |
--- cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |    -     |    -     |
--- vmap / vnoremap  |    -   |   -    |    -    |   @    |   @    |    -     |    -     |    -     |
--- xmap / xnoremap  |    -   |   -    |    -    |   @    |   -    |    -     |    -     |    -     |
--- smap / snoremap  |    -   |   -    |    -    |   -    |   @    |    -     |    -     |    -     |
--- omap / onoremap  |    -   |   -    |    -    |   -    |   -    |    @     |    -     |    -     |
--- tmap / tnoremap  |    -   |   -    |    -    |   -    |   -    |    -     |    @     |    -     |
--- lmap / lnoremap  |    -   |   @    |    @    |   -    |   -    |    -     |    -     |    @     |
----------------------------------------------------------------------------------------------------+
+--    +-------------------------------------------------------------------------------------------------+
+--    | Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator | Terminal | Lang-Arg |
+--    ---------------------------------------------------------------------------------------------------
+--    | map  / noremap   |    @   |   -    |    -    |   @    |   @    |    @     |    -     |    -     |
+--    | nmap / nnoremap  |    @   |   -    |    -    |   -    |   -    |    -     |    -     |    -     |
+--    | map! / noremap!  |    -   |   @    |    @    |   -    |   -    |    -     |    -     |    -     |
+--    | imap / inoremap  |    -   |   @    |    -    |   -    |   -    |    -     |    -     |    -     |
+--    | cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |    -     |    -     |
+--    | vmap / vnoremap  |    -   |   -    |    -    |   @    |   @    |    -     |    -     |    -     |
+--    | xmap / xnoremap  |    -   |   -    |    -    |   @    |   -    |    -     |    -     |    -     |
+--    | smap / snoremap  |    -   |   -    |    -    |   -    |   @    |    -     |    -     |    -     |
+--    | omap / onoremap  |    -   |   -    |    -    |   -    |   -    |    @     |    -     |    -     |
+--    | tmap / tnoremap  |    -   |   -    |    -    |   -    |   -    |    -     |    @     |    -     |
+--    | lmap / lnoremap  |    -   |   @    |    @    |   -    |   -    |    -     |    -     |    @     |
+--    +-------------------------------------------------------------------------------------------------+
 -- Modes
---   normal_mode = "n"
---   insert_mode = "i"
---   visual_mode = "v"
---   visual_block_mode = "x"
---   term_mode = "t"
---   command_mode = "c"
+	--   normal_mode       = "n"
+	--   insert_mode       = "i"
+	--   visual_mode       = "v"
+	--   visual_block_mode = "x"
+	--   term_mode         = "t"
+	--   command_mode      = "c"
 
-local opts = {noremap = true, silent = true}
+local opts      = {noremap = true, silent = true}
 local term_opts = {silent = true}
-local keymap = vim.api.nvim_set_keymap
+local keymap    = vim.api.nvim_set_keymap
 
 -- Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -37,7 +37,7 @@ keymap("i", "<C-r>", "<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", opts)
 
 -- File creation date
 keymap("n", "<F1>", 'oThis file was created on <C-R>=strftime("%b %d %Y %H:%M")<CR><ESC>', opts)
-keymap("i", "<F1>", 'oThis file was created on <C-R>=strftime("%b %d %Y %H:%M")<CR>', opts)
+keymap("i", "<F1>", 'oThis file was created on <C-R>=strftime("%b %d %Y %H:%M")<CR>'     , opts)
 
 -- Increment/decrement
 keymap('n', '+', '<C-a>', opts)
@@ -55,19 +55,13 @@ keymap("n", "U", "<C-r>", opts)
 -- Better Hoping then numerous keystrokes
 keymap("n" , "fw"     , ":HopWord<CR>"      , opts)
 keymap("n" , "fl"     , ":HopLine<CR>"      , opts)
-keymap("i" , "<C-F>" , "<ESC>:HopLine<CR>" , opts)
+keymap("i" , "<C-F>"  , "<ESC>:HopLine<CR>" , opts)
 
 -- For not yanking when deleting chars
 keymap('n', 'x', '"_x', opts)
 
-
--- For Easier Splitting of buffer
--- keymap("n", "<leader>|", "<C-w>v", opts)
--- keymap("n", "<leader>_", "<C-w>s", opts)
-
 -- Yank all content
--- keymap("n" , "<leader>y" , "ggVGy" , opts)
-keymap("n" , "Y"         , "y$"    , opts)
+keymap("n" , "Y" , "y$"    , opts)
 
 -- Writing & exiting
 keymap("n" , "Q"     , ":q!<CR>"     , opts)
@@ -94,8 +88,8 @@ keymap("n" , "<S-h>" , ":bprevious<CR>" , opts)
 
 -- Press qq/q fast to enter Normal Mode
 keymap("i", "qq", "<ESC>", opts)
-keymap("v", "q", "<ESC>", opts)
-keymap("x", "q", "<ESC>", opts)
+keymap("v", "q" , "<ESC>", opts)
+keymap("x", "q" , "<ESC>", opts)
 
 -- Getting Rid Of Bad Habbits
 keymap("n" , "<Up>"    , "<Nop>" , opts)
@@ -127,13 +121,13 @@ keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
 keymap("v" , "<A-j>" , ":m .+1<CR>==" , opts)
-keymap("v" , "<A-k>" , ":m .-2<CR>==" , opts)
-keymap("v" , "p"     , '"_dP'         , opts)
+keymap("v" , "<A-k>" , ":m .-2<CR>=="  , opts)
+keymap("v" , "p"     , '"_dP'        , opts)
 
 -- Move text up and down
 keymap("x" , "J"     , ":move '>+1<CR>gv-gv" , opts)
-keymap("x" , "K"     , ":move '<-2<CR>gv-gv" , opts)
-keymap("x" , "<A-k>" , ":move '<-2<CR>gv-gv" , opts)
+keymap("x" , "K"     , ":move '<-2<CR>gv-gv"  , opts)
+keymap("x" , "<A-k>" , ":move '<-2<CR>gv-gv"  , opts)
 keymap("x" , "<A-j>" , ":move '>+1<CR>gv-gv" , opts)
 
 -- Better terminal navigation
@@ -143,16 +137,7 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- File Tree Pawn
--- keymap("n", "<C-e>", ":NvimTreeToggle<CR>", opts) -- This works partially ??
 keymap('n', '<C-b>', ':NvimTreeToggle<CR>', opts) -- This works completely fine
-
--- For Alligning of Text Easliy
-keymap("v", "sa", ":SimpleAlign ", opts) -- For Alligning items, need to put any character whose respect to which it Align
-
--- For editing files
--- keymap("n", "<leader>1", ":e ~/.config/nvim/init.lua<CR>", opts)
--- keymap("n", "<leader>2", ":e ~/.zshrc<CR>", opts)
--- keymap("n", "<leader>3", ":e ~/.bashrc<CR>", opts)
 
 -- For Conceal enable/disable
 vim.keymap.set("n",  "<F10>" , function()
@@ -171,28 +156,8 @@ vim.keymap.set("n",  "<F11>" , function()
 	end
 end, opts)
 
--- Keymaps for Lua Snip
-vim.cmd("imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'")
-vim.cmd("inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>")
-vim.cmd("snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>")
-vim.cmd("snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>")
-vim.cmd("imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'")
-vim.cmd("smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'")
-
--- More Extra Stuff
-vim.cmd([[cnoreab cls Cls]])
-vim.cmd([[cnoreab Bo BufOnly]])
-vim.cmd([[cnoreab W w]])
-vim.cmd([[cnoreab W! w!]])
-vim.cmd([[cnoreab Bw Blockwise]])
-vim.cmd([[inoreab Fname <c-r>=expand("%:p")<cr>]])
-vim.cmd([[inoreab Iname <c-r>=expand("%:p")<cr>]])
-vim.cmd([[inoreab fname <c-r>=expand("%:t")<cr>]])
-vim.cmd([[inoreab iname <c-r>=expand("%:t")<cr>]])
-vim.cmd([[inoreabbrev idate <C-R>=strftime("%b %d %Y %H:%M")<CR>]])
-
 -- TESTING
 keymap("n","n", "nzzzv",opts)
 keymap("n","N", "Nzzzv",opts)
-keymap("n","G", "Gzz",opts)
+keymap("n","G", "Gzz"  ,opts)
 

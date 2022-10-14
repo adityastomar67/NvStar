@@ -21,6 +21,7 @@ function M.toggle_diagnostics()
     end
 end
 
+
 function M.open_term(cmd, opts)
     opts = opts or {}
     opts.size = opts.size or vim.o.columns * 0.5
@@ -39,6 +40,7 @@ function M.open_term(cmd, opts)
     }
     new_term:open(opts.size, opts.direction)
 end
+
 
 function M.alias(func, alias, options)
     local opts = {args = false}
@@ -136,10 +138,12 @@ local transparency = 0
 M.toggle_transparency = function()
     if transparency == 0 then
         vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
-        local transparency = 1
+        vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
+        vim.cmd("hi CursorLineNR guibg=NONE ctermbg=NONE")
+        transparency = 1
     else
         vim.cmd("hi Normal guibg=#0f0f0f ctermbg=NONE")
-        local transparency = 0
+        transparency = 0
     end
 end
 -- -- map('n', '<c-s-t>', '<cmd>lua require("core.utils").toggle_transparency()<cr>')
@@ -227,12 +231,12 @@ M.changeheader = function()
 end
 
 M.choose_colors = function()
-    local actions       = require("telescope.actions")
+    local actions = require("telescope.actions")
     local actions_state = require("telescope.actions.state")
-    local pickers       = require("telescope.pickers")
-    local finders       = require("telescope.finders")
-    local sorters       = require("telescope.sorters")
-    local dropdown      = require("telescope.themes").get_dropdown()
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+    local sorters = require("telescope.sorters")
+    local dropdown = require("telescope.themes").get_dropdown()
 
     function enter(prompt_bufnr)
         local selected = actions_state.get_selected_entry()
@@ -265,9 +269,11 @@ M.choose_colors = function()
     -- local colors = vim.fn.getcompletion("", "color")
 
     local opts = {
-
+        prompt_title = "Colorschemes",
         finder = finders.new_table({
-            "nvstar", "wave", "onedark", "gruvbox", "tokyonight", "nord", "monokai", "everforest", "google-light", "edge", "sonokai", "material", "kanagawa"
+            "nvstar", "wave", "onedark", "gruvbox", "tokyonight", "nord",
+            "monokai", "everforest", "google-light", "edge", "sonokai",
+            "material", "kanagawa"
         }),
 
         -- finder = finders.new_table(colors),

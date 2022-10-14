@@ -56,7 +56,7 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope-media-files.nvim")
     use('nvim-telescope/telescope-ui-select.nvim')
     use("nvim-telescope/telescope-file-browser.nvim")
-
+    
     -- UI Elements
     use("junegunn/limelight.vim")
     use("kyazdani42/nvim-web-devicons")
@@ -67,6 +67,7 @@ return packer.startup(function(use)
     use("rcarriga/nvim-notify")
     use('lewis6991/gitsigns.nvim')
     use("folke/todo-comments.nvim")
+    use('s1n7ax/nvim-window-picker')
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")
@@ -80,6 +81,7 @@ return packer.startup(function(use)
     -- Coding Assistance
     use("RishabhRD/nvim-cheat.sh")
     use("RishabhRD/popfix")
+    use("github/copilot.vim")
 
     -- LSP, Linters, Formatters
     use("neovim/nvim-lspconfig")
@@ -89,6 +91,9 @@ return packer.startup(function(use)
     use('mfussenegger/nvim-dap')
     use("jose-elias-alvarez/null-ls.nvim")
     use("williamboman/nvim-lsp-installer")
+    use("folke/trouble.nvim")
+    use('folke/lsp-trouble.nvim')
+    use('glepnir/lspsaga.nvim')
 
     -- Snippets
     use("L3MON4D3/LuaSnip")
@@ -108,40 +113,25 @@ return packer.startup(function(use)
 
     -- Others
     use("kg8m/vim-simple-align")
-    use("github/copilot.vim")
     use("norcalli/nvim-colorizer.lua")
 
-use {
-    's1n7ax/nvim-window-picker',
-    tag = 'v1.*',
-    config = function()
-        require'window-picker'.setup()
-    end,
-}
-
-
-    -- For Provind the Comments Functionality
-    use({
+    use({ -- For Provind the Comments Functionality
         "terrortylor/nvim-comment",
-        config = function()
-            require("nvim_comment").setup()
-        end
+        config = function() require("nvim_comment").setup() end
     })
 
-    -- Line & Word Hopping
-    use {
-      'phaazon/hop.nvim',
-      branch = 'v1',
-      config = function()
-        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-      end
-    }
+    use({ -- Line & Word Hopping
+        'phaazon/hop.nvim',
+        branch = 'v1',
+        config = function() require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' } end
+    })
 
-    use({
+    use({ -- Auto pairing of brackets
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup({}) end,
         after = "nvim-cmp"
     })
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins
 end)

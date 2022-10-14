@@ -65,7 +65,7 @@ local v_opts = {prefix = "<leader>", mode = "v"}
 local i_opts = {prefix = "<leader>", mode = "i"}
 
 local v_mappings = {
-  ["/"] = {":'<,'>CommentToggle<CR>", "Comment Toggle"},
+    ["/"] = {":'<,'>CommentToggle<CR>", "Comment Toggle"},
     I = {"<cmd>lua require(\"plug.toggle\").toggle()<CR>", "Toggle Inverse"},
     s = {
         name = "Text",
@@ -80,10 +80,10 @@ local v_mappings = {
 --     R = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
 -- }
 local n_mappings = {
-  ["_"] = { "<C-w>s", "Split Horizontally"},
-  ["|"] = { "<C-w>v", "Split Vertically"},
-  ["/"] = {"<cmd>CommentToggle<CR>", "Comment Toggle"},
-  ["="] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document"},
+    ["_"] = {"<C-w>s", "Split Horizontally"},
+    ["|"] = {"<C-w>v", "Split Vertically"},
+    ["/"] = {"<cmd>CommentToggle<CR>", "Comment Toggle"},
+    ["="] = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document"},
     R = {"<cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},
     C = {"<cmd>lua require(\"core.utils\").choose_colors()<CR>", "Choose Theme"},
     Z = {"<cmd>set invrnu invnu<CR>", "Toggle Line Numbers"},
@@ -107,7 +107,10 @@ local n_mappings = {
         c = {"<cmd>lua require('core.utils').cht()<CR>", "Cheat.sh"},
         s = {"<cmd>lua require('core.utils').so_input()<CR>", "StackOverflow"},
         g = {"<cmd>Copilot panel<CR>", "Copilot Panel"},
-        i = {"<cmd>lua require('core.utils').interactive_cheatsheet_toggle()<CR>", "Interactive Cheatsheet" },
+        i = {
+            "<cmd>lua require('core.utils').interactive_cheatsheet_toggle()<CR>",
+            "Interactive Cheatsheet"
+        }
     },
     t = {
         name = "Terminal",
@@ -162,6 +165,20 @@ local n_mappings = {
             "<cmd>lua require('core.utils').toggle_diagnostics()<CR>",
             "Toggle Inline Diagnostics"
         }
+    },
+    f = {
+        name = "Telescope",
+        b = {'<cmd>lua require("plug.telescope").buffers()<cr>', "Buffers"},
+        d = {'<cmd>lua require("plug.telescope").xdg_config()<cr>', "Dotfiles"},
+        n = {
+            '<cmd>lua require("plug.telescope").nvim_files()<cr>', "Nvim Files"
+        },
+        e = {"<cmd>Telescope emoji<cr>", "Emoji Picker"},
+        f = {"<cmd>Telescope find_files<cr>", "Find Files"},
+        g = {"<cmd>Telescope oldfiles<cr>", "Recently Opened"},
+        m = {"<cmd>Telescope media_files<cr>", "Find Media"},
+        r = {"<cmd>Telescope live_grep<cr>", "Find with Word"},
+        t = {"<cmd>Telescope file_browser<cr>", "Browser"}
     },
     g = {
         name = "Goto",

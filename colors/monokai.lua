@@ -1,4 +1,4 @@
-vim.g.colors_name = "nvb-monokai"
+vim.g.colors_name = "monokai"
 
 require("core.colors").setup {
   base00 = "#272822",

@@ -1,4 +1,4 @@
-vim.g.colors_name = "nvb-google-light"
+vim.g.colors_name = "google-light"
 
 require("core.colors").setup {
   base00 = "#ffffff",

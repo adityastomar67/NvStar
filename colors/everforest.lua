@@ -1,4 +1,4 @@
-vim.g.colors_name = "nvb-everforest"
+vim.g.colors_name = "everforest"
 
 require("core.colors").setup {
   base00 = "#2b3339",

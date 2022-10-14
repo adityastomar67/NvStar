@@ -227,15 +227,22 @@ M.changeheader = function()
 end
 
 M.choose_colors = function()
-    local actions = require("telescope.actions")
+    local actions       = require("telescope.actions")
     local actions_state = require("telescope.actions.state")
-    local pickers = require("telescope.pickers")
-    local finders = require("telescope.finders")
-    local sorters = require("telescope.sorters")
-    local dropdown = require("telescope.themes").get_dropdown()
+    local pickers       = require("telescope.pickers")
+    local finders       = require("telescope.finders")
+    local sorters       = require("telescope.sorters")
+    local dropdown      = require("telescope.themes").get_dropdown()
 
     function enter(prompt_bufnr)
         local selected = actions_state.get_selected_entry()
+
+        local status_ok, _ = pcall(vim.cmd, "colorscheme " .. selected[1])
+        if not status_ok then
+            vim.notify("colorscheme " .. selected[1] .. " not found!")
+            return
+        end
+
         local cmd = "colorscheme " .. selected[1]
         vim.cmd(cmd)
         actions.close(prompt_bufnr)
@@ -260,7 +267,7 @@ M.choose_colors = function()
     local opts = {
 
         finder = finders.new_table({
-            "nvstar", "wave", "onedark", "gruvbox", "tokyonight", "nord"
+            "nvstar", "wave", "onedark", "gruvbox", "tokyonight", "nord", "monokai", "everforest", "google-light", "edge", "sonokai", "material", "kanagawa"
         }),
 
         -- finder = finders.new_table(colors),

@@ -104,7 +104,13 @@ vim.opt_local.buflisted           = false
 opt.laststatus                = 3
 cmd("set lazyredraw")
 cmd("filetype plugin indent on")
-cmd("colorscheme nvstar")
+
+local colorscheme = "nvstar"
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+	vim.notify("colorscheme " .. colorscheme .. " not found!")
+	return
+end
 
 -- IMPROVE NEOVIM STARTUP
 vim.g.loaded_python_provier     = 0

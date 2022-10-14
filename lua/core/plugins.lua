@@ -72,12 +72,10 @@ return packer.startup(function(use)
     use("rebelot/kanagawa.nvim")
     use('navarasu/onedark.nvim')
     use('folke/tokyonight.nvim')
-    use("ellisonleao/gruvbox.nvim")
     use("shaunsingh/nord.nvim")
     use("marko-cerovac/material.nvim")
     use("sainnhe/sonokai")
     use("sainnhe/edge")
-    use("sainnhe/everforest")
 
     -- Coding Assistance
     use("RishabhRD/nvim-cheat.sh")

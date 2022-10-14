@@ -12,6 +12,7 @@ for _, source in ipairs({
 
 	-- CORE
 	"core.plugins",
+	"core.abbreviations",
 	"core.maps",
 	"core.options",
 	"core.utils",

@@ -83,7 +83,9 @@ local n_mappings = {
     ["_"] = {"<C-w>s", "Split Horizontally"},
     ["|"] = {"<C-w>v", "Split Vertically"},
     ["/"] = {"<cmd>CommentToggle<CR>", "Comment Toggle"},
-    ["="] = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document"},
+    ["="] = {
+        "<cmd>lua vim.lsp.buf.format { async = true }<CR>", "Format Document"
+    },
     R = {"<cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"},
     C = {"<cmd>lua require(\"core.utils\").choose_colors()<CR>", "Choose Theme"},
     Z = {"<cmd>set invrnu invnu<CR>", "Toggle Line Numbers"},
@@ -178,7 +180,8 @@ local n_mappings = {
         g = {"<cmd>Telescope oldfiles<cr>", "Recently Opened"},
         m = {"<cmd>Telescope media_files<cr>", "Find Media"},
         r = {"<cmd>Telescope live_grep<cr>", "Find with Word"},
-        t = {"<cmd>Telescope file_browser<cr>", "Browser"}
+        t = {"<cmd>Telescope file_browser<cr>", "Browser"},
+        ["<CR>"] = {"<cmd>Telescope<cr>", "Telescope Itself"},
     },
     g = {
         name = "Goto",
@@ -221,8 +224,16 @@ local function code_keymap()
                 },
                 m = {"<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor"}
             }
+        elseif ft == "cpp" then
+            keymap_c = {
+                name = "Code",
+                r = {
+                    "<cmd>update<cr><cmd>lua require('core.utils').open_term([[g++ -std=c++20 ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1) .. [[ && ./a.out && rm -f a.out]], {direction = 'float'})<cr>",
+                    "Run"
+                }
+            }
         elseif ft == "lua" then
-            keymap_c = {name = "Code", r = {"<cmd>luafile %<cr>", "Run"}}
+            keymap_c = {name = "Code", r = {"<cmd>update<cr><cmd>lua require('core.utils').open_term([[lua ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>", "Run"}}
         elseif ft == "rust" then
             keymap_c = {
                 name = "Code",

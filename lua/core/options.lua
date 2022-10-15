@@ -89,9 +89,7 @@ O.sidescrolloff               = 5
 O.mouse                       = "a"
 wo.wrap                       = false
 O.cursorline                  = true
-O.tabstop                     = 2
-vim.bo.tabstop                    = 2
-O.softtabstop                 = 2
+O.tabstop                     = 4
 O.shiftwidth                  = 0
 vim.bo.shiftwidth                 = 0
 O.autoindent                  = true
@@ -183,4 +181,6 @@ for _, provider in ipairs(default_providers) do
 end
 
 vim.cmd([[let &statusline='%#Normal# ']])
+
+-- Disable cmd area
 vim.cmd([[lua vim.o.ch = 0]])

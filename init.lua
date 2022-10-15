@@ -47,3 +47,16 @@ for _, source in ipairs({
 		notify(err, "error")
 	end
 end
+
+
+-- Temporary
+vim.cmd([[set showtabline=0]])
+
+vim.cmd([[
+	function! Syn()
+		for id in synstack(line("."), col("."))
+		  echo synIDattr(id, "name")
+		endfor
+	  endfunction
+	  command! -nargs=0 Syn call Syn()
+]])

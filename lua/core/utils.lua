@@ -150,6 +150,7 @@ M.toggle_transparency = function()
         vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
         vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
         vim.cmd("hi CursorLineNR guibg=NONE ctermbg=NONE")
+        vim.cmd("hi StalineFilename guibg=NONE guifg=NONE")
         transparency = 1
     else
         vim.cmd("hi Normal guibg=#0f0f0f ctermbg=NONE")

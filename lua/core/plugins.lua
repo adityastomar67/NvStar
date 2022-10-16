@@ -68,6 +68,7 @@ return packer.startup(function(use)
     use('lewis6991/gitsigns.nvim')
     use("folke/todo-comments.nvim")
     use('s1n7ax/nvim-window-picker')
+    use('nvim-lua/popup.nvim')
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")
@@ -82,6 +83,7 @@ return packer.startup(function(use)
     use("RishabhRD/nvim-cheat.sh")
     use("RishabhRD/popfix")
     use("github/copilot.vim")
+    use('sudormrfbin/cheatsheet.nvim')
 
     -- LSP, Linters, Formatters
     use("neovim/nvim-lspconfig")

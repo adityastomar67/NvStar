@@ -112,7 +112,8 @@ local n_mappings = {
         i = {
             "<cmd>lua require('core.utils').interactive_cheatsheet_toggle()<CR>",
             "Interactive Cheatsheet"
-        }
+        },
+        b = {"<cmd>Cheatsheet<CR>", "Builtin Cheats"},
     },
     t = {
         name = "Terminal",
@@ -177,9 +178,9 @@ local n_mappings = {
         },
         e = {"<cmd>Telescope emoji<cr>", "Emoji Picker"},
         f = {"<cmd>Telescope find_files<cr>", "Find Files"},
-        g = {"<cmd>Telescope oldfiles<cr>", "Recently Opened"},
+        r = {"<cmd>Telescope oldfiles<cr>", "Recently Opened"},
         m = {"<cmd>Telescope media_files<cr>", "Find Media"},
-        r = {"<cmd>Telescope live_grep<cr>", "Find with Word"},
+        g = {"<cmd>Telescope live_grep<cr>", "Find with Word"},
         t = {"<cmd>Telescope file_browser<cr>", "Browser"},
         ["<CR>"] = {"<cmd>Telescope<cr>", "Telescope Itself"},
     },

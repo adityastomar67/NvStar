@@ -111,6 +111,7 @@ local n_mappings = {
 			"Interactive Cheatsheet",
 		},
 		b = { "<cmd>Cheatsheet<CR>", "Builtin Cheats" },
+		o = {"<cmd>lua require(\"core.utils\").complete()<CR>", "OpenAI Codex"}
 	},
 	t = {
 		name = "Terminal",

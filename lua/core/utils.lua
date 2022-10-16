@@ -8,6 +8,30 @@ local fn = vim.fn -- access vim functions
 local cmd = vim.cmd -- vim commands
 local api = vim.api -- access vim api
 
+local Job = require "plenary.job"
+
+local M = {}
+
+local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
+local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions"
+-- local OPENAI_URL = "https://api.openai.com/v1/engines/cushman-codex/completions"
+local MAX_TOKENS = 300
+
+local function get_api_key()
+  local file = io.open(API_KEY_FILE, "rb")
+  if not file then
+    return nil
+  end
+  local content = file:read "*a"
+  content = string.gsub(content, "^%s*(.-)%s*$", "%1") -- strip off any space or newline
+  file:close()
+  return content
+end
+
+local function trim(s)
+  return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
+
 local Terminal = require("toggleterm.terminal").Terminal
 local M = {}
 
@@ -139,6 +163,16 @@ M.toggle_transparency = function()
         vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
         vim.cmd("hi CursorLineNR guibg=NONE ctermbg=NONE")
         vim.cmd("hi StalineFilename guibg=NONE guifg=NONE")
+        vim.cmd("hi TodoSignDONE guibg=NONE")
+        vim.cmd("hi TodoSignFIX  guibg=NONE")
+        vim.cmd("hi TodoSignHACK guibg=NONE")
+        vim.cmd("hi TodoSignNOTE guibg=NONE")
+        vim.cmd("hi TodoSignPERF guibg=NONE")
+        vim.cmd("hi TodoSignTEST guibg=NONE")
+        vim.cmd("hi TodoSignTODO guibg=NONE")
+        vim.cmd("hi TodoSignWARN guibg=NONE")
+        vim.cmd("hi VertSplit guibg=NONE")
+
         transparency = 1
     else
         vim.cmd("hi Normal guibg=#0f0f0f ctermbg=NONE")
@@ -327,24 +361,8 @@ function M.so_input()
         else
             cmd = input
         end
-        M.so_cmd(cmd)
+        M.open_term("clear && so " .. cmd, {direction = 'float'})
     end)
-end
-
-local function open_split()
-    vim.api.nvim_exec("vnew", true)
-    vim.api.nvim_exec("terminal", true)
-    local buf = vim.api.nvim_get_current_buf()
-    vim.api.nvim_buf_set_name(buf, "cheatsheet-" .. buf)
-    vim.api.nvim_buf_set_option(buf, "filetype", "cheat")
-    vim.api.nvim_buf_set_option(buf, "syntax", lang)
-end
-
-function M.so_cmd(cmd)
-    open_split()
-    local chan_id = vim.b.terminal_job_id
-    local so_cmd = "clr && so " .. cmd
-    vim.api.nvim_chan_send(chan_id, so_cmd .. "\n")
 end
 
 -- Cheatsheet
@@ -390,7 +408,7 @@ function M.cht()
             if search ~= "" then cmd = cmd .. "/" .. search end
         end
         cmd = "curl cht.sh/" .. cmd
-        M.open_term(cmd, {on_open = cht_on_open, on_exit = cht_on_exit})
+        M.open_term(cmd, {direction = 'float' ,on_open = cht_on_open, on_exit = cht_on_exit})
     end)
 end
 
@@ -407,5 +425,75 @@ local interactive_cheatsheet = Terminal:new{
 }
 
 function M.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
+
+-- OpenAI Codex
+function M.complete(v)
+    v = v or true
+    local ft = vim.bo.filetype
+    local buf = vim.api.nvim_get_current_buf()
+  
+    local api_key = get_api_key()
+    if api_key == nil then
+      vim.notify "OpenAI API key not found"
+      return
+    end
+  
+    local text = ""
+    if v then
+      local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
+      local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
+      text = vim.api.nvim_buf_get_lines(buf, line1 - 1, line2, false)
+      text = trim(table.concat(text, "\n"))
+    else
+      text = trim(vim.api.nvim_get_current_line())
+    end
+    local cs = vim.bo.commentstring
+    text = string.format(cs .. "\n%s", ft, text)
+  
+    -- vim.notify(text)
+  
+    local request = {}
+    request["max_tokens"] = MAX_TOKENS
+    request["top_p"] = 1
+    request["temperature"] = 0
+    request["frequency_penalty"] = 0
+    request["presence_penalty"] = 0
+    request["prompt"] = text
+    local body = vim.fn.json_encode(request)
+  
+    local completion = ""
+    local job = Job:new {
+      command = "curl",
+      args = {
+        OPENAI_URL,
+        "-H",
+        "Content-Type: application/json",
+        "-H",
+        string.format("Authorization: Bearer %s", api_key),
+        "-d",
+        body,
+      },
+    }
+    local is_completed = pcall(job.sync, job, 10000)
+    if is_completed then
+      local result = job:result()
+      local ok, parsed = pcall(vim.json.decode, table.concat(result, ""))
+      if not ok then
+        vim.notify "Failed to parse OpenAI result"
+        return
+      end
+  
+      if parsed["choices"] ~= nil then
+        completion = parsed["choices"][1]["text"]
+        local lines = {}
+        local delimiter = "\n"
+  
+        for match in (completion .. delimiter):gmatch("(.-)" .. delimiter) do
+          table.insert(lines, match)
+        end
+        vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
+      end
+    end
+  end
 
 return M

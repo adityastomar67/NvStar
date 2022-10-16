@@ -222,7 +222,7 @@ local autocmds = {
     },
     general_settings = {
         {
-            "Filetype", "qf,help,man,lspinfo,startuptime",
+            "Filetype", "cheat,copilot.*,qf,help,man,lspinfo,startuptime",
             ":nnoremap <silent> <buffer> q :close<CR>"
         }, {"Filetype", "qf", ":set nobuflisted"}
     },

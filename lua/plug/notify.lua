@@ -5,14 +5,14 @@ local SETTINGS = {
     icons = {
         DEBUG = "  ",
         ERROR = "  ",
-        WARN = "  ",
+        WARN  = "  ",
         TRACE = "  ",
-        INFO = "  "
+        INFO  = "  "
     },
-    fps = 60,
+    fps        = 60,
     max_height = 5,
-    max_widht = 10,
-    render = "minimal"
+    max_widht  = 10,
+    render     = "minimal"
 }
 
 notify.setup(SETTINGS)

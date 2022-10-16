@@ -57,6 +57,16 @@ exe "hi CmpBorder        guifg="s:nvstar12_gui
 exe "hi CmpItemAbbr      guifg="s:nvstarfg_gui
 exe "hi CmpItemAbbrMatch guifg="s:nvstar12_gui
 
+" Todo-Comment Sign
+exe "hi TodoSignDONE guibg=NONE"
+exe "hi TodoSignFIX  guibg=NONE"
+exe "hi TodoSignHACK guibg=NONE"
+exe "hi TodoSignNOTE guibg=NONE"
+exe "hi TodoSignPERF guibg=NONE"
+exe "hi TodoSignTEST guibg=NONE"
+exe "hi TodoSignTODO guibg=NONE"
+exe "hi TodoSignWARN guibg=NONE"
+
 " SearchBox
 exe "hi FloatBorder guifg="s:nvstar12_gui
 

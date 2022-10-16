@@ -3,3 +3,5 @@ friendly-snippets
 .gitignore
 
 luasnip_snippets
+
+.luarc.json

@@ -21,7 +21,6 @@ function M.toggle_diagnostics()
     end
 end
 
-
 function M.open_term(cmd, opts)
     opts = opts or {}
     opts.size = opts.size or vim.o.columns * 0.5
@@ -41,7 +40,6 @@ function M.open_term(cmd, opts)
     new_term:open(opts.size, opts.direction)
 end
 
-
 function M.alias(func, alias, options)
     local opts = {args = false}
 
@@ -57,7 +55,6 @@ function M.alias(func, alias, options)
     vim.cmd(stmt)
 end
 
-
 function M.make_arg_tbl(args)
     local result = {}
     local i = 1
@@ -69,7 +66,6 @@ function M.make_arg_tbl(args)
     return unpack(result)
 end
 
-
 function M.check_back_space()
     local col = vim.fn.col(".") - 1
     if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
@@ -79,20 +75,17 @@ function M.check_back_space()
     end
 end
 
-
 function M.warn(msg, name) vim.notify(msg, vim.log.levels.WARN, {title = name}) end
 
 function M.error(msg, name) vim.notify(msg, vim.log.levels.ERROR, {title = name}) end
 
 function M.info(msg, name) vim.notify(msg, vim.log.levels.INFO, {title = name}) end
 
-
 function M.winsize()
     return unpack({
         vim.api.nvim_win_get_width(0), vim.api.nvim_win_get_height(0)
     })
 end
-
 
 function M.map(mode, mapping, cmd, options)
     local opts = {noremap = true}
@@ -101,13 +94,11 @@ function M.map(mode, mapping, cmd, options)
     vim.api.nvim_set_keymap(mode, mapping, cmd, opts)
 end
 
-
 M.map = function(mode, lhs, rhs, opts)
     local options = {noremap = true}
     if opts then options = vim.tbl_extend("force", options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
-
 
 M.toggle_quicklist = function()
     if fn.empty(fn.filter(fn.getwininfo(), "v:val.quickfix")) == 1 then
@@ -117,12 +108,10 @@ M.toggle_quicklist = function()
     end
 end
 
-
 M.blockwise_clipboard = function()
     vim.cmd("call setreg('+', @+, 'b')")
     print("set + reg: blockwise!")
 end
-
 
 M.CountWordFunction = function()
     local hlsearch_status = vim.v.hlsearch
@@ -143,7 +132,6 @@ M.CountWordFunction = function()
     -- require("notify")("word '" .. current_word .. "' found " .. wordcount .. " times")
 end
 
-
 local transparency = 0
 M.toggle_transparency = function()
     if transparency == 0 then
@@ -158,7 +146,6 @@ M.toggle_transparency = function()
     end
 end
 
-
 M.flash_cursorline = function()
     local cursorline_state = lua
     print(vim.opt.cursorline:get())
@@ -169,7 +156,6 @@ M.flash_cursorline = function()
         if cursorline_state == false then vim.opt.cursorline = false end
     end)
 end
-
 
 M.ToggleQuickFix = function()
     if vim.fn.getqflist({winid = 0}).winid ~= 0 then
@@ -183,7 +169,6 @@ vim.cmd(
 vim.cmd([[cnoreab TQ ToggleQuickFix]])
 vim.cmd([[cnoreab tq ToggleQuickFix]])
 
-
 M.dosToUnix = function()
     M.preserve("%s/\\%x0D$//e")
     vim.bo.fileformat = "unix"
@@ -192,7 +177,6 @@ M.dosToUnix = function()
     vim.opt.fileencoding = "utf-8"
 end
 vim.cmd([[command! Dos2unix lua require('core.utils').dosToUnix()]])
-
 
 M.squeeze_blank_lines = function()
     if vim.bo.binary == false and vim.opt.filetype:get() ~= "diff" then
@@ -211,7 +195,6 @@ M.squeeze_blank_lines = function()
     end
 end
 
-
 M.ReloadConfig = function()
     local hls_status = vim.v.hlsearch
     for name, _ in pairs(package.loaded) do
@@ -220,7 +203,6 @@ M.ReloadConfig = function()
     dofile(vim.env.MYVIMRC)
     if hls_status == 0 then vim.opt.hlsearch = false end
 end
-
 
 M.preserve = function(arguments)
     local arguments = string.format("keepjumps keeppatterns execute %q",
@@ -234,7 +216,6 @@ M.preserve = function(arguments)
     vim.api.nvim_win_set_cursor(0, {line, col})
 end
 
-
 M.changeheader = function()
     -- We only can run this function if the file is modifiable
     if not vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(),
@@ -246,7 +227,6 @@ M.changeheader = function()
                        time .. "/ei")
     end
 end
-
 
 --------------------------- Colorscheme Choosing ---------------------------
 M.choose_colors = function()
@@ -313,14 +293,23 @@ M.choose_colors = function()
     colors:find()
 end
 
+--------------------------- Sourcing File ---------------------------
+M.source_file = function()
+    local buf = api.nvim_get_current_buf()
+    local filename = api.nvim_buf_get_name(buf)
+    local basename = fn.fnamemodify(filename, ":t")
 
+    api.nvim_command("source " .. filename)
+    api.nvim_command("lua require(\"notify\")(\"Sourced " .. basename .. "\", \"info\", {title = \"Neovim\"})")
+end
+
+--------------------------- Lazyloading Plugin ---------------------------
 M.packer_lazy_load = function(plugin, timer)
     if plugin then
         timer = timer or 0
         vim.defer_fn(function() require("packer").loader(plugin) end, timer)
     end
 end
-
 
 --------------------------- Coding Assistance ---------------------------
 -- For StackOverflow Assistance
@@ -357,7 +346,6 @@ function M.so_cmd(cmd)
     local so_cmd = "clr && so " .. cmd
     vim.api.nvim_chan_send(chan_id, so_cmd .. "\n")
 end
-
 
 -- Cheatsheet
 local lang = ""
@@ -405,7 +393,6 @@ function M.cht()
         M.open_term(cmd, {on_open = cht_on_open, on_exit = cht_on_exit})
     end)
 end
-
 
 -- Interactive CheatSheet
 local navi = "navi fn welcome"

@@ -103,6 +103,9 @@ opt.laststatus                = 3
 cmd("set lazyredraw")
 cmd("filetype plugin indent on")
 
+vim.g.lua_subversion = 0
+vim.g.BetterLua_enable_emmylua = 0
+
 local colorscheme = "nvstar"
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then

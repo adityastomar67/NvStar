@@ -84,6 +84,7 @@ return packer.startup(function(use)
     use("RishabhRD/popfix")
     use("github/copilot.vim")
     use('sudormrfbin/cheatsheet.nvim')
+    use({'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'})
 
     -- LSP, Linters, Formatters
     use("neovim/nvim-lspconfig")

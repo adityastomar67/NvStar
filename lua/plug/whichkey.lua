@@ -101,6 +101,9 @@ local n_mappings = {
 		x    = { "<cmd>bdelete<cr>", "Close" },
 	},
 	y = { "ggVGy", "Yank Full Document" },
+    d = {
+        c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<CR>", "Disable Completions"},
+    },
 	a = {
 		name = "Coding Assistance",
 		c    = { "<cmd>lua require('core.utils').cht()<CR>", "Cheat.sh" },

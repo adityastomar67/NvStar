@@ -1,9 +1,10 @@
 local status_ok, lsp = pcall(require, "lspconfig")
-if not status_ok then return end
+if not status_ok then 
+	return 
+end
 
 vim.diagnostic.config({ virtual_text = true })
 
--- Diagnostic signs
 local diagnostic_signs = {
 	{ name = "DiagnosticSignError", text = "" },
 	{ name = "DiagnosticSignWarn",  text = "" },

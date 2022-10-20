@@ -40,6 +40,7 @@ for _, source in ipairs({
 	"plug.hydra",
 	"plug.luasnip",
 	"plug.cheatsheet",
+	"plug.minimap",
 
 }) do
 	local status_ok, fault = pcall(require, source)

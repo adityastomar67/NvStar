@@ -56,7 +56,11 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope-media-files.nvim")
     use('nvim-telescope/telescope-ui-select.nvim')
     use("nvim-telescope/telescope-file-browser.nvim")
-    
+
+    -- FZF
+    use('junegunn/fzf')
+    use('junegunn/fzf.vim')
+
     -- UI Elements
     use("junegunn/limelight.vim")
     use("kyazdani42/nvim-web-devicons")
@@ -69,6 +73,7 @@ return packer.startup(function(use)
     use("folke/todo-comments.nvim")
     use('s1n7ax/nvim-window-picker')
     use('nvim-lua/popup.nvim')
+    use('gorbit99/codewindow.nvim')
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")

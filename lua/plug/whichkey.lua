@@ -86,11 +86,23 @@ local n_mappings = {
 	["|"] = { "<C-w>v", "Split Vertically" },
 	["/"] = { "<cmd>CommentToggle<CR>", "Comment Toggle" },
 	["="] = { "<cmd>lua vim.lsp.buf.format { async = true }<CR>", "Format Document" },
-	R     = { '<cmd>TermExec cmd="clear && prog %"<CR>', "Run Current File" },
+	-- R     = { '<cmd>TermExec cmd="clear && prog %"<CR>', "Run Current File" },
 	C     = { '<cmd>lua require("core.utils").choose_colors()<CR>', "Choose Theme" },
-	Z     = { "<cmd>set invrnu invnu<CR>", "Toggle Line Numbers" },
-	T     = { '<cmd>lua require("core.utils").toggle_transparency()<CR>', "Toggle Transparency" },
-	I     = { '<cmd>lua require("plug.toggle").toggle()<CR>', "Toggle Inverse" },
+	T     = {
+		name = "Toggle Options",
+		a    = { "<cmd>set invlist<CR>", "Toggle Whitespace" },
+		c    = { '<cmd>lua require("core.utils").toggle_cmp()<CR>', "Toggle Completions" },
+		l    = { "<cmd>set invcursorline<CR>", "Toggle Cursor Line" },
+		d    = { "<cmd>set invcursorcolumn<CR>", "Toggle Cursor Column" },
+		f    = { "<cmd>set invfoldenable<CR>", "Toggle Fold" },
+		g    = { "<cmd>set invspell<CR>", "Toggle Spell" },
+		j    = { "<cmd>set invrelativenumber<CR>", "Toggle Relative Numbers" },
+		k    = { "<cmd>set invwrap<CR>", "Toggle Wrap" },
+		m    = { "<cmd>lua require'codewindow'.toggle_minimap()<CR>", "Toggle Minimap"},
+		z    = { "<cmd>set invrnu invnu<CR>", "Toggle Line Numbers" },
+		t    = { '<cmd>lua require("core.utils").toggle_transparency()<CR>', "Toggle Transparency" },
+	},
+	I     = { '<cmd>lua require("plug.toggle").toggle()<CR>', "Inverse" },
 	q     = {
 		name = "File Options",
 		q    = { "<cmd>q!<cr>", "Quit" },
@@ -101,9 +113,9 @@ local n_mappings = {
 		x    = { "<cmd>bdelete<cr>", "Close" },
 	},
 	y = { "ggVGy", "Yank Full Document" },
-    d = {
-        c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<CR>", "Disable Completions"},
-    },
+    -- d = {
+    --     c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<CR>", "Disable Completions"},
+    -- },
 	a = {
 		name = "Coding Assistance",
 		c    = { "<cmd>lua require('core.utils').cht()<CR>", "Cheat.sh" },
@@ -184,6 +196,7 @@ local n_mappings = {
 		m = { "<cmd>Telescope media_files<cr>", "Find Media" },
 		g = { "<cmd>Telescope live_grep<cr>", "Find with Word" },
 		t = { "<cmd>Telescope file_browser<cr>", "Browser" },
+        o = { "<cmd>Files<CR>", "Open File" },
 		["<CR>"] = { "<cmd>Telescope<cr>", "Telescope Itself" },
 	},
 	g = {

@@ -183,11 +183,6 @@ M.toggle_transparency = function()
         vim.cmd("hi TodoSignTODO guibg=NONE")
         vim.cmd("hi TodoSignWARN guibg=NONE")
         vim.cmd("hi VertSplit guibg=NONE")
-        vim.cmd("hi Fzf1 guibg=NONE")
-        vim.cmd("hi Fzf2 guibg=NONE")
-        vim.cmd("hi Fzf3 guibg=NONE")
-
-
         transparency = 1
     else
         vim.cmd("hi Normal guibg=#0f0f0f ctermbg=NONE")

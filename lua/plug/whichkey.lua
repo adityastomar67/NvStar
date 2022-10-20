@@ -169,7 +169,7 @@ local n_mappings = {
 		m        = { "<cmd>Telescope media_files<cr>"                           , "Find Media" }       ,
 		g        = { "<cmd>Telescope live_grep<cr>"                             , "Find with Word" }   ,
 		t        = { "<cmd>Telescope file_browser<cr>"                          , "Browser" }          ,
-		o        = { "<cmd>Files<CR>"                                           , "Open File (FZF)" }  ,
+		o        = { "<cmd>lua require('fzf-lua').files()<cr>"                                           , "Open File (FZF)" }  ,
 	},
 	g = {
 		name = "Goto"                                         ,

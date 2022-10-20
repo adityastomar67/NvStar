@@ -82,137 +82,105 @@ local v_mappings = {
 --     R = {"<ESC><cmd>TermExec cmd=\"clear && prog %\"<CR>", "Run Current File"}
 -- }
 local n_mappings = {
-	["_"] = { "<C-w>s", "Split Horizontally" },
-	["|"] = { "<C-w>v", "Split Vertically" },
-	["/"] = { "<cmd>CommentToggle<CR>", "Comment Toggle" },
-	["="] = { "<cmd>lua vim.lsp.buf.format { async = true }<CR>", "Format Document" },
-	-- R     = { '<cmd>TermExec cmd="clear && prog %"<CR>', "Run Current File" },
-	C     = { '<cmd>lua require("core.utils").choose_colors()<CR>', "Choose Theme" },
+	["="] = { "<cmd>lua vim.lsp.buf.format { async = true }<CR>"   , "Format Document" }    ,
+	["_"] = { "<C-w>s"                                             , "Split Horizontally" } ,
+	["|"] = { "<C-w>v"                                             , "Split Vertically" }   ,
+	["/"] = { "<cmd>CommentToggle<CR>"                             , "Comment Toggle" }     ,
+	C     = { '<cmd>lua require("core.utils").choose_colors()<CR>' , "Choose Theme" }       ,
+	I     = { '<cmd>lua require("plug.toggle").toggle()<CR>'       , "Inverse" }            ,
+	y     = { "ggVGy"                                              , "Yank Full Document" } ,
 	T     = {
-		name = "Toggle Options",
-		a    = { "<cmd>set invlist<CR>", "Toggle Whitespace" },
-		c    = { '<cmd>lua require("core.utils").toggle_cmp()<CR>', "Toggle Completions" },
-		l    = { "<cmd>set invcursorline<CR>", "Toggle Cursor Line" },
-		d    = { "<cmd>set invcursorcolumn<CR>", "Toggle Cursor Column" },
-		f    = { "<cmd>set invfoldenable<CR>", "Toggle Fold" },
-		g    = { "<cmd>set invspell<CR>", "Toggle Spell" },
-		j    = { "<cmd>set invrelativenumber<CR>", "Toggle Relative Numbers" },
-		k    = { "<cmd>set invwrap<CR>", "Toggle Wrap" },
-		m    = { "<cmd>lua require'codewindow'.toggle_minimap()<CR>", "Toggle Minimap"},
-		z    = { "<cmd>set invrnu invnu<CR>", "Toggle Line Numbers" },
-		t    = { '<cmd>lua require("core.utils").toggle_transparency()<CR>', "Toggle Transparency" },
+		name = "Toggle Options"                                             ,
+		a    = { "<cmd>set invlist<CR>"                                     , "Toggle Whitespace" }       ,
+		l    = { "<cmd>set invcursorline<CR>"                               , "Toggle Cursor Line" }      ,
+		d    = { "<cmd>set invcursorcolumn<CR>"                             , "Toggle Cursor Column" }    ,
+		f    = { "<cmd>set invfoldenable<CR>"                               , "Toggle Fold" }             ,
+		g    = { "<cmd>set invspell<CR>"                                    , "Toggle Spell" }            ,
+		j    = { "<cmd>set invrelativenumber<CR>"                           , "Toggle Relative Numbers" } ,
+		k    = { "<cmd>set invwrap<CR>"                                     , "Toggle Wrap" }             ,
+		z    = { "<cmd>set invrnu invnu<CR>"                                , "Toggle Line Numbers" }     ,
+		m    = { "<cmd>lua require'codewindow'.toggle_minimap()<CR>"        , "Toggle Minimap"}           ,
+		c    = { '<cmd>lua require("core.utils").toggle_cmp()<CR>'          , "Toggle Completions" }      ,
+		t    = { '<cmd>lua require("core.utils").toggle_transparency()<CR>' , "Toggle Transparency" }     ,
 	},
-	I     = { '<cmd>lua require("plug.toggle").toggle()<CR>', "Inverse" },
 	q     = {
 		name = "File Options",
-		q    = { "<cmd>q!<cr>", "Quit" },
-		Q    = { "<cmd>q<cr>", "Quit Without Saving" },
-		w    = { "<cmd>wq<cr>", "Save & Quit" },
-		s    = { "<cmd>w<cr>", "Save" },
-		S    = { "<cmd>wa<cr>", "Save All Opened" },
-		x    = { "<cmd>bdelete<cr>", "Close" },
+		q    = { "<cmd>q!<cr>"      , "Quit" }                ,
+		Q    = { "<cmd>q<cr>"       , "Quit Without Saving" } ,
+		w    = { "<cmd>wq<cr>"      , "Save & Quit" }         ,
+		s    = { "<cmd>w<cr>"       , "Save" }                ,
+		S    = { "<cmd>wa<cr>"      , "Save All Opened" }     ,
+		x    = { "<cmd>bdelete<cr>" , "Close" }               ,
 	},
-	y = { "ggVGy", "Yank Full Document" },
-    -- d = {
-    --     c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<CR>", "Disable Completions"},
-    -- },
 	a = {
 		name = "Coding Assistance",
-		c    = { "<cmd>lua require('core.utils').cht()<CR>", "Cheat.sh" },
-		s    = { "<cmd>lua require('core.utils').so_input()<CR>", "StackOverflow" },
-		g    = { "<cmd>Copilot panel<CR>", "Copilot Panel" },
-		i    = {
-			"<cmd>lua require('core.utils').interactive_cheatsheet_toggle()<CR>",
-			"Interactive Cheatsheet",
-		},
-		b = { "<cmd>Cheatsheet<CR>", "Builtin Cheats" },
-		o = {"<cmd>lua require(\"core.utils\").complete()<CR>", "OpenAI Codex"}
+		g    = { "<cmd>Copilot panel<CR>"                                             , "Copilot Panel" }          ,
+		b    = { "<cmd>Cheatsheet<CR>"                                                , "Builtin Cheats" }         ,
+		c    = { "<cmd>lua require('core.utils').cht()<CR>"                           , "Cheat.sh" }               ,
+		s    = { "<cmd>lua require('core.utils').so_input()<CR>"                      , "StackOverflow" }          ,
+		i    = { "<cmd>lua require('core.utils').interactive_cheatsheet_toggle()<CR>" , "Interactive Cheatsheet" } ,
+		o    = { "<cmd>lua require('core.utils').complete()<CR>"                      , "OpenAI Codex"}
 	},
 	t = {
 		name = "Terminal",
-		t = {
-			'<cmd>TermExec size=10 direction=horizontal cmd="clear"<CR>',
-			"Split Below",
-		},
-		f = {
-			'<cmd>TermExec size=30 direction=float cmd="clear"<CR>',
-			"Floating Terminal",
-		},
-		l = { "<cmd>LazyGit<CR>", "LazyGit" },
+		t    = { '<cmd>TermExec size=10 direction=horizontal cmd="clear"<CR>' , "Split Below" }       ,
+		f    = { '<cmd>TermExec size=30 direction=float cmd="clear"<CR>'      , "Floating Terminal" } ,
+		l    = { "<cmd>LazyGit<CR>"                                           , "LazyGit" }           ,
 	},
 	p = {
-		name = "Packer",
-		r = { "<cmd>PackerClean<cr>", "Remove Unused Plugins" },
-		c = { "<cmd>PackerCompile profile=true<cr>", "Recompile Plugins" },
-		i = { "<cmd>PackerInstall<cr>", "Install Plugins" },
-		p = { "<cmd>PackerProfile<cr>", "Packer Profile" },
-		s = { "<cmd>PackerSync<cr>", "Sync Plugins" },
-		S = { "<cmd>PackerStatus<cr>", "Packer Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update Plugins" },
+		name = "Packer"                                ,
+		r    = { "<cmd>PackerClean<cr>"                , "Remove Unused Plugins" } ,
+		c    = { "<cmd>PackerCompile profile=true<cr>" , "Recompile Plugins" }     ,
+		i    = { "<cmd>PackerInstall<cr>"              , "Install Plugins" }       ,
+		p    = { "<cmd>PackerProfile<cr>"              , "Packer Profile" }        ,
+		s    = { "<cmd>PackerSync<cr>"                 , "Sync Plugins" }          ,
+		S    = { "<cmd>PackerStatus<cr>"               , "Packer Status" }         ,
+		u    = { "<cmd>PackerUpdate<cr>"               , "Update Plugins" }        ,
 	},
 	s = {
 		name = "Something Else",
-		h = { "<cmd>!chmod +x % && source %<CR>", "Run Shell Script" },
-		o = { "<cmd>lua require('core.utils').source_file()<CR>", "Source Current File" },
+		h    = { "<cmd>!chmod +x % && source %<CR>"                 , "Run Shell Script" }    ,
+		o    = { "<cmd>lua require('core.utils').source_file()<CR>" , "Source Current File" } ,
 	},
 	l = {
 		name = "LSP",
-		R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-		a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-		d = {
-			"<cmd>lua require('telescope.builtin').diagnostics()<CR>",
-			"Diagnostics",
-		},
-		f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
-		i = { "<cmd>LspInfo<CR>", "Lsp Info" },
-		n = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-		r = {
-			"<cmd>lua require('telescope.builtin').lsp_references()<CR>",
-			"References",
-		},
-		s = {
-			"<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
-			"Document Symbols",
-		},
-		t = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble" },
-		L = { "<cmd>lua vim.lsp.codelens.refresh()<CR>", "Refresh CodeLens" },
-		l = { "<cmd>lua vim.lsp.codelens.run()<CR>", "Run CodeLens" },
-		D = {
-			"<cmd>lua require('core.utils').toggle_diagnostics()<CR>",
-			"Toggle Inline Diagnostics",
-		},
+		R    = { "<cmd>Trouble lsp_references<cr>"                                  , "Trouble References" }        ,
+		a    = { "<cmd>lua vim.lsp.buf.code_action()<CR>"                           , "Code Action" }               ,
+		d    = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>"          , "Diagnostics" }               ,
+		f    = { "<cmd>Lspsaga lsp_finder<CR>"                                      , "Finder" }                    ,
+		i    = { "<cmd>LspInfo<CR>"                                                 , "Lsp Info" }                  ,
+		n    = { "<cmd>lua vim.lsp.buf.rename()<CR>"                                , "Rename" }                    ,
+		r    = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>"       , "References" }                ,
+		s    = { "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>" , "Document Symbols" }          ,
+		t    = { "<cmd>TroubleToggle document_diagnostics<CR>"                      , "Trouble" }                   ,
+		L    = { "<cmd>lua vim.lsp.codelens.refresh()<CR>"                          , "Refresh CodeLens" }          ,
+		l    = { "<cmd>lua vim.lsp.codelens.run()<CR>"                              , "Run CodeLens" }              ,
+		D    = { "<cmd>lua require('core.utils').toggle_diagnostics()<CR>"          , "Toggle Inline Diagnostics" } ,
 	},
 	f = {
-		name = "Telescope",
-		b = { '<cmd>lua require("plug.telescope").buffers()<cr>', "Buffers" },
-		d = { '<cmd>lua require("plug.telescope").xdg_config()<cr>', "Dotfiles" },
-		n = {
-			'<cmd>lua require("plug.telescope").nvim_files()<cr>',
-			"Nvim Files",
-		},
-		e = { "<cmd>Telescope emoji<cr>", "Emoji Picker" },
-		f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Recently Opened" },
-		m = { "<cmd>Telescope media_files<cr>", "Find Media" },
-		g = { "<cmd>Telescope live_grep<cr>", "Find with Word" },
-		t = { "<cmd>Telescope file_browser<cr>", "Browser" },
-        o = { "<cmd>Files<CR>", "Open File" },
-		["<CR>"] = { "<cmd>Telescope<cr>", "Telescope Itself" },
+		name     = "Telescope"                                                  ,
+		["<CR>"] = { "<cmd>Telescope<cr>"                                       , "Telescope Itself" } ,
+		b        = { '<cmd>lua require("plug.telescope").buffers()<cr>'         , "Buffers" }          ,
+		d        = { '<cmd>lua require("plug.telescope").xdg_config()<cr>'      , "Dotfiles" }         ,
+		n        = { '<cmd>lua require("plug.telescope").nvim_files()<cr>'      , "Nvim Files" }       ,
+		r        = { '<cmd>lua require("plug.telescope").search_oldfiles()<cr>' , "Recently Opened" }  ,
+		e        = { "<cmd>Telescope emoji<cr>"                                 , "Emoji Picker" }     ,
+		f        = { "<cmd>Telescope find_files<cr>"                            , "Find Files" }       ,
+		m        = { "<cmd>Telescope media_files<cr>"                           , "Find Media" }       ,
+		g        = { "<cmd>Telescope live_grep<cr>"                             , "Find with Word" }   ,
+		t        = { "<cmd>Telescope file_browser<cr>"                          , "Browser" }          ,
+		o        = { "<cmd>Files<CR>"                                           , "Open File (FZF)" }  ,
 	},
 	g = {
-		name = "Goto",
-		d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-		-- d = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "Definition" },
-		D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
-		h = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-		I = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
-		b = {
-			"<cmd>lua vim.lsp.buf.type_definition()<CR>",
-			"Goto Type Definition",
-		},
-		-- b = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", "Goto Type Definition" },
+		name = "Goto"                                         ,
+		d    = { "<Cmd>lua vim.lsp.buf.definition()<CR>"      , "Definition" }      ,
+		D    = { "<Cmd>lua vim.lsp.buf.declaration()<CR>"     , "Declaration" }     ,
+		h    = { "<cmd>lua vim.lsp.buf.signature_help()<CR>"  , "Signature Help" }  ,
+		I    = { "<cmd>Telescope lsp_implementations<CR>"     , "Implementation" }  ,
+		b    = { "<cmd>lua vim.lsp.buf.type_definition()<CR>" , "Type Definition" } ,
 	},
 }
+
 local function code_keymap()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = "*",
@@ -222,21 +190,16 @@ local function code_keymap()
 	})
 
 	function CodeRunner()
-		local bufnr = vim.api.nvim_get_current_buf()
-		local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
-		local fname = vim.fn.expand("%:p:t")
-		local keymap_c = {} -- normal key map
+		local bufnr      = vim.api.nvim_get_current_buf()
+		local ft         = vim.api.nvim_buf_get_option(bufnr, "filetype")
+		local fname      = vim.fn.expand("%:p:t")
+		local keymap_c   = {} -- normal key map
 		local keymap_c_v = {} -- visual key map
 
 		if ft == "python" then
 			keymap_c = {
 				name = "Code",
-				-- r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" },
-				-- r = { "<cmd>update<CR><cmd>TermExec cmd='python3 %'<cr>", "Run" },
-				i = {
-					"<cmd>cexpr system('refurb --quiet ' . shellescape(expand('%'))) | copen<cr>",
-					"Inspect",
-				},
+				i = { "<cmd>cexpr system('refurb --quiet ' . shellescape(expand('%'))) | copen<cr>", "Inspect" },
 				r = {
 					"<cmd>update<cr><cmd>lua require('core.utils').open_term([[python3 ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
 					"Run",
@@ -262,117 +225,76 @@ local function code_keymap()
 		elseif ft == "rust" then
 			keymap_c = {
 				name = "Code",
-				r = { "<cmd>execute 'Cargo run' | startinsert<cr>", "Run" },
-				D = { "<cmd>RustDebuggables<cr>", "Debuggables" },
-				h = { "<cmd>RustHoverActions<cr>", "Hover Actions" },
-				R = { "<cmd>RustRunnables<cr>", "Runnables" },
+				r    = { "<cmd>execute 'Cargo run' | startinsert<cr>" , "Run" }           ,
+				D    = { "<cmd>RustDebuggables<cr>"                   , "Debuggables" }   ,
+				h    = { "<cmd>RustHoverActions<cr>"                  , "Hover Actions" } ,
+				R    = { "<cmd>RustRunnables<cr>"                     , "Runnables" }     ,
 			}
 		elseif ft == "go" then
 			keymap_c = { name = "Code", r = { "<cmd>GoRun<cr>", "Run" } }
 		elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
 			keymap_c = {
-				name = "Code",
-				o = { "<cmd>TypescriptOrganizeImports<cr>", "Organize Imports" },
-				r = { "<cmd>TypescriptRenameFile<cr>", "Rename File" },
-				i = { "<cmd>TypescriptAddMissingImports<cr>", "Import Missing" },
-				F = { "<cmd>TypescriptFixAll<cr>", "Fix All" },
-				u = { "<cmd>TypescriptRemoveUnused<cr>", "Remove Unused" },
-				R = {
-					"<cmd>lua require('config.neotest').javascript_runner()<cr>",
-					"Choose Test Runner",
-				},
-				-- s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" },
-				-- t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" },
+				name = "Code"                                                         ,
+				o    = { "<cmd>TypescriptOrganizeImports<cr>"                         , "Organize Imports" }   ,
+				r    = { "<cmd>TypescriptRenameFile<cr>"                              , "Rename File" }        ,
+				i    = { "<cmd>TypescriptAddMissingImports<cr>"                       , "Import Missing" }     ,
+				F    = { "<cmd>TypescriptFixAll<cr>"                                  , "Fix All" }            ,
+				u    = { "<cmd>TypescriptRemoveUnused<cr>"                            , "Remove Unused" }      ,
+				R    = { "<cmd>lua require('config.neotest').javascript_runner()<cr>" , "Choose Test Runner" } ,
 			}
 		elseif ft == "java" then
 			keymap_c = {
-				name = "Code",
-				o = {
-					"<cmd>lua require'jdtls'.organize_imports()<cr>",
-					"Organize Imports",
-				},
-				v = {
-					"<cmd>lua require('jdtls').extract_variable()<cr>",
-					"Extract Variable",
-				},
-				c = {
-					"<cmd>lua require('jdtls').extract_constant()<cr>",
-					"Extract Constant",
-				},
-				t = { "<cmd>lua require('jdtls').test_class()<cr>", "Test Class" },
-				n = {
-					"<cmd>lua require('jdtls').test_nearest_method()<cr>",
-					"Test Nearest Method",
-				},
+				name = "Code"                                                  ,
+				o    = { "<cmd>lua require('jdtls').organize_imports()<cr>"    , "Organize Imports" }    ,
+				v    = { "<cmd>lua require('jdtls').extract_variable()<cr>"    , "Extract Variable" }    ,
+				c    = { "<cmd>lua require('jdtls').extract_constant()<cr>"    , "Extract Constant" }    ,
+				t    = { "<cmd>lua require('jdtls').test_class()<cr>"          , "Test Class" }          ,
+				n    = { "<cmd>lua require('jdtls').test_nearest_method()<cr>" , "Test Nearest Method" } ,
 			}
 			keymap_c_v = {
-				name = "Code",
-				v = {
-					"<cmd>lua require('jdtls').extract_variable(true)<cr>",
-					"Extract Variable",
-				},
-				c = {
-					"<cmd>lua require('jdtls').extract_constant(true)<cr>",
-					"Extract Constant",
-				},
-				m = {
-					"<cmd>lua require('jdtls').extract_method(true)<cr>",
-					"Extract Method",
-				},
+				name = "Code"                                                   ,
+				v    = { "<cmd>lua require('jdtls').extract_variable(true)<cr>" , "Extract Variable" } ,
+				c    = { "<cmd>lua require('jdtls').extract_constant(true)<cr>" , "Extract Constant" } ,
+				m    = { "<cmd>lua require('jdtls').extract_method(true)<cr>"   , "Extract Method" }   ,
 			}
 		end
 
 		if fname == "package.json" then
-			keymap_c.v = {
-				"<cmd>lua require('package-info').show()<cr>",
-				"Show Version",
-			}
-			keymap_c.c = {
-				"<cmd>lua require('package-info').change_version()<cr>",
-				"Change Version",
-			}
-			-- keymap_c.s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" }
-			-- keymap_c.t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" }
+			keymap_c.v = { "<cmd>lua require('package-info').show()<cr>"           , "Show Version" }
+			keymap_c.c = { "<cmd>lua require('package-info').change_version()<cr>" , "Change Version" }
 		end
 
 		if fname == "Cargo.toml" then
-			keymap_c.u = {
-				"<cmd>lua require('crates').upgrade_all_crates()<cr>",
-				"Upgrade All Crates",
-			}
+			keymap_c.u = { "<cmd>lua require('crates').upgrade_all_crates()<cr>", "Upgrade All Crates" }
 		end
 
 		if next(keymap_c) ~= nil then
 			local k = { c = keymap_c }
 			local o = {
-				mode = "n",
-				silent = true,
+				mode    = "n",
+				silent  = true,
 				noremap = true,
-				buffer = bufnr,
-				prefix = "<leader>",
-				nowait = true,
+				buffer  = bufnr,
+				prefix  = "<leader>",
+				nowait  = true,
 			}
 			wk.register(k, o)
-			-- legendary.bind_whichkey(k, o, false)
 		end
 
 		if next(keymap_c_v) ~= nil then
 			local k = { c = keymap_c_v }
 			local o = {
-				mode = "v",
-				silent = true,
+				mode    = "v",
+				silent  = true,
 				noremap = true,
-				buffer = bufnr,
-				prefix = "<leader>",
-				nowait = true,
+				buffer  = bufnr,
+				prefix  = "<leader>",
+				nowait  = true,
 			}
 			wk.register(k, o)
-			-- legendary.bind_whichkey(k, o, false)
 		end
 	end
 end
-
-local keymap_l = {}
 
 code_keymap()
 

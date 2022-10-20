@@ -217,7 +217,7 @@ end
 
 M.search_oldfiles = function()
 	builtin.oldfiles({
-		prompt_title     = "OLDFILES",
+		prompt_title     = "RECENT-FILES",
 		-- prompt_prefix    = "▶  ",
 		previewer        = false,
 		shorten_path     = true,

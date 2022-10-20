@@ -58,8 +58,7 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope-file-browser.nvim")
 
     -- FZF
-    use('junegunn/fzf')
-    use('junegunn/fzf.vim')
+    use('ibhagwan/fzf-lua')
 
     -- UI Elements
     use("junegunn/limelight.vim")

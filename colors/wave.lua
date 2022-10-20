@@ -5,7 +5,7 @@ local c = {
     black = '#000000',
     none  = 'NONE',
   }
-  
+
   if vim.o.background == 'dark' then
     if vim.g.Wave_mirage then
       -- basics
@@ -509,6 +509,11 @@ Theme.plugins = function()
     debugPC         = { fg = c.none,          bg = c.guide_active },
     debugBreakpoint = { fg = c.gutter_normal, bg = c.accent },
   }
+  local FZF = {
+    Fzf1 = { bg = c.none },
+    Fzf2 = { bg = c.none },
+    Fzf3 = { bg = c.none },
+  }
 
   return vim.tbl_extend('error',
     bufferline,
@@ -518,7 +523,8 @@ Theme.plugins = function()
     nvimtree,
     packer,
     startify,
-    termdebug
+    termdebug,
+    FZF
   )
 end
 

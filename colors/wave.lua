@@ -224,7 +224,7 @@ Theme.editor = function ()
     CursorColumn      = { bg = c.line },
     CursorLine        = { bg = c.line },
     CursorLineConceal = { fg = c.guide_normal, bg = c.line },
-    CursorLineNr      = { fg = c.accent, bg = c.line },
+    CursorLineNr      = { fg = c.accent, bg = none },
     DiffAdd           = { bg = c.vcs_added_bg },
     DiffAdded         = { fg = c.vcs_added },
     DiffChange        = { bg = c.vcs_modified_bg },
@@ -242,7 +242,7 @@ Theme.editor = function ()
     ModeMsg           = { fg = c.string },
     MoreMsg           = { fg = c.string },
     NonText           = { fg = c.guide_normal },
-    Normal            = { fg = c.fg, bg = c.bg },
+    Normal            = { fg = c.fg, bg = none },
     NormalFloat       = { fg = c.fg,      bg = c.bg },
     Pmenu             = { fg = c.fg,      bg = c.selection_inactive },
     PmenuSbar         = { fg = c.accent,  bg = c.selection_inactive },
@@ -251,7 +251,7 @@ Theme.editor = function ()
     Question          = { fg = c.string },
     QuickFixLine      = { fg = c.special, bg = c.guide_normal },
     Search            = { fg = c.bg,      bg = c.constant },
-    SignColumn        = { fg = c.fg, bg = c.bg },
+    SignColumn        = { fg = c.fg, bg = none },
     SpecialKey        = { fg = c.selection_inactive },
     SpellBad          = { style = 'undercurl', sp = c.error },
     SpellCap          = { style = 'undercurl', sp = c.tag },
@@ -580,4 +580,5 @@ function Wave.apply()
   async:send()
 end
 
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 return Wave.apply()

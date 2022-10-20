@@ -40,6 +40,10 @@ if !exists("g:nvstarNR")
     let g:nvstarNR = 1
 endif
 
+" FZF-Lua
+exe "hi Fzf1 guibg=NONE"
+exe "hi Fzf2 guibg=NONE"
+exe "hi Fzf3 guibg=NONE"
 
 " Staline
 exe "hi StalineBranch          guifg="s:comment
@@ -56,6 +60,59 @@ exe "hi StalineProgressSep     guibg="s:nvstarbg_gui. " guifg="s:nvstar10_gui
 exe "hi CmpBorder        guifg="s:nvstar12_gui
 exe "hi CmpItemAbbr      guifg="s:nvstarfg_gui
 exe "hi CmpItemAbbrMatch guifg="s:nvstar12_gui
+exe "highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080"
+exe "highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6"
+exe "highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch"
+exe "highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE"
+exe "highlight! link CmpItemKindInterface CmpItemKindVariable"
+exe "highlight! link CmpItemKindText CmpItemKindVariable"
+exe "highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0"
+exe "highlight! link CmpItemKindMethod CmpItemKindFunction"
+exe "highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4"
+exe "highlight! link CmpItemKindProperty CmpItemKindKeyword"
+exe "highlight! link CmpItemKindUnit CmpItemKindKeyword"
+
+"TODO: More highlights help
+  "PmenuSel = { bg = "#282C34", fg = "NONE" },
+  "Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
+
+ " CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE", fmt = "strikethrough" },
+ " CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", fmt = "bold" },
+ " CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", fmt = "bold" },
+ " CmpItemMenu = { fg = "#C792EA", bg = "NONE", fmt = "italic" },
+
+ " CmpItemKindField = { fg = "#EED8DA", bg = "#B5585F" },
+ " CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
+ " CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
+
+ " CmpItemKindText = { fg = "#C3E88D", bg = "#9FBD73" },
+ " CmpItemKindEnum = { fg = "#C3E88D", bg = "#9FBD73" },
+ " CmpItemKindKeyword = { fg = "#C3E88D", bg = "#9FBD73" },
+
+ " CmpItemKindConstant = { fg = "#FFE082", bg = "#D4BB6C" },
+"  CmpItemKindConstructor = { fg = "#FFE082", bg = "#D4BB6C" },
+"  CmpItemKindReference = { fg = "#FFE082", bg = "#D4BB6C" },
+
+"  CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
+ " CmpItemKindStruct = { fg = "#EADFF0", bg = "#A377BF" },
+"  CmpItemKindClass = { fg = "#EADFF0", bg = "#A377BF" },
+"  CmpItemKindModule = { fg = "#EADFF0", bg = "#A377BF" },
+"  CmpItemKindOperator = { fg = "#EADFF0", bg = "#A377BF" },
+
+ " CmpItemKindVariable = { fg = "#C5CDD9", bg = "#7E8294" },
+ " CmpItemKindFile = { fg = "#C5CDD9", bg = "#7E8294" },
+
+ " CmpItemKindUnit = { fg = "#F5EBD9", bg = "#D4A959" },
+ " CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#D4A959" },
+ " CmpItemKindFolder = { fg = "#F5EBD9", bg = "#D4A959" },
+
+ " CmpItemKindMethod = { fg = "#DDE5F5", bg = "#6C8ED4" },
+ " CmpItemKindValue = { fg = "#DDE5F5", bg = "#6C8ED4" },
+ " CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#6C8ED4" },
+
+  "CmpItemKindInterface = { fg = "#D8EEEB", bg = "#58B5A8" },
+ " CmpItemKindColor = { fg = "#D8EEEB", bg = "#58B5A8" },
+ " CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
 
 " Todo-Comment Sign
 exe "hi TodoSignDONE guibg=NONE"
@@ -237,7 +294,7 @@ exe "hi TSFuncBuiltin        guifg="s:nvstar14_gui
 exe "hi TsKeywordOperator    guifg="s:nvstar12_gui
 exe "hi TSMethod             guifg="s:nvstar12_gui
 exe "hi TSRepeat             guifg="s:nvstar11_gui
-exe "hi TSWarning            guifg="s:nvstar0_gui." guibg="s:nvstar1_gui
+exe "hi TSWarning            guifg="s:nvstar0_gui
 exe "hi TSEmphasis           gui  =italic           guifg="s:nvstar7_gui
 
 " C Language Higlights
@@ -364,3 +421,6 @@ exe "hi NotifyTRACEBody    guibg="s:nvstarbg_alt. " guifg="s:nvstarfg_gui
 
 " NVim GUI
 exe "hi SignColumn guibg=#0f0f0f"
+
+
+exe "hi luaError guibg=NONE guifg="s:nvstar1_gui

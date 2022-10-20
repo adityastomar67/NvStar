@@ -156,6 +156,17 @@ M.CountWordFunction = function()
     -- require("notify")("word '" .. current_word .. "' found " .. wordcount .. " times")
 end
 
+local cmp = 0
+M.toggle_cmp = function()
+    if cmp == 0 then
+        vim.cmd("lua require('cmp').setup.buffer { enabled = false }")
+        cmp = 1
+    else
+        vim.cmd("lua require('cmp').setup.buffer { enabled = true }")
+        cmp = 0
+    end
+end
+
 local transparency = 0
 M.toggle_transparency = function()
     if transparency == 0 then
@@ -172,6 +183,10 @@ M.toggle_transparency = function()
         vim.cmd("hi TodoSignTODO guibg=NONE")
         vim.cmd("hi TodoSignWARN guibg=NONE")
         vim.cmd("hi VertSplit guibg=NONE")
+        vim.cmd("hi Fzf1 guibg=NONE")
+        vim.cmd("hi Fzf2 guibg=NONE")
+        vim.cmd("hi Fzf3 guibg=NONE")
+
 
         transparency = 1
     else
@@ -431,13 +446,13 @@ function M.complete(v)
     v = v or true
     local ft = vim.bo.filetype
     local buf = vim.api.nvim_get_current_buf()
-  
+
     local api_key = get_api_key()
     if api_key == nil then
       vim.notify "OpenAI API key not found"
       return
     end
-  
+
     local text = ""
     if v then
       local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
@@ -449,9 +464,9 @@ function M.complete(v)
     end
     local cs = vim.bo.commentstring
     text = string.format(cs .. "\n%s", ft, text)
-  
+
     -- vim.notify(text)
-  
+
     local request = {}
     request["max_tokens"] = MAX_TOKENS
     request["top_p"] = 1
@@ -460,7 +475,7 @@ function M.complete(v)
     request["presence_penalty"] = 0
     request["prompt"] = text
     local body = vim.fn.json_encode(request)
-  
+
     local completion = ""
     local job = Job:new {
       command = "curl",
@@ -482,12 +497,12 @@ function M.complete(v)
         vim.notify "Failed to parse OpenAI result"
         return
       end
-  
+
       if parsed["choices"] ~= nil then
         completion = parsed["choices"][1]["text"]
         local lines = {}
         local delimiter = "\n"
-  
+
         for match in (completion .. delimiter):gmatch("(.-)" .. delimiter) do
           table.insert(lines, match)
         end

@@ -106,13 +106,6 @@ cmd("filetype plugin indent on")
 vim.g.lua_subversion = 0
 vim.g.BetterLua_enable_emmylua = 0
 
-local colorscheme = "nvstar"
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-	vim.notify("colorscheme " .. colorscheme .. " not found!")
-	return
-end
-
 -- IMPROVE NEOVIM STARTUP
 vim.g.loaded_python_provier     = 0
 vim.g.loaded_python3_provider   = 0

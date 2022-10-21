@@ -1,12 +1,3 @@
--- AutoCommands
--- nvim_create_augroup      — Create or get an augroup.
--- nvim_create_autocmd      — Create an autocmd.
--- nvim_del_augroup_by_id   — Delete an augroup by id.
--- nvim_del_augroup_by_name — Delete an augroup by name.
--- nvim_del_autocmd         — Delete an autocmd by id.
--- nvim_do_autocmd          — Do one autocmd.
--- nvim_get_autocmds        — Get autocmds that match the requirements.
-
 local api = vim.api
 local opt = vim.opt -- global
 local g = vim.g -- global for let options
@@ -17,107 +8,107 @@ local cmd = vim.cmd -- vim commands
 local map = require("core.utils").map -- import map helper
 local alias = require("core.utils").alias -- import alias creator
 
--- Go to definition
-function def() vim.lsp.buf.definition() end
-alias("def", "Def")
+-- -- Go to definition
+-- function def() vim.lsp.buf.definition() end
+-- alias("def", "Def")
 
--- Toggles NERDTree.
-function nt_find() vim.api.nvim_command("NvimTreeFindFile") end
-alias("nt_find", "F")
+-- -- Toggles NERDTree.
+-- function nt_find() vim.api.nvim_command("NvimTreeFindFile") end
+-- alias("nt_find", "F")
 
-function diagnose() vim.api.nvim_command("TroubleToggle") end
-alias("diagnose", "Di")
+-- function diagnose() vim.api.nvim_command("TroubleToggle") end
+-- alias("diagnose", "Di")
 
--- Sources init.lua.
-function source() vim.api.nvim_command("source $MYVIMRC") end
-alias("source", "Source")
+-- -- Sources init.lua.
+-- function source() vim.api.nvim_command("source $MYVIMRC") end
+-- alias("source", "Source")
 
--- Cuts current line and appends text without leading whitespace to the line above.
-function line_up()
-    local seq = vim.api.nvim_replace_termcodes("^dg_k$A <Esc>pjdd", true, false,
-                                               true)
-    vim.api.nvim_feedkeys(seq, "n", false)
-end
-alias("line_up", "LU")
+-- -- Cuts current line and appends text without leading whitespace to the line above.
+-- function line_up()
+--     local seq = vim.api.nvim_replace_termcodes("^dg_k$A <Esc>pjdd", true, false,
+--                                                true)
+--     vim.api.nvim_feedkeys(seq, "n", false)
+-- end
+-- alias("line_up", "LU")
 
--- Shows the filetype.
-function ft() vim.cmd("set filetype?") end
+-- -- Shows the filetype.
+-- function ft() vim.cmd("set filetype?") end
 
--- Copies the relative file path of file in current buffer to system clipboard.
-function cc_rfp()
-    local full_path = vim.api.nvim_buf_get_name(0)
-    local cwd = vim.fn.getcwd()
-    local rfp = vim.split(full_path, string.format("%s/", cwd))[2]
-    local cmd = string.format("printf %s | pbcopy", rfp)
-    os.execute(cmd)
-    print(rfp)
-end
-alias("cc_rfp", "CCP")
+-- -- Copies the relative file path of file in current buffer to system clipboard.
+-- function cc_rfp()
+--     local full_path = vim.api.nvim_buf_get_name(0)
+--     local cwd = vim.fn.getcwd()
+--     local rfp = vim.split(full_path, string.format("%s/", cwd))[2]
+--     local cmd = string.format("printf %s | pbcopy", rfp)
+--     os.execute(cmd)
+--     print(rfp)
+-- end
+-- alias("cc_rfp", "CCP")
 
--- Pretty prints a Lua table.
-function inspect(...)
-    local objects = {}
-    for i = 1, select('#', ...) do
-        local v = select(i, ...)
-        table.insert(objects, vim.inspect(v))
-    end
+-- -- Pretty prints a Lua table.
+-- function inspect(...)
+--     local objects = {}
+--     for i = 1, select('#', ...) do
+--         local v = select(i, ...)
+--         table.insert(objects, vim.inspect(v))
+--     end
 
-    print(table.concat(objects, '\n'))
-    return ...
-end
+--     print(table.concat(objects, '\n'))
+--     return ...
+-- end
 
--- Collapses visually selected lines into single line separated by "sep".
-function collapse(sep)
-    local start_ln = vim.api.nvim_buf_get_mark(0, "<")[1] - 1
-    local end_ln = vim.api.nvim_buf_get_mark(0, ">")[1]
-    local lines = vim.api.nvim_buf_get_lines(0, start_ln, end_ln, true)
+-- -- Collapses visually selected lines into single line separated by "sep".
+-- function collapse(sep)
+--     local start_ln = vim.api.nvim_buf_get_mark(0, "<")[1] - 1
+--     local end_ln = vim.api.nvim_buf_get_mark(0, ">")[1]
+--     local lines = vim.api.nvim_buf_get_lines(0, start_ln, end_ln, true)
 
-    local result = ""
+--     local result = ""
 
-    lines[1] = string.gsub(lines[1], "[ \t]+%f[\r\n%z]", "")
+--     lines[1] = string.gsub(lines[1], "[ \t]+%f[\r\n%z]", "")
 
-    for i = 2, #lines do
-        lines[i], _ = string.gsub(lines[i], "^%s*(.-)%s*$", "%1")
-    end
+--     for i = 2, #lines do
+--         lines[i], _ = string.gsub(lines[i], "^%s*(.-)%s*$", "%1")
+--     end
 
-    if sep then
-        for i = 1, #lines - 1 do
-            result = result .. lines[i]
-            result = result .. sep
-        end
+--     if sep then
+--         for i = 1, #lines - 1 do
+--             result = result .. lines[i]
+--             result = result .. sep
+--         end
 
-        result = result .. lines[#lines]
-    else
-        for i = 1, #lines do result = result .. lines[i] end
-    end
-    vim.api.nvim_buf_set_lines(0, start_ln, end_ln, true, {result})
+--         result = result .. lines[#lines]
+--     else
+--         for i = 1, #lines do result = result .. lines[i] end
+--     end
+--     vim.api.nvim_buf_set_lines(0, start_ln, end_ln, true, {result})
 
-    local curr_row = vim.api.nvim_win_get_cursor(0)[1]
-    local curr_ln_len = #vim.api.nvim_get_current_line()
-    vim.api.nvim_win_set_cursor(0, {curr_row, curr_ln_len})
-end
+--     local curr_row = vim.api.nvim_win_get_cursor(0)[1]
+--     local curr_ln_len = #vim.api.nvim_get_current_line()
+--     vim.api.nvim_win_set_cursor(0, {curr_row, curr_ln_len})
+-- end
 
-function show_virtual_diagnostics()
-    vim.diagnostic.config({virtual_lines = true})
-end
+-- function show_virtual_diagnostics()
+--     vim.diagnostic.config({virtual_lines = true})
+-- end
 
-function hide_virtual_diagnostics()
-    vim.diagnostic.config({virtual_lines = false})
-end
-alias("hide_virtual_diagnostics", "HVD")
+-- function hide_virtual_diagnostics()
+--     vim.diagnostic.config({virtual_lines = false})
+-- end
+-- alias("hide_virtual_diagnostics", "HVD")
 
-function send_visual_selection_to_terminal()
-    vim.cmd("ToggleTermSendVisualSelection")
-    vim.cmd("ToggleTerm")
-end
+-- function send_visual_selection_to_terminal()
+--     vim.cmd("ToggleTermSendVisualSelection")
+--     vim.cmd("ToggleTerm")
+-- end
 
--- Horizontal terminal
-function hterm()
-    height = math.floor(vim.api.nvim_win_get_height(0) * 0.3)
-    cmd = string.format("ToggleTerm direction=horizontal size=%d", height)
-    vim.api.nvim_command(cmd)
-end
-alias("hterm", "HTerm")
+-- -- Horizontal terminal
+-- function hterm()
+--     height = math.floor(vim.api.nvim_win_get_height(0) * 0.3)
+--     cmd = string.format("ToggleTerm direction=horizontal size=%d", height)
+--     vim.api.nvim_command(cmd)
+-- end
+-- alias("hterm", "HTerm")
 
 function nvim_create_augroups(definitions)
     for group_name, definition in pairs(definitions) do
@@ -142,7 +133,7 @@ vim.cmd(
 -- vim.cmd(
 --     [[command! BufOnly lua require('core.utils').preserve("silent! %bd|e#|bd#")]])
 vim.cmd([[command! CloneBuffer new | 0put =getbufline('#',1,'$')]])
-vim.cmd([[command! Mappings drop ~/.config/nvim/lua/core/keymaps.lua]])
+vim.cmd([[command! Mappings drop ~/.config/nvim/lua/core/maps.lua]])
 vim.cmd([[command! Scratch new | setlocal bt=nofile bh=wipe nobl noswapfile nu]])
 vim.cmd([[command! Blockwise lua require('core.utils').blockwise_clipboard()]])
 vim.cmd([[command! ReloadConfig lua require("core.utils").ReloadConfig()]])

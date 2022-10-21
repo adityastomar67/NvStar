@@ -7,33 +7,18 @@ local bo = vim.bo -- buffer local
 local fn = vim.fn -- access vim functions
 local cmd = vim.cmd -- vim commands
 local api = vim.api -- access vim api
-
 local Job = require "plenary.job"
-
-local M = {}
-
+local Terminal = require("toggleterm.terminal").Terminal
 local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
-local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions"
--- local OPENAI_URL = "https://api.openai.com/v1/engines/cushman-codex/completions"
+local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions"  -- {cushman-codex / davinci-codex}
 local MAX_TOKENS = 300
 
-local function get_api_key()
-  local file = io.open(API_KEY_FILE, "rb")
-  if not file then
-    return nil
-  end
-  local content = file:read "*a"
-  content = string.gsub(content, "^%s*(.-)%s*$", "%1") -- strip off any space or newline
-  file:close()
-  return content
-end
+local M = {}
 
 local function trim(s)
-  return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+    return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
 end
 
-local Terminal = require("toggleterm.terminal").Terminal
-local M = {}
 
 local diagnostics_active = true
 function M.toggle_diagnostics()
@@ -116,12 +101,6 @@ function M.map(mode, mapping, cmd, options)
     if options then opts = vim.tbl_extend("force", opts, options) end
 
     vim.api.nvim_set_keymap(mode, mapping, cmd, opts)
-end
-
-M.map = function(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend("force", options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 M.toggle_quicklist = function()
@@ -424,7 +403,6 @@ end
 
 -- Interactive CheatSheet
 local navi = "navi fn welcome"
-
 local interactive_cheatsheet = Terminal:new{
     cmd = navi,
     dir = "git_dir",
@@ -433,10 +411,19 @@ local interactive_cheatsheet = Terminal:new{
     float_opts = {border = "double"},
     close_on_exit = true
 }
-
 function M.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
 
 -- OpenAI Codex
+local function get_api_key()
+    local file = io.open(API_KEY_FILE, "rb")
+    if not file then
+        return nil
+    end
+    local content = file:read "*a"
+    content = string.gsub(content, "^%s*(.-)%s*$", "%1") -- strip off any space or newline
+    file:close()
+    return content
+end
 function M.complete(v)
     v = v or true
     local ft = vim.bo.filetype
@@ -459,8 +446,6 @@ function M.complete(v)
     end
     local cs = vim.bo.commentstring
     text = string.format(cs .. "\n%s", ft, text)
-
-    -- vim.notify(text)
 
     local request = {}
     request["max_tokens"] = MAX_TOKENS

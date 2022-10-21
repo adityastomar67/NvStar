@@ -73,6 +73,8 @@ return packer.startup(function(use)
     use('s1n7ax/nvim-window-picker')
     use('nvim-lua/popup.nvim')
     use('gorbit99/codewindow.nvim')
+    use("folke/noice.nvim")
+    use("MunifTanjim/nui.nvim")
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")

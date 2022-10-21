@@ -230,6 +230,8 @@ local function code_keymap()
 				h    = { "<cmd>RustHoverActions<cr>"                  , "Hover Actions" } ,
 				R    = { "<cmd>RustRunnables<cr>"                     , "Runnables" }     ,
 			}
+		elseif ft == "json" then
+            keymap_c = { name = "Code", p = { "<cmd>update<cr><cmd>%!jq<cr>", "Prettify" } }
 		elseif ft == "go" then
 			keymap_c = { name = "Code", r = { "<cmd>GoRun<cr>", "Run" } }
 		elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then

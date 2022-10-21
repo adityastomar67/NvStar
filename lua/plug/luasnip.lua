@@ -1,5 +1,7 @@
 local status_ok, ls = pcall(require, "luasnip")
-if not status_ok then return end
+if not status_ok then
+	return
+end
 
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/bin/snippets/lua_snip/" })
 ls.config.setup({ store_selection_keys = "<A-p>" })

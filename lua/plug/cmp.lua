@@ -136,16 +136,16 @@ local SETTINGS = {
 				" ",
 			},
 		},
-		{ name = "nvim_lsp", group_index = 2 },
-		{ name = "cmp_tabnine", group_index = 2 },
-		{ name = "path", group_index = 2 },
-		{ name = "buffer", group_index = 2 },
-		{ name = "neosnippet" },
+		{ name = "nvim_lsp"     , group_index = 2 } ,
+		{ name = "cmp_tabnine"  , group_index = 2 } ,
+		{ name = "path"         , group_index = 2 } ,
+		{ name = "buffer"       , group_index = 2 } ,
+		{ name = "neosnippet" } ,
 	},
 	confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false },
-	window = {
+	window       = {
 		documentation = cmp.config.window.bordered(),
-		completion = cmp.config.window.bordered(),
+		completion    = cmp.config.window.bordered(),
 	},
 	experimental = { ghost_text = false },
 	-- view         = { entries = 'native' }
@@ -156,7 +156,7 @@ cmp.setup(SETTINGS)
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(":", {
 	sources = cmp.config.sources({
-		{ name = "path", max_item_count = 5 },
+		{ name = "path"   , max_item_count = 5 },
 	}, {
 		{ name = "cmdline", max_item_count = 15 },
 	}),
@@ -167,7 +167,7 @@ cmp.setup.cmdline("/", {
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp_document_symbol", max_item_count = 8, keyword_length = 3 },
 	}, {
-		{ name = "buffer", max_item_count = 5, keyword_length = 5 },
+		{ name = "buffer"                  , max_item_count = 5, keyword_length = 5 },
 	}),
 })
 

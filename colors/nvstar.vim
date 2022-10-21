@@ -167,7 +167,7 @@ exe "hi CursorLineNR guifg=#F96666          guibg="s:nvstarbg_gui
 " Specials
 exe "hi PreProc          guifg="s:nvstar4_gui
 exe "hi Exception        guifg="s:nvstar7_gui
-exe "hi Error            guifg="s:nvstar1_gui
+exe "hi Error            guibg=NONE guifg="s:nvstar1_gui
 exe "hi Type             guifg="s:nvstar4_gui
 exe "hi Identifier       guifg="s:nvstar1_gui
 exe "hi Constant         guifg="s:nvstar4_gui

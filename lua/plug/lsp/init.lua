@@ -3,6 +3,10 @@ if not status_ok then
 	return
 end
 
+require("plug.lsp.lsp-installer")
+-- require("plug.lsp.lsp-saga") -- Special symbols for moere info about buffer in winbar...MUST TRY!!
+require("plug.lsp.null-ls")
+
 vim.diagnostic.config({ virtual_text = true })
 
 local diagnostic_signs = {
@@ -22,8 +26,8 @@ end
 
 lsp.html.setup({})
 lsp.sqls.setup({})
-lsp.jdtls.setup({})
-lsp.bashls.setup({})
+-- lsp.jdtls.setup({})
+-- lsp.bashls.setup({})
 lsp.eslint.setup({})
 lsp.pyright.setup({})
 lsp.tsserver.setup({})

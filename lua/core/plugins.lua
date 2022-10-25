@@ -27,7 +27,7 @@ if not status_ok then return end
 packer.init({
     display = {
         open_fn = function()
-            return require("packer.util").float({border = "rounded"})
+            return require("packer.util").float({border = "none"})
         end
     }
 })
@@ -48,17 +48,18 @@ return packer.startup(function(use)
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter")
-    use('nvim-treesitter/nvim-treesitter-context')
+    use("nvim-treesitter/nvim-treesitter-context")
 
     -- Telescope
     use("nvim-telescope/telescope.nvim")
     use("xiyaowong/telescope-emoji.nvim")
     use("nvim-telescope/telescope-media-files.nvim")
-    use('nvim-telescope/telescope-ui-select.nvim')
+    use("nvim-telescope/telescope-ui-select.nvim")
     use("nvim-telescope/telescope-file-browser.nvim")
 
-    -- FZF
-    use('ibhagwan/fzf-lua')
+    -- More Navigation
+    use("ibhagwan/fzf-lua")
+    use("ThePrimeagen/harpoon")
 
     -- UI Elements
     use("junegunn/limelight.vim")
@@ -68,41 +69,42 @@ return packer.startup(function(use)
     use("tamton-aquib/staline.nvim")
     use("goolord/alpha-nvim")
     use("rcarriga/nvim-notify")
-    use('lewis6991/gitsigns.nvim')
+    use("lewis6991/gitsigns.nvim")
     use("folke/todo-comments.nvim")
-    use('s1n7ax/nvim-window-picker')
-    use('nvim-lua/popup.nvim')
-    use('gorbit99/codewindow.nvim')
+    use("s1n7ax/nvim-window-picker")
+    use("nvim-lua/popup.nvim")
+    use("gorbit99/codewindow.nvim")
     use("folke/noice.nvim")
     use("MunifTanjim/nui.nvim")
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")
-    use('navarasu/onedark.nvim')
-    use('folke/tokyonight.nvim')
+    use("navarasu/onedark.nvim")
+    use("folke/tokyonight.nvim")
     use("shaunsingh/nord.nvim")
     use("marko-cerovac/material.nvim")
     use("sainnhe/sonokai")
     use("sainnhe/edge")
+    use("projekt0n/github-nvim-theme")
 
     -- Coding Assistance
     use("RishabhRD/nvim-cheat.sh")
     use("RishabhRD/popfix")
     use("github/copilot.vim")
-    use('sudormrfbin/cheatsheet.nvim')
-    use({'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'})
+    use("sudormrfbin/cheatsheet.nvim")
+    use({"tzachar/cmp-tabnine", run='./install.sh'})
 
     -- LSP, Linters, Formatters
     use("neovim/nvim-lspconfig")
     use("onsails/lspkind-nvim")
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
-    use('mfussenegger/nvim-dap')
+    use("mfussenegger/nvim-dap")
     use("jose-elias-alvarez/null-ls.nvim")
     use("williamboman/nvim-lsp-installer")
     use("folke/trouble.nvim")
-    use('folke/lsp-trouble.nvim')
-    use('glepnir/lspsaga.nvim')
+    use("folke/lsp-trouble.nvim")
+    use("glepnir/lspsaga.nvim")
 
     -- Snippets
     use("L3MON4D3/LuaSnip")
@@ -119,27 +121,14 @@ return packer.startup(function(use)
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-vsnip")
     use("hrsh7th/cmp-copilot")
+    use("uga-rosa/cmp-dynamic")
 
     -- Others
     use("kg8m/vim-simple-align")
     use("norcalli/nvim-colorizer.lua")
-
-    use({ -- For Provind the Comments Functionality
-        "terrortylor/nvim-comment",
-        config = function() require("nvim_comment").setup() end
-    })
-
-    use({ -- Line & Word Hopping
-        'phaazon/hop.nvim',
-        branch = 'v1',
-        config = function() require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' } end
-    })
-
-    use({ -- Auto pairing of brackets
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup({}) end,
-        after = "nvim-cmp"
-    })
+    use("terrortylor/nvim-comment")
+    use("phaazon/hop.nvim")
+    use("windwp/nvim-autopairs")
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

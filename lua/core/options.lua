@@ -33,7 +33,7 @@ opt.wrap           = true                      -- display lines as one long line
 opt.scrolloff      = 8                         -- is one of my fav
 opt.sidescrolloff  = 8                         -- how many lines to scroll when you scroll past the end of the screen
 opt.scrollback     = 100000                    -- max number of screen lines to keep in scrollback
-opt.writebackup    = false                     -- when file is edited by some program (or was written to file while editing with some program), it's not allowed to be edited
+opt.writebackup    = false                     -- when file is edited by some program, it's not allowed to be edited
 opt.background     = "dark"                    -- set the background color
 opt.fillchars      = { eob = " " }             -- set the fill character for the end of the line
 opt.laststatus     = 0                         -- set the last status line to 0
@@ -46,7 +46,9 @@ opt.winblend       = 0
 opt.foldlevel      = 2
 opt.cole           = 1                         -- Conceal applied
 opt.cursorline     = true                      -- highlight the current line
+opt.laststatus     = 3
 opt.cursorlineopt  = "number"                  -- show the line numbers highlighted
+opt.termguicolors  = true
 opt.formatoptions  = "l"
 opt.formatoptions  = opt.formatoptions
     - "a" -- Auto formatting is BAD.
@@ -68,13 +70,11 @@ opt.guicursor = {
     "i:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
     "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
-
+O.ch                          = 0  -- Diasable command area
 O.hidden                      = true
 O.fileencoding                = "utf-8"
 O.splitbelow                  = true
 O.splitright                  = true
-opt.termguicolors             = true
--- O.conceallevel                = 0
 O.showtabline                 = 2
 O.showmode                    = false
 O.backup                      = false
@@ -84,22 +84,9 @@ O.timeoutlen                  = 1000
 O.clipboard                   = "unnamedplus"
 O.hlsearch                    = true
 O.ignorecase                  = true
-O.scrolloff                   = 0
-O.sidescrolloff               = 5
-O.mouse                       = "a"
-wo.wrap                       = false
-O.cursorline                  = true
-O.tabstop                     = 4
-O.shiftwidth                  = 0
-vim.bo.shiftwidth                 = 0
 O.autoindent                  = true
-vim.bo.autoindent                 = true
 O.expandtab                   = true
--- opt.fillchars:append("eob: ")
-vim.bo.expandtab                  = true
-vim.opt_local.bufhidden           = "wipe"
-vim.opt_local.buflisted           = false
-opt.laststatus                = 3
+
 cmd("set lazyredraw")
 cmd("filetype plugin indent on")
 
@@ -175,8 +162,3 @@ local default_providers = {
 for _, provider in ipairs(default_providers) do
 	vim.g["loaded_" .. provider .. "_provider"] = 0
 end
-
-vim.cmd([[let &statusline='%#Normal# ']])
-
--- Disable cmd area
-vim.cmd([[lua vim.o.ch = 0]])

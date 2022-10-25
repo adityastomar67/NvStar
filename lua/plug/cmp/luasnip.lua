@@ -34,13 +34,13 @@ end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<A-y>", "<Esc>o", { silent = true })
 
 vim.keymap.set({ "i", "s" }, "<a-k>", function()
-	if ls.jumpable(1) then
-		ls.jump(1)
+	if ls.jumpable(-1) then
+		ls.jump(-1)
 	end
 end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<a-j>", function()
-	if ls.jumpable(-1) then
-		ls.jump(-1)
+	if ls.jumpable(1) then
+		ls.jump(1)
 	end
 end, { silent = true })
 

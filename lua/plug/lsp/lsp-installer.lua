@@ -11,7 +11,7 @@ local SETTINGS = {
 		"pyright",
 		"clangd",
 		"tsserver",
-		"jdtls",
+		-- "jdtls",
 		"emmet_ls",
 		-- "bashls",
 		"sqls",

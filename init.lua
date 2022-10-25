@@ -18,30 +18,7 @@ for _, source in ipairs({
 	"core.utils",
 	"core.autocmds",
 	"core.colorscheme",
-
-	-- PLUGS
-	"plug.notify",
-	"plug.dashboard",
-	"plug.whichkey",
-	"plug.nvim-tree",
-	"plug.ts-context",
-	"plug.terminal",
-	"plug.telescope",
-	"plug.mason",
-	"plug.cmp",
-	"plug.lsp",
-	"plug.lsp-installer",
-	"plug.trouble",
-	"plug.git-sign",
-	"plug.bufferline",
-	"plug.statusline",
-	"plug.null-ls",
-	"plug.todo-comments",
-	"plug.hydra",
-	"plug.luasnip",
-	"plug.cheatsheet",
-	"plug.minimap",
-	"plug.fzf",
+    "plug"
 
 }) do
 	local status_ok, fault = pcall(require, source)
@@ -63,3 +40,6 @@ vim.cmd([[
 	  endfunction
 	  command! -nargs=0 Syn call Syn()
 ]])
+
+vim.cmd[[lua require('core.utils.toggle').toggle_transparency()]]
+-- vim.cmd[[source ~/.config/nvim/lua/core/doc.vim]]

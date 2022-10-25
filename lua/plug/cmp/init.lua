@@ -3,24 +3,9 @@ if not cmp_status_ok then
 	return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-	return
-end
-
-local snip_status_ok, tabnine = pcall(require, "cmp_tabnine.config")
-if not snip_status_ok then
-	return
-end
-
-tabnine.setup({
-	max_lines                = 1000,
-	max_num_results          = 20,
-	sort                     = true,
-	run_on_every_keystroke   = true,
-	snippet_placeholder      = "..",
-	show_prediction_strength = false,
-})
+require("plug.cmp.dynamic")
+require("plug.cmp.tabnine")
+require("plug.cmp.luasnip")
 
 vim.opt.completeopt = "menuone,noselect"
 
@@ -106,6 +91,7 @@ local SETTINGS = {
 				neorg            = "[Neorg]",
 				cmp_openai_codex = "[Codex]",
 				cmp_tabnine      = "[TabNine]",
+				dynamic   	     = "[Dynamic]",
 			},
 		}),
 	},
@@ -137,6 +123,7 @@ local SETTINGS = {
 			},
 		},
 		{ name = "nvim_lsp"     , group_index = 2 } ,
+		{ name = "dynamic"      , group_index = 2 },
 		{ name = "cmp_tabnine"  , group_index = 2 } ,
 		{ name = "path"         , group_index = 2 } ,
 		{ name = "buffer"       , group_index = 2 } ,

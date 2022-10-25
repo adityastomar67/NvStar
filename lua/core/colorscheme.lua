@@ -20,17 +20,12 @@ local kanagawa_opts = {
 	overrides            = {},
 }
 
-local colorscheme = "nvstar"
+local colorscheme = require("core.user").colorscheme
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
 	vim.notify("colorscheme " .. colorscheme .. " not found!")
 	return
 end
-
--- FZF
-vim.cmd("hi Fzf1 guibg=NONE")
-vim.cmd("hi Fzf2 guibg=NONE")
-vim.cmd("hi Fzf3 guibg=NONE")
 
 -- Data for limelight_conceal
 vim.cmd("let g:limelight_conceal_ctermfg = 'gray'")

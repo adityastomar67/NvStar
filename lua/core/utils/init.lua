@@ -7,46 +7,18 @@ local bo = vim.bo -- buffer local
 local fn = vim.fn -- access vim functions
 local cmd = vim.cmd -- vim commands
 local api = vim.api -- access vim api
-local Job = require "plenary.job"
-local Terminal = require("toggleterm.terminal").Terminal
-local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
-local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions"  -- {cushman-codex / davinci-codex}
-local MAX_TOKENS = 300
+-- local Job = require "plenary.job"
+-- local Terminal = require("toggleterm.terminal").Terminal
+-- local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
+-- local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions"  -- {cushman-codex / davinci-codex}
+-- local MAX_TOKENS = 300
+-- local ass = require("core.utils.assistance")
+-- require("core.utils.assistance")
 
 local M = {}
 
 local function trim(s)
     return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
-end
-
-
-local diagnostics_active = true
-function M.toggle_diagnostics()
-    diagnostics_active = not diagnostics_active
-    if diagnostics_active then
-        vim.diagnostic.show()
-    else
-        vim.diagnostic.hide()
-    end
-end
-
-function M.open_term(cmd, opts)
-    opts = opts or {}
-    opts.size = opts.size or vim.o.columns * 0.5
-    opts.direction = opts.direction or "vertical"
-    opts.on_open = opts.on_open or default_on_open
-    opts.on_exit = opts.on_exit or nil
-
-    local new_term = Terminal:new{
-        cmd = cmd,
-        dir = "git_dir",
-        auto_scroll = false,
-        close_on_exit = false,
-        start_in_insert = false,
-        on_open = opts.on_open,
-        on_exit = opts.on_exit
-    }
-    new_term:open(opts.size, opts.direction)
 end
 
 function M.alias(func, alias, options)
@@ -84,11 +56,7 @@ function M.check_back_space()
     end
 end
 
-function M.warn(msg, name) vim.notify(msg, vim.log.levels.WARN, {title = name}) end
 
-function M.error(msg, name) vim.notify(msg, vim.log.levels.ERROR, {title = name}) end
-
-function M.info(msg, name) vim.notify(msg, vim.log.levels.INFO, {title = name}) end
 
 function M.winsize()
     return unpack({
@@ -135,39 +103,7 @@ M.CountWordFunction = function()
     -- require("notify")("word '" .. current_word .. "' found " .. wordcount .. " times")
 end
 
-local cmp = 0
-M.toggle_cmp = function()
-    if cmp == 0 then
-        vim.cmd("lua require('cmp').setup.buffer { enabled = false }")
-        cmp = 1
-    else
-        vim.cmd("lua require('cmp').setup.buffer { enabled = true }")
-        cmp = 0
-    end
-end
 
-local transparency = 0
-M.toggle_transparency = function()
-    if transparency == 0 then
-        vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
-        vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
-        vim.cmd("hi CursorLineNR guibg=NONE ctermbg=NONE")
-        vim.cmd("hi StalineFilename guibg=NONE guifg=NONE")
-        vim.cmd("hi TodoSignDONE guibg=NONE")
-        vim.cmd("hi TodoSignFIX  guibg=NONE")
-        vim.cmd("hi TodoSignHACK guibg=NONE")
-        vim.cmd("hi TodoSignNOTE guibg=NONE")
-        vim.cmd("hi TodoSignPERF guibg=NONE")
-        vim.cmd("hi TodoSignTEST guibg=NONE")
-        vim.cmd("hi TodoSignTODO guibg=NONE")
-        vim.cmd("hi TodoSignWARN guibg=NONE")
-        vim.cmd("hi VertSplit guibg=NONE")
-        transparency = 1
-    else
-        vim.cmd("hi Normal guibg=#0f0f0f ctermbg=NONE")
-        transparency = 0
-    end
-end
 
 M.flash_cursorline = function()
     local cursorline_state = lua
@@ -333,162 +269,5 @@ M.packer_lazy_load = function(plugin, timer)
         vim.defer_fn(function() require("packer").loader(plugin) end, timer)
     end
 end
-
---------------------------- Coding Assistance ---------------------------
--- For StackOverflow Assistance
-function M.so_input()
-    local buf = vim.api.nvim_get_current_buf()
-    lang = ""
-    file_type = vim.api.nvim_buf_get_option(buf, "filetype")
-    vim.ui.input({prompt = "StackOverflow input: ", default = file_type .. " "},
-                 function(input)
-        local cmd = ""
-        if input == "" or not input then
-            return
-        elseif input == "h" then
-            cmd = "-h"
-        else
-            cmd = input
-        end
-        M.open_term("clear && so " .. cmd, {direction = 'float'})
-    end)
-end
-
--- Cheatsheet
-local lang = ""
-local file_type = ""
-local function cht_on_open(term)
-    vim.cmd "stopinsert"
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>",
-                                {noremap = true, silent = true})
-    vim.api.nvim_buf_set_name(term.bufnr, "cheatsheet-" .. term.bufnr)
-    vim.api.nvim_buf_set_option(term.bufnr, "filetype", "cheat")
-    vim.api.nvim_buf_set_option(term.bufnr, "syntax", lang)
-end
-
-local function cht_on_exit(_) vim.cmd [[normal gg]] end
-
-function M.cht()
-    local buf = vim.api.nvim_get_current_buf()
-    lang = ""
-    file_type = vim.api.nvim_buf_get_option(buf, "filetype")
-    vim.ui.input({prompt = "cht.sh input: ", default = file_type .. " "},
-                 function(input)
-        local cmd = ""
-        if input == "" or not input then
-            return
-        elseif input == "h" then
-            cmd = ""
-        else
-            local search = ""
-            local delimiter = " "
-            for w in (input .. delimiter):gmatch("(.-)" .. delimiter) do
-                if lang == "" then
-                    lang = w
-                else
-                    if search == "" then
-                        search = w
-                    else
-                        search = search .. "+" .. w
-                    end
-                end
-            end
-            cmd = lang
-            if search ~= "" then cmd = cmd .. "/" .. search end
-        end
-        cmd = "curl cht.sh/" .. cmd
-        M.open_term(cmd, {direction = 'float' ,on_open = cht_on_open, on_exit = cht_on_exit})
-    end)
-end
-
--- Interactive CheatSheet
-local navi = "navi fn welcome"
-local interactive_cheatsheet = Terminal:new{
-    cmd = navi,
-    dir = "git_dir",
-    hidden = true,
-    direction = "float",
-    float_opts = {border = "double"},
-    close_on_exit = true
-}
-function M.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
-
--- OpenAI Codex
-local function get_api_key()
-    local file = io.open(API_KEY_FILE, "rb")
-    if not file then
-        return nil
-    end
-    local content = file:read "*a"
-    content = string.gsub(content, "^%s*(.-)%s*$", "%1") -- strip off any space or newline
-    file:close()
-    return content
-end
-function M.complete(v)
-    v = v or true
-    local ft = vim.bo.filetype
-    local buf = vim.api.nvim_get_current_buf()
-
-    local api_key = get_api_key()
-    if api_key == nil then
-      vim.notify "OpenAI API key not found"
-      return
-    end
-
-    local text = ""
-    if v then
-      local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
-      local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
-      text = vim.api.nvim_buf_get_lines(buf, line1 - 1, line2, false)
-      text = trim(table.concat(text, "\n"))
-    else
-      text = trim(vim.api.nvim_get_current_line())
-    end
-    local cs = vim.bo.commentstring
-    text = string.format(cs .. "\n%s", ft, text)
-
-    local request = {}
-    request["max_tokens"] = MAX_TOKENS
-    request["top_p"] = 1
-    request["temperature"] = 0
-    request["frequency_penalty"] = 0
-    request["presence_penalty"] = 0
-    request["prompt"] = text
-    local body = vim.fn.json_encode(request)
-
-    local completion = ""
-    local job = Job:new {
-      command = "curl",
-      args = {
-        OPENAI_URL,
-        "-H",
-        "Content-Type: application/json",
-        "-H",
-        string.format("Authorization: Bearer %s", api_key),
-        "-d",
-        body,
-      },
-    }
-    local is_completed = pcall(job.sync, job, 10000)
-    if is_completed then
-      local result = job:result()
-      local ok, parsed = pcall(vim.json.decode, table.concat(result, ""))
-      if not ok then
-        vim.notify "Failed to parse OpenAI result"
-        return
-      end
-
-      if parsed["choices"] ~= nil then
-        completion = parsed["choices"][1]["text"]
-        local lines = {}
-        local delimiter = "\n"
-
-        for match in (completion .. delimiter):gmatch("(.-)" .. delimiter) do
-          table.insert(lines, match)
-        end
-        vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
-      end
-    end
-  end
 
 return M

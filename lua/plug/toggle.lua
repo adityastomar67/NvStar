@@ -1,5 +1,5 @@
 local t = vim.tbl_add_reverse_lookup({
-	
+
 	["true"] = "false",
 	["yes"]  = "no",
 	["on"]   = "off",

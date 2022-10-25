@@ -335,7 +335,7 @@ Theme.treesitter = function ()
     TSSymbol             = { fg = c.constant },
     TSTag                = { fg = c.accent },
     TSTagDelimiter       = { fg = c.constant },
-    TSText               = { fg = c.fg },
+    TSText               = { fg = c.accent },
     TSTextReference      = { fg = c.constant },
     TSTitle              = { fg = c.ui, style = 'bold' },
     TSType               = { fg = c.keyword },
@@ -416,14 +416,35 @@ Theme.lsp = function ()
 end
 
 Theme.plugins = function()
+  local telescope = {
+    TelescopeBorder     = { fg = c.bg },
+    TelescopeNormal  = { bg = c.bg },
+    TelescopePromptBorder  = { fg = c.fg_idle , bg = c.fg_idle },
+    TelescopePromptPrefix  = { fg = c.accent , bg = c.fg_idle },
+    TelescopePromptTitle  = { fg = c.bg , bg = c.accent },
+    TelescopePromptNormal  = { fg = c.fg , bg = c.fg_idle },
+    TelescopePreviewBorder  = { fg = c.bg , bg = c.bg },
+    TelescopePreviewTitle  = { fg = c.bg , bg = c.bg },
+    TelescopeResultsTitle  = { fg = c.bg , bg = c.bg },
+    TelescopeResultsBorder  = { fg = c.bg , bg = c.bg },
+  }
+  local whichkey = {
+    WhichKey  = { fg = c.fg },
+    -- WhichKeyFloat  = { fg = }
+    -- WhichKeySeparator  = { fg = }
+    -- WhichKeyDesc  = { fg = }
+    -- WhichKeyValue  = { fg = }
+    -- WhichKeyGroup  = { fg = }
+  }
   local bufferline = {
     BufferLineIndicatorSelected = { fg = c.accent },
     BufferLineFill              = { bg = c.bg },
   }
   local cmp = {
-    CmpItemMenu = { fg = c.entity, style = 'italic' },
+    CmpItemMenu = { fg = c.entity},
     CmpItemAbbr = { fg = c.normal},
-    -- CmpItemKind = { fg = c.entity, style = 'italic' },
+    CmpItemAbbrMatch = { fg = c.entity},
+    CmpItemKind = { fg = c.accent, style = 'italic' },
   }
   local gitsigns = {
     GitSignsAdd      = { fg = c.vcs_added },
@@ -450,7 +471,7 @@ Theme.plugins = function()
     NvimTreeImageFile        = { fg = c.constant },
     NvimTreeIndentMarker     = { fg = c.guide_normal },
     NvimTreeMarkdownFile     = { fg = c.error, style = 'italic' },
-    NvimTreeNormal           = { fg = c.fg,     bg = c.bg },
+    NvimTreeNormal           = { fg = c.fg,     bg = c.none },
     NvimTreeOpenedFile       = { fg = c.entity, style = 'italic' },
     NvimTreeOpenedFolderName = { fg = c.entity },
     NvimTreeRootFolder       = { fg = c.keyword, style = 'bold,italic' },
@@ -509,10 +530,13 @@ Theme.plugins = function()
     debugPC         = { fg = c.none,          bg = c.guide_active },
     debugBreakpoint = { fg = c.gutter_normal, bg = c.accent },
   }
-  local FZF = {
-    Fzf1 = { bg = c.none },
-    Fzf2 = { bg = c.none },
-    Fzf3 = { bg = c.none },
+  -- local FZF = {
+  --   Fzf1 = { bg = c.none },
+  --   Fzf2 = { bg = c.none },
+  --   Fzf3 = { bg = c.none },
+  -- }
+  local staline = {
+    StalineBranch = { bg = c.none },
   }
 
   return vim.tbl_extend('error',
@@ -524,7 +548,9 @@ Theme.plugins = function()
     packer,
     startify,
     termdebug,
-    FZF
+    whichkey,
+    staline,
+    telescope
   )
 end
 

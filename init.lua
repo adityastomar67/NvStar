@@ -18,19 +18,15 @@ for _, source in ipairs({
 	"core.utils",
 	"core.autocmds",
 	"core.colorscheme",
-    "plug"
+	"plug",
 
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
 		local err = "Failed to load " .. source .. "\n\n" .. fault
-		notify(err, "error", {title = "Require Error"})
+		notify(err, "error", { title = "Require Error" })
 	end
 end
-
-
--- Temporary
-vim.cmd([[set showtabline=0]])
 
 vim.cmd([[
 	function! Syn()
@@ -40,6 +36,3 @@ vim.cmd([[
 	  endfunction
 	  command! -nargs=0 Syn call Syn()
 ]])
-
-vim.cmd[[lua require('core.utils.toggle').toggle_transparency()]]
--- vim.cmd[[source ~/.config/nvim/lua/core/doc.vim]]

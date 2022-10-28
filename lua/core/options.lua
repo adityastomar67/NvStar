@@ -75,7 +75,6 @@ O.hidden                      = true
 O.fileencoding                = "utf-8"
 O.splitbelow                  = true
 O.splitright                  = true
-O.showtabline                 = 2
 O.showmode                    = false
 O.backup                      = false
 O.writebackup                 = false

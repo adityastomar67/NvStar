@@ -21,8 +21,8 @@ for _, source in ipairs({
 	"plug.lsp",
 	"plug.trouble",
 	"plug.todo-comments",
-	"plug.hydra",
-	"plug.cheatsheet",
+	-- "plug.hydra",
+	-- "plug.cheatsheet",
 	"plug.fzf",
 	"plug.other",
 

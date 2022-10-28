@@ -3,6 +3,8 @@ if not status_ok then
 	return
 end
 
+local key = vim.keymap.set
+
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/bin/snippets/lua_snip/" })
 ls.config.setup({ store_selection_keys = "<A-p>" })
 
@@ -10,10 +12,10 @@ vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_sni
 
 local types = require("luasnip.util.types")
 ls.config.set_config({
-	history = true, --keep around last snippet local to jump back
-	updateevents = "TextChanged,TextChangedI", --update changes as you type
+	history             = true,                        --keep around last snippet local to jump back
+	updateevents        = "TextChanged,TextChangedI", --update changes as you type
 	enable_autosnippets = true,
-	ext_opts = {
+	ext_opts            = {
 		[types.choiceNode] = {
 			active = {
 				virt_text = { { " ●" } },
@@ -22,29 +24,29 @@ ls.config.set_config({
 	},
 })
 
-vim.keymap.set({ "i", "s" }, "<c-s>", "<Esc>:w<cr>")
-vim.keymap.set({ "i", "s" }, "<c-u>", '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
+key({ "i", "s" }, "<c-s>", "<Esc>:w<cr>")
+key({ "i", "s" }, "<c-u>", '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
 
-vim.keymap.set({ "i", "s" }, "<a-p>", function()
+key({ "i", "s" }, "<a-p>", function()
 	if ls.expand_or_jumpable() then
 		ls.expand()
 	end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<A-y>", "<Esc>o", { silent = true })
+key({ "i", "s" }, "<A-y>", "<Esc>o", { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<a-k>", function()
+key({ "i", "s" }, "<a-k>", function()
 	if ls.jumpable(-1) then
 		ls.jump(-1)
 	end
 end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<a-j>", function()
+key({ "i", "s" }, "<a-j>", function()
 	if ls.jumpable(1) then
 		ls.jump(1)
 	end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<a-l>", function()
+key({ "i", "s" }, "<a-l>", function()
 	if ls.choice_active() then
 		ls.change_choice(1)
 	else
@@ -54,10 +56,10 @@ vim.keymap.set({ "i", "s" }, "<a-l>", function()
 		print(time)
 	end
 end)
-vim.keymap.set({ "i", "s" }, "<a-h>", function()
+key({ "i", "s" }, "<a-h>", function()
 	if ls.choice_active() then
 		ls.change_choice(-1)
 	end
 end)
 
-vim.keymap.set("n", "<Leader><CR>", "<cmd>LuaSnipEdit<cr>", { silent = true, noremap = true })
+key("n", "<Leader><CR>", "<cmd>LuaSnipEdit<cr>", { silent = true, noremap = true })

@@ -531,12 +531,13 @@ Theme.plugins = function()
     debugBreakpoint = { fg = c.gutter_normal, bg = c.accent },
   }
   -- local FZF = {
-  --   Fzf1 = { bg = c.none },
-  --   Fzf2 = { bg = c.none },
-  --   Fzf3 = { bg = c.none },
-  -- }
-  local staline = {
-    StalineBranch = { bg = c.none },
+    --   Fzf1 = { bg = c.none },
+    --   Fzf2 = { bg = c.none },
+    --   Fzf3 = { bg = c.none },
+    -- }
+    local staline = {
+      StalineBranch = { bg = c.none },
+      StalineFilename = { fg = c.none, bg = c.none },
   }
 
   return vim.tbl_extend('error',

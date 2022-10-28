@@ -1,27 +1,50 @@
-local JOB = require "plenary.job"
-local TERMINAL = require("toggleterm.terminal").Terminal
+local JOB          = require "plenary.job"
+local TERMINAL     = require("toggleterm.terminal").Terminal
 local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
-local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions" -- {cushman-codex / davinci-codex}
-local MAX_TOKENS = 300
+local OPENAI_URL   = "https://api.openai.com/v1/engines/davinci-codex/completions" -- {cushman-codex / davinci-codex}
+local MAX_TOKENS   = 300
+local M            = {}
 
-local M = {}
+local status_ok, cheatsheet = pcall(require, "cheatsheet")
+if not status_ok then
+	return
+end
+
+local status_ok, action = pcall(require, "cheatsheet.telescope.actions")
+if not status_ok then
+	return
+end
+
+local SETTINGS = {
+	bundled_cheatsheets            = true,
+	bundled_plugin_cheatsheets     = true,
+	include_only_installed_plugins = true,
+	telescope_mappings             = {
+		["<CR>"]   = action.select_or_fill_commandline,
+		["<A-CR>"] = action.select_or_execute,
+		["<C-Y>"]  = action.copy_cheat_value,
+		["<C-E>"]  = action.edit_user_cheatsheet,
+	},
+}
+cheatsheet.setup(SETTINGS)
+
 
 -- For creating new Terminal Instance
 function M.open_term(cmd, opts)
-    opts = opts or {}
-    opts.size = opts.size or vim.o.columns * 0.5
+    opts           = opts or {}
+    opts.size      = opts.size or vim.o.columns * 0.5
     opts.direction = opts.direction or "vertical"
-    opts.on_open = opts.on_open or default_on_open
-    opts.on_exit = opts.on_exit or nil
+    opts.on_open   = opts.on_open or default_on_open
+    opts.on_exit   = opts.on_exit or nil
 
     local new_term = TERMINAL:new{
-        cmd = cmd,
-        dir = "git_dir",
-        auto_scroll = false,
-        close_on_exit = false,
+        cmd             = cmd,
+        dir             = "git_dir",
+        auto_scroll     = false,
+        close_on_exit   = false,
         start_in_insert = false,
-        on_open = opts.on_open,
-        on_exit = opts.on_exit
+        on_open         = opts.on_open,
+        on_exit         = opts.on_exit
     }
     new_term:open(opts.size, opts.direction)
 end
@@ -44,7 +67,7 @@ function M.so_input()
     end)
 end
 
--- Cheatsheet
+-- Cheatsheet using cht.sh
 local lang = ""
 local file_type = ""
 local function cht_on_exit(_) vim.cmd [[normal gg]] end
@@ -94,14 +117,14 @@ function M.cht()
     end)
 end
 
--- Interactive CheatSheet
+-- Interactive CheatSheet using Navi
 local navi = "navi fn welcome"
 local interactive_cheatsheet = TERMINAL:new{
-    cmd = navi,
-    dir = "git_dir",
-    hidden = true,
-    direction = "float",
-    float_opts = {border = "double"},
+    cmd           = navi,
+    dir           = "git_dir",
+    hidden        = true,
+    direction     = "float",
+    float_opts    = {border = "double"},
     close_on_exit = true
 }
 function M.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
@@ -139,12 +162,12 @@ function M.complete(v)
     text = string.format(cs .. "\n%s", ft, text)
 
     local request = {}
-    request["max_tokens"] = MAX_TOKENS
-    request["top_p"] = 1
-    request["temperature"] = 0
+    request["max_tokens"]        = MAX_TOKENS
+    request["top_p"]             = 1
+    request["temperature"]       = 0
     request["frequency_penalty"] = 0
-    request["presence_penalty"] = 0
-    request["prompt"] = text
+    request["presence_penalty"]  = 0
+    request["prompt"]            = text
     local body = vim.fn.json_encode(request)
 
     local completion = ""
@@ -179,11 +202,11 @@ end
 
 -- Tokei
 local project_info = TERMINAL:new{
-    cmd = "tokei",
-    dir = "git_dir",
-    hidden = true,
-    direction = "float",
-    float_opts = {border = "double"},
+    cmd           = "tokei",
+    dir           = "git_dir",
+    hidden        = true,
+    direction     = "float",
+    float_opts    = {border = "double"},
     close_on_exit = false
 }
 

@@ -1,6 +1,5 @@
 local cmd = vim.cmd
 local opt = vim.opt
-local wo = vim.wo
 local O = vim.o
 
 ---- :help options
@@ -38,16 +37,15 @@ opt.background     = "dark"                    -- set the background color
 opt.fillchars      = { eob = " " }             -- set the fill character for the end of the line
 opt.laststatus     = 0                         -- set the last status line to 0
 opt.hidden         = true                      -- hide the status line
-opt.signcolumn     = "yes"                     -- show the sign column
+opt.cole           = 1                         -- Conceal applied
+opt.cursorline     = true                      -- highlight the current line
+opt.cursorlineopt  = "number"                  -- show the line numbers highlighted
 opt.foldmethod     = "indent"
 opt.foldnestmax    = 10
 opt.foldenable     = false
 opt.winblend       = 0
 opt.foldlevel      = 2
-opt.cole           = 1                         -- Conceal applied
-opt.cursorline     = true                      -- highlight the current line
 opt.laststatus     = 3
-opt.cursorlineopt  = "number"                  -- show the line numbers highlighted
 opt.termguicolors  = true
 opt.formatoptions  = "l"
 opt.formatoptions  = opt.formatoptions

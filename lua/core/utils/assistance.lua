@@ -229,4 +229,21 @@ function M.howdoi()
     end)
 end
 
+-- howto
+function M.howto()
+    local buf = vim.api.nvim_get_current_buf()
+    -- file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+    vim.ui.input({prompt = "howto input: "}, function(input)
+        local cmd = ""
+        if input == "" or not input then
+            return
+        elseif input == "h" then
+            cmd = "-h"
+        else
+            cmd = input
+        end
+        M.open_term("howto " .. cmd, {direction = 'float'})
+    end)
+end
+
 return M

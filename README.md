@@ -19,6 +19,8 @@
 
   <a href="https://github.com/adityastomar67/nvstar/pulse">
   <img alt="Last Updated" src="https://img.shields.io/github/last-commit/adityastomar67/nvstar?style=flat&color=e06c75&label="> </a>
+  
+  [![](https://img.shields.io/badge/Neovim-0.8+-blueviolet.svg?style=for-the-badge&logo=Neovim&color=302D41&logoColor=green)](https://github.com/neovim/neovim)
 
   <h3>Personalized Development Environment ❤️👨‍💻</h3>
   Brief description of how this configuration actually works. Hit the ⭐ button if you found this useful.
@@ -26,4 +28,219 @@
 </div>
 
 ## What is this
-This is a v2 of my previous Neovim config - [NvStar](https://github.com/adityastomar67/nvstar)
+This is a v2 of my previous Neovim config - [Nvdots](https://github.com/adityastomar67/nvdots)
+
+#### Before we proceed, File Structure is like
+
+If the reader is well versed or, has a general experience with shell scripting, Lua language or, know what they are doing then they may skip this section. But it advised to take a good understanding of the file structure before making any changes.
+
+```
+nvim
+├── after
+│   ├── queries
+│   │   └── lua
+│   └── syntax
+│       ├── cpp.vim
+│       └── c.vim
+├── bin
+│   ├── friendly-snippets
+│   ├── luasnip_snippets
+│   └── snippets
+├── colors
+│   ├── dull.lua
+│   ├── everforest.lua
+│   ├── google-light.lua
+│   ├── gruvbox.vim
+│   ├── monokai.lua
+│   ├── nvstar.vim
+│   └── wave.lua
+├── init.lua
+├── lua
+│   ├── core
+│   │   ├── abbreviations.lua
+│   │   ├── autocmds.lua
+│   │   ├── colorscheme.lua
+│   │   ├── colors.lua
+│   │   ├── constants.lua
+│   │   ├── maps.lua
+│   │   ├── options.lua
+│   │   ├── plugins.lua
+│   │   ├── user.lua
+│   │   └── utils
+│   │       ├── assistance.lua
+│   │       ├── init.lua
+│   │       ├── notify.lua
+│   │       └── toggle.lua
+│   └── plug
+│       ├── cheatsheet.lua
+│       ├── cmp
+│       │   ├── dynamic.lua
+│       │   ├── init.lua
+│       │   ├── luasnip.lua
+│       │   └── tabnine.lua
+│       ├── colorizer.lua
+│       ├── fzf.lua
+│       ├── hydra
+│       │   ├── dap.lua
+│       │   ├── git.lua
+│       │   ├── init.lua
+│       │   ├── options.lua
+│       │   ├── spelling.lua
+│       │   ├── telescope.lua
+│       │   └── windows.lua
+│       ├── init.lua
+│       ├── lsp
+│       │   ├── init.lua
+│       │   ├── lsp-installer.lua
+│       │   ├── lsp-saga.lua
+│       │   ├── null-ls.lua
+│       │   └── servers
+│       │       ├── clangd.lua
+│       │       ├── emmet-ls.lua
+│       │       ├── jsonls.lua
+│       │       └── sumneko-lua.lua
+│       ├── lspkind.lua
+│       ├── mason.lua
+│       ├── nvim-tree.lua
+│       ├── other.lua
+│       ├── telescope
+│       │   ├── init.lua
+│       │   └── options.lua
+│       ├── terminal.lua
+│       ├── todo-comments.lua
+│       ├── toggle.lua
+│       ├── trouble.lua
+│       ├── ts-context.lua
+│       ├── ui
+│       │   ├── bufferline.lua
+│       │   ├── dashboard.lua
+│       │   ├── git-sign.lua
+│       │   ├── init.lua
+│       │   ├── minimap.lua
+│       │   ├── noice.lua
+│       │   ├── notify.lua
+│       │   └── statusline.lua
+│       └── whichkey.lua
+└── plugin
+```
+
+## Install language servers
+
+Mostly available via npm
+```bash
+npm install -g typescript typescript-language-server vscode-langservers-extracted vls @tailwindcss/language-server yaml-language-server @prisma/language-server emmet-ls neovim graphql-language-service-cli graphql-language-service-server @astrojs/language-server bash-language-server
+```
+
+> TIP: [No sudo on global npm install](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md)
+
+### Lua, Pyright, Deno, Gopls and rust-analyzer available in Arch/Manjaro repos
+
+Check your package manager for availability if not on an Arch based distro -
+_brew, apt_ etc.
+
+```bash
+sudo pacman -S lua-language-server pyright deno rust-analyzer gopls shellcheck
+```
+
+## Install formatters
+
+[ prettier ](https://prettier.io/) with npm
+
+```bash
+npm i -g prettier
+```
+
+[ shfmt ](https://github.com/mvdan/sh) is in the AUR
+
+```bash
+sudo pacman -S shfmt                        # From the AUR
+go install mvdan.cc/sh/v3/cmd/shfmt@latest  # With the help of GO
+```
+
+[ stylua ](https://github.com/JohnnyMorganz/StyLua) is in the AUR
+
+```bash
+sudo pacman -S stylua
+```
+
+Check your package manager for availability if not on an Arch based distro -
+_brew, apt_ etc.
+
+[autopep8](https://pypi.org/project/autopep8/) for python is in Manjaro/Arch
+repos
+
+```bash
+sudo pacman -S autopep8
+```
+
+Check your package manager for availability if not on an Arch based distro -
+_brew, apt_ etc.
+
+[yamlfmt](https://pypi.org/project/yamlfmt/) for yaml available with pip
+
+```bash
+sudo pip install yamlfmt
+```
+
+# Installation
+
+```bash
+  # move to home dir
+  cd ~
+  # back up current config
+  cp -r ~/.config/nvim ~/.config/nvim.backup
+  # clone repository
+  git clone https://github.com/adityastomar67/nvdots.git ~/.config
+  # Launch nvim for the first time with this command to install plugins
+  nvim +PackerInstall
+  # exit nvim and Then compile the loader file
+  nvim +PackerCompile
+```
+
+## Additionals
+### Adding custom Snippets
+
+The conifg uses [ luasnip ](https://github.com/saadparwaiz1/cmp_luasnip) paired
+with [friendly-snippets](https://github.com/adityastomar67/friendly-snippets), my own fork for VS Code style snippets.
+You can add your own snippets to the config [ snippets directory ](./snippets).
+You'll also need to edit the [snippets/package.json](./snippets/package.json) to
+be able to load your snippets in the correct filetype.
+One test snippet is included as an example.
+
+## Plugins
+
+For a list of plugins, see the [plugins file](./lua/core/plugins.lua).
+
+## More Info
+
+Looking for my `zsh` and other `cli` configs? See [Dotfiles](https://github.com/adityastomar67/.dotfiles)
+
+## Resources and inspiration
+
+[Nvim Lua guide](https://github.com/nanotee/nvim-lua-guide)
+
+[Ben Frain has a nice setup](https://gist.github.com/benfrain/97f2b91087121b2d4ba0dcc4202d252f)
+
+[Lunar Vim for inspiration](https://github.com/ChristianChiarulli/LunarVim)
+
+[Ui Customization docs](https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#change-diagnostic-symbols-in-the-sign-column-gutter)
+
+[Lua for Programmers](https://ebens.me/post/lua-for-programmers-part-1/)
+
+[LSP config](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
+
+[Awesome list of plugins](https://github.com/rockerBOO/awesome-neovim)
+
+[Plugin Finder](https://neovimcraft.com/)
+Noting really, if you have (Neo)vim installed then you can just backup your previous config if any, then just clone this repo and create a symlink of this configuration to your ~/.config/nvim
+
+**SUGGESTION**
+
+* Font: Cascursive - Courtesy of [@sainnhe](https://github.com/sainnhe/icursive-nerd-font) (You can find fonts inside my dotfiles repo)
+* [dot_files](https://github.com/adityastomar67/.dotfiles/)
+* [Wallpaper](https://github.com/adityastomar67/Wallpapers)
+
+## For Complete Automated install
+Run this code snippet in your terminal **(Coming soon...)**
+```bash
+curl -sL https://bit.ly/Fresh-Install | sh -s -- --vim

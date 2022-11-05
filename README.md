@@ -190,7 +190,7 @@ sudo pip install yamlfmt
   # back up current config
   cp -r ~/.config/nvim ~/.config/nvim.backup
   # clone repository
-  git clone https://github.com/adityastomar67/nvdots.git ~/.config
+  git clone https://github.com/adityastomar67/nvstar.git ~/.config
   # Launch nvim for the first time with this command to install plugins
   nvim +PackerInstall
   # exit nvim and Then compile the loader file

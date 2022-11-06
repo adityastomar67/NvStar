@@ -431,6 +431,7 @@ Theme.plugins = function()
   }
   local whichkey = {
     WhichKey  = { fg = c.fg },
+    WhichKeyBorder = { fg = c.entity },
     -- WhichKeyFloat  = { fg = }
     -- WhichKeySeparator  = { fg = }
     -- WhichKeyDesc  = { fg = }

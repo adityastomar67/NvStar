@@ -7,17 +7,11 @@ local bo = vim.bo -- buffer local
 local fn = vim.fn -- access vim functions
 local cmd = vim.cmd -- vim commands
 local api = vim.api -- access vim api
--- local Job = require "plenary.job"
--- local Terminal = require("toggleterm.terminal").Terminal
--- local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
--- local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions"  -- {cushman-codex / davinci-codex}
--- local MAX_TOKENS = 300
--- local ass = require("core.utils.assistance")
--- require("core.utils.assistance")
+
 
 local M = {}
 
-local function trim(s)
+function M.trim(s)
     return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
 end
 

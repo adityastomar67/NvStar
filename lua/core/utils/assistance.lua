@@ -1,10 +1,13 @@
 local JOB          = require "plenary.job"
 local TERMINAL     = require("toggleterm.terminal").Terminal
+local TRIM         = require("core.utils").trim
 local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
 local OPENAI_URL   = "https://api.openai.com/v1/engines/davinci-codex/completions" -- {cushman-codex / davinci-codex}
 local MAX_TOKENS   = 300
 local M            = {}
 
+
+-- For CheatSheet setup
 local status_ok, cheatsheet = pcall(require, "cheatsheet")
 if not status_ok then
 	return
@@ -49,6 +52,7 @@ function M.open_term(cmd, opts)
     new_term:open(opts.size, opts.direction)
 end
 
+
 -- For StackOverflow Assistance
 function M.so_input()
     local buf = vim.api.nvim_get_current_buf()
@@ -66,6 +70,7 @@ function M.so_input()
         M.open_term("so " .. cmd, {direction = 'float'})
     end)
 end
+
 
 -- Cheatsheet using cht.sh
 local lang = ""
@@ -117,6 +122,7 @@ function M.cht()
     end)
 end
 
+
 -- Interactive CheatSheet using Navi
 local navi = "navi fn welcome"
 local interactive_cheatsheet = TERMINAL:new{
@@ -129,12 +135,13 @@ local interactive_cheatsheet = TERMINAL:new{
 }
 function M.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
 
+
 -- OpenAI Codex
 local function get_api_key()
     local file = io.open(API_KEY_FILE, "rb")
     if not file then return nil end
     local content = file:read "*a"
-    content = string.gsub(content, "^%s*(.-)%s*$", "%1") -- strip off any space or newline
+    content = TRIM(content)
     file:close()
     return content
 end
@@ -154,9 +161,9 @@ function M.complete(v)
         local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
         local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
         text = vim.api.nvim_buf_get_lines(buf, line1 - 1, line2, false)
-        text = trim(table.concat(text, "\n"))
+        text = TRIM(table.concat(text, "\n"))
     else
-        text = trim(vim.api.nvim_get_current_line())
+        text = TRIM(vim.api.nvim_get_current_line())
     end
     local cs = vim.bo.commentstring
     text = string.format(cs .. "\n%s", ft, text)
@@ -200,6 +207,7 @@ function M.complete(v)
     end
 end
 
+
 -- Tokei
 local project_info = TERMINAL:new{
     cmd           = "tokei",
@@ -211,6 +219,7 @@ local project_info = TERMINAL:new{
 }
 
 function M.project_info_toggle() project_info:toggle() end
+
 
 -- howdoi
 function M.howdoi()
@@ -229,21 +238,20 @@ function M.howdoi()
     end)
 end
 
+
 -- howto
 function M.howto()
     local buf = vim.api.nvim_get_current_buf()
-    -- file_type = vim.api.nvim_buf_get_option(buf, "filetype")
     vim.ui.input({prompt = "howto input: "}, function(input)
         local cmd = ""
         if input == "" or not input then
             return
-        elseif input == "h" then
-            cmd = "-h"
         else
             cmd = input
         end
         M.open_term("howto " .. cmd, {direction = 'float'})
     end)
 end
+
 
 return M

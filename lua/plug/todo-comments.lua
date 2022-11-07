@@ -11,7 +11,7 @@ local SETTINGS = {
             alt   = {"FIXME", "BUG", "FIXIT", "ISSUE"}
             -- signs = false, -- configure signs for some keywords individually
         },
-        TODO = {icon = "✖", color = "info"},
+        TODO = {icon = "", color = "info"},
         DONE = {icon = " ", color = "done"},
         HACK = {icon = " ", color = "warning"},
         WARN = {icon = " ", color = "error", alt = {"WARNING", "XXX"}},

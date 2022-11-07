@@ -33,11 +33,11 @@ local opts = {
 		scroll_up   = "<c-u>", -- binding to scroll up inside the popup
 	},
 	window = {
-		border   = "single",       -- none, single, double, shadow
+		border   = "none",       -- none, single, double, shadow
 		position = "bottom",       -- bottom, top
 		margin   = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
 		padding  = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-		winblend = 0,
+		winblend = 3,
 	},
 	layout = {
 		height  = { min = 4, max  = 25 }, -- min and max height of the columns
@@ -91,18 +91,19 @@ local n_mappings = {
 	y     = { "ggVGy"                                              , "Yank Full Document" } ,
 	T     = {
 		name = "Toggle Options"                                                            ,
-		a    = { "<cmd>set invlist<CR>"                                                    , "Toggle Whitespace" }       ,
-		l    = { "<cmd>Limelight!!<CR>"                                                      , "Toggle LimeLight" }     ,
-		i    = { "<cmd>set invcursorline<CR>"                                              , "Toggle Cursor Line" }      ,
-		o    = { "<cmd>set invcursorcolumn<CR>"                                            , "Toggle Cursor Column" }    ,
-		f    = { "<cmd>set invfoldenable<CR>"                                              , "Toggle Fold" }             ,
-		g    = { "<cmd>set invspell<CR>"                                                   , "Toggle Spell" }            ,
-		j    = { "<cmd>set invrelativenumber<CR>"                                          , "Toggle Relative Numbers" } ,
-		k    = { "<cmd>set invwrap<CR>"                                                    , "Toggle Wrap" }             ,
-		z    = { "<cmd>set invrnu invnu<CR>"                                               , "Toggle Line Numbers" }     ,
-		m    = { "<cmd>lua require'codewindow'.toggle_minimap()<CR>"                       , "Toggle Minimap"}           ,
-		c    = { '<cmd>lua require("core.utils.toggle").toggle_cmp()<CR>'                  , "Toggle Completions" }      ,
-		t    = { '<cmd>lua require("core.utils.toggle").toggle_transparency()<CR>'         , "Toggle Transparency" }     ,
+		a    = { "<cmd>set invlist<CR>"                                                    , "Toggle Whitespace" }         ,
+		e    = { "<cmd>ColorizerToggle<CR>"                                                , "Toggle Colorizer" }          ,
+		l    = { "<cmd>Limelight!!<CR>"                                                    , "Toggle LimeLight" }          ,
+		i    = { "<cmd>set invcursorline<CR>"                                              , "Toggle Cursor Line" }        ,
+		o    = { "<cmd>set invcursorcolumn<CR>"                                            , "Toggle Cursor Column" }      ,
+		f    = { "<cmd>set invfoldenable<CR>"                                              , "Toggle Fold" }               ,
+		g    = { "<cmd>set invspell<CR>"                                                   , "Toggle Spell" }              ,
+		j    = { "<cmd>set invrelativenumber<CR>"                                          , "Toggle Relative Numbers" }   ,
+		k    = { "<cmd>set invwrap<CR>"                                                    , "Toggle Wrap" }               ,
+		z    = { "<cmd>set invrnu invnu<CR>"                                               , "Toggle Line Numbers" }       ,
+		m    = { "<cmd>lua require'codewindow'.toggle_minimap()<CR>"                       , "Toggle Minimap"}             ,
+		c    = { '<cmd>lua require("core.utils.toggle").toggle_cmp()<CR>'                  , "Toggle Completions" }        ,
+		t    = { '<cmd>lua require("core.utils.toggle").toggle_transparency()<CR>'         , "Toggle Transparency" }       ,
 		d    = { "<cmd>lua require('core.utils.toggle').toggle_diagnostics()<CR>"          , "Toggle Inline Diagnostics" } ,
 	},
 	q     = {
@@ -144,7 +145,7 @@ local n_mappings = {
 	},
 	s = {
 		name = "Something Else",
-		h    = { "<cmd>!chmod +x % && source %<CR>"                 , "Run Shell Script" }    ,
+		-- h    = { "<cmd>!chmod +x % && source %<CR>"                 , "Run Shell Script" }    ,
 		o    = { "<cmd>lua require('core.utils').source_file()<CR>" , "Source Current File" } ,
 	},
 	l = {
@@ -205,16 +206,24 @@ local function code_keymap()
 				name = "Code",
 				i = { "<cmd>cexpr system('refurb --quiet ' . shellescape(expand('%'))) | copen<cr>", "Inspect" },
 				r = {
-					"<cmd>update<cr><cmd>lua require('core.utils').open_term([[python3 ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
+					"<cmd>update<cr><cmd>lua require('core.utils.assistance').open_term([[python3 ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
 					"Run",
 				},
 				m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor" },
+			}
+		elseif ft == "sh" then
+			keymap_c = {
+				name = "Code",
+				r = {
+					"<cmd>update<cr><cmd>lua require('core.utils.assistance').open_term([[chmod +x ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1) .. [[ && ./]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
+					"Run",
+				},
 			}
 		elseif ft == "cpp" then
 			keymap_c = {
 				name = "Code",
 				r = {
-					"<cmd>update<cr><cmd>lua require('core.utils').open_term([[g++ -std=c++20 ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1) .. [[ && ./a.out && rm -f a.out]], {direction = 'float'})<cr>",
+					"<cmd>update<cr><cmd>lua require('core.utils.assistance').open_term([[g++ -std=c++20 ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1) .. [[ && ./a.out && rm -f a.out]], {direction = 'float'})<cr>",
 					"Run",
 				},
 			}
@@ -222,7 +231,7 @@ local function code_keymap()
 			keymap_c = {
 				name = "Code",
 				r = {
-					"<cmd>update<cr><cmd>lua require('core.utils').open_term([[lua ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
+					"<cmd>update<cr><cmd>lua require('core.utils.assistance').open_term([[lua ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
 					"Run",
 				},
 			}

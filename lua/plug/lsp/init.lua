@@ -10,7 +10,7 @@ require("plug.lsp.null-ls")
 vim.diagnostic.config({ virtual_text = true })
 
 local diagnostic_signs = {
-	{ name = "DiagnosticSignError", text = "" },
+	{ name = "DiagnosticSignError", text = "" },
 	{ name = "DiagnosticSignWarn" , text = "" },
 	{ name = "DiagnosticSignHint" , text = "" },
 	{ name = "DiagnosticSignInfo" , text = "" },
@@ -25,13 +25,13 @@ for _, sign in ipairs(diagnostic_signs) do
 end
 
 lsp.html.setup({})
-lsp.sqls.setup({})
 -- lsp.jdtls.setup({})
 -- lsp.bashls.setup({})
 lsp.eslint.setup({})
 lsp.pyright.setup({})
 lsp.tsserver.setup({})
 lsp.tailwindcss.setup({})
+lsp.sqls.setup(require("plug.lsp.servers.sqls"))
 lsp.jsonls.setup(require("plug.lsp.servers.jsonls"))
 lsp.clangd.setup(require("plug.lsp.servers.clangd"))
 lsp.emmet_ls.setup(require("plug.lsp.servers.emmet-ls"))

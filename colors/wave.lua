@@ -639,4 +639,5 @@ function Wave.apply()
 end
 
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+vim.cmd("hi CopilotSuggestions guibg=NONE ctermbg=NONE guifg=NONE ctermfg=NONE")
 return Wave.apply()

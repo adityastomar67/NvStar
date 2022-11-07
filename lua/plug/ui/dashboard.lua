@@ -1,11 +1,11 @@
 local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then 
-	return 
+if not status_ok then
+	return
 end
 
 local status_ok, dashboard = pcall(require, "alpha.themes.dashboard")
-if not status_ok then 
-	return 
+if not status_ok then
+	return
 end
 
 math.randomseed(os.time())
@@ -24,7 +24,7 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 local logo = {
-	"",	"",	"",	"",	"",	"",	"",	"",
+	"",	"",	"",	"",	"",	"",
     "███╗  ██╗         ╔██████╗████████╗ █████╗ ██████╗",
     "████╗ ██║██╗   ██╗║██╔═══╝╚══██╔══╝██╔══██╗██╔══██╗",
     "██╔██╗██║╚██╗ ██╔╝╚█████╗    ██║   ███████║██████╔╝",
@@ -44,7 +44,7 @@ dashboard.section.buttons.val    = {
     button("q/Q"        , "  Quit"         , ":qa<cr>")
 }
 dashboard.section.footer.val = {
-	"",	"",	"",	"",	"",	"",	"",
+	"",	"",
 	"I Dont want to be Horny,",
 	" I Just wanna be happy. ",
 	"          🚀            ",

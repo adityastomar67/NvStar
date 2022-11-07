@@ -8,6 +8,14 @@ local fn = vim.fn -- access vim functions
 local cmd = vim.cmd -- vim commands
 local api = vim.api -- access vim api
 
+vim.cmd([[
+	function! Syn()
+		for id in synstack(line("."), col("."))
+		  echo synIDattr(id, "name")
+		endfor
+	  endfunction
+	  command! -nargs=0 Syn call Syn()
+]])
 
 local M = {}
 

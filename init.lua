@@ -26,12 +26,3 @@ for _, source in ipairs({
         notify(err, "error", { title = "Require Error" })
     end
 end
-
-vim.cmd([[
-	function! Syn()
-		for id in synstack(line("."), col("."))
-		  echo synIDattr(id, "name")
-		endfor
-	  endfunction
-	  command! -nargs=0 Syn call Syn()
-]])

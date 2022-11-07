@@ -27,10 +27,11 @@
 
 </div>
 
-## What is this
+## ❔ What is this
 This is a v2 of my previous Neovim config - [Nvdots](https://github.com/adityastomar67/nvdots)
 
 ![Screenshot_Dashboard](https://user-images.githubusercontent.com/33474611/200270455-d1fc848e-3109-49f1-902a-a7909fb00661.png)
+> For **Wallpaper**, Go to _[this](https://github.com/adityastomar67/Wallpapers)_ <br>Terminal is **ST**, for config go _[here](https://github.com/adityastomar67/.dotfiles/tree/master/.config/st)_ <br> For other stuff checkout my [Profile](https://github.com/adityastomar67)
 
 
 #### Before we proceed, File Structure is like
@@ -41,22 +42,9 @@ If the reader is well versed or, has a general experience with shell scripting, 
 nvim
 ├── after
 │   ├── queries
-│   │   └── lua
 │   └── syntax
-│       ├── cpp.vim
-│       └── c.vim
 ├── bin
-│   ├── friendly-snippets
-│   ├── luasnip_snippets
-│   └── snippets
 ├── colors
-│   ├── dull.lua
-│   ├── everforest.lua
-│   ├── google-light.lua
-│   ├── gruvbox.vim
-│   ├── monokai.lua
-│   ├── nvstar.vim
-│   └── wave.lua
 ├── init.lua
 ├── lua
 │   ├── core
@@ -70,45 +58,20 @@ nvim
 │   │   ├── plugins.lua
 │   │   ├── user.lua
 │   │   └── utils
-│   │       ├── assistance.lua
-│   │       ├── init.lua
-│   │       ├── notify.lua
-│   │       └── toggle.lua
 │   └── plug
 │       ├── cheatsheet.lua
 │       ├── cmp
-│       │   ├── dynamic.lua
-│       │   ├── init.lua
-│       │   ├── luasnip.lua
-│       │   └── tabnine.lua
 │       ├── colorizer.lua
 │       ├── fzf.lua
 │       ├── hydra
-│       │   ├── dap.lua
-│       │   ├── git.lua
-│       │   ├── init.lua
-│       │   ├── options.lua
-│       │   ├── spelling.lua
-│       │   ├── telescope.lua
-│       │   └── windows.lua
 │       ├── init.lua
 │       ├── lsp
-│       │   ├── init.lua
-│       │   ├── lsp-installer.lua
-│       │   ├── lsp-saga.lua
-│       │   ├── null-ls.lua
 │       │   └── servers
-│       │       ├── clangd.lua
-│       │       ├── emmet-ls.lua
-│       │       ├── jsonls.lua
-│       │       └── sumneko-lua.lua
 │       ├── lspkind.lua
 │       ├── mason.lua
 │       ├── nvim-tree.lua
 │       ├── other.lua
 │       ├── telescope
-│       │   ├── init.lua
-│       │   └── options.lua
 │       ├── terminal.lua
 │       ├── todo-comments.lua
 │       ├── toggle.lua
@@ -127,9 +90,9 @@ nvim
 └── plugin
 ```
 
-## Install language servers
+## 🚀 Install language servers
 
-Mostly available via npm
+### Mostly available via npm
 ```bash
 npm install -g typescript typescript-language-server vscode-langservers-extracted vls @tailwindcss/language-server yaml-language-server @prisma/language-server emmet-ls neovim graphql-language-service-cli graphql-language-service-server @astrojs/language-server bash-language-server
 ```
@@ -137,15 +100,14 @@ npm install -g typescript typescript-language-server vscode-langservers-extracte
 > TIP: [No sudo on global npm install](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md)
 
 ### Lua, Pyright, Deno, Gopls and rust-analyzer available in Arch/Manjaro repos
-
-Check your package manager for availability if not on an Arch based distro -
-_brew, apt_ etc.
-
 ```bash
 sudo pacman -S lua-language-server pyright deno rust-analyzer gopls shellcheck
 ```
 
-## Install formatters
+> Check your package manager for availability if not on an Arch based distro -
+_brew, apt_ etc.
+
+## 👌 Install formatters
 
 [ prettier ](https://prettier.io/) with npm
 
@@ -166,7 +128,7 @@ go install mvdan.cc/sh/v3/cmd/shfmt@latest  # With the help of GO
 sudo pacman -S stylua
 ```
 
-Check your package manager for availability if not on an Arch based distro -
+> Check your package manager for availability if not on an Arch based distro -
 _brew, apt_ etc.
 
 [autopep8](https://pypi.org/project/autopep8/) for python is in Manjaro/Arch
@@ -176,7 +138,7 @@ repos
 sudo pacman -S autopep8
 ```
 
-Check your package manager for availability if not on an Arch based distro -
+> Check your package manager for availability if not on an Arch based distro -
 _brew, apt_ etc.
 
 [yamlfmt](https://pypi.org/project/yamlfmt/) for yaml available with pip
@@ -185,7 +147,7 @@ _brew, apt_ etc.
 sudo pip install yamlfmt
 ```
 
-# Installation
+# 🧨 Installation
 
 ```bash
   # move to home dir
@@ -239,7 +201,7 @@ Noting really, if you have (Neo)vim installed then you can just backup your prev
 
 **SUGGESTION**
 
-* Font: Cascursive - Courtesy of [@sainnhe](https://github.com/sainnhe/icursive-nerd-font) (You can find fonts inside my dotfiles repo)
+* Font: Cascursive - Courtesy of [@sainnhe](https://github.com/sainnhe/icursive-nerd-font) **(You can find fonts inside my dotfiles repo)**
 * [dot_files](https://github.com/adityastomar67/.dotfiles/)
 * [Wallpaper](https://github.com/adityastomar67/Wallpapers)
 

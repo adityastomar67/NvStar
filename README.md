@@ -30,6 +30,9 @@
 ## What is this
 This is a v2 of my previous Neovim config - [Nvdots](https://github.com/adityastomar67/nvdots)
 
+![Screenshot_Dashboard](https://user-images.githubusercontent.com/33474611/200270455-d1fc848e-3109-49f1-902a-a7909fb00661.png)
+
+
 #### Before we proceed, File Structure is like
 
 If the reader is well versed or, has a general experience with shell scripting, Lua language or, know what they are doing then they may skip this section. But it advised to take a good understanding of the file structure before making any changes.

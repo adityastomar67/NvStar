@@ -23,7 +23,7 @@ opt.undofile       = true                      -- enable persistent undo
 opt.updatetime     = 300                       -- faster completion (4000ms default)
 opt.expandtab      = true                      -- convert tabs to spaces
 opt.shiftwidth     = 4                         -- the number of spaces inserted for each indentation
-opt.tabstop        = 8                         -- insert 2 spaces for a tab
+opt.tabstop        = 4                         -- insert 2 spaces for a tab
 opt.number         = false                     -- set numbered lines
 opt.relativenumber = false                     -- set relative numbered lines
 opt.numberwidth    = 1                         -- set number column width to 2 {default 4}
@@ -81,7 +81,7 @@ O.timeoutlen                  = 1000
 O.clipboard                   = "unnamedplus"
 O.hlsearch                    = true
 O.ignorecase                  = true
-O.autoindent                  = true
+-- O.autoindent                  = true
 O.expandtab                   = true
 
 cmd("set lazyredraw")

@@ -218,6 +218,14 @@ local function code_keymap()
 					"<cmd>update<cr><cmd>lua require('core.utils.assistance').open_term([[chmod +x ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1) .. [[ && ./]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1), {direction = 'float'})<cr>",
 					"Run",
 				},
+				c = {
+					"<cmd>update<cr><cmd>lua require('core.utils.assistance').open_term([[shellcheck --color=always ]] .. vim.fn.shellescape(vim.fn.getreg('%'), 1) .. [[ | bat]], {direction = 'float'})<cr>",
+					"ShellCheck",
+				},
+				f = {
+					"<cmd>update<cr><cmd>silent !shfmt -i 4 -w %<cr>",
+					"Shfmt",
+				},
 			}
 		elseif ft == "cpp" then
 			keymap_c = {

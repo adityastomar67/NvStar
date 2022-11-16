@@ -19,6 +19,7 @@ for _, source in ipairs({
     "core.autocmds",
     "core.colorscheme",
     "plug",
+
 }) do
     local status_ok, fault = pcall(require, source)
     if not status_ok then

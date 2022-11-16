@@ -8,8 +8,6 @@ if not status_ok then
 	return
 end
 
-
-
 local SETTINGS = {
 	defaults = {
 		riprep_arguments = {
@@ -152,3 +150,5 @@ telescope.load_extension("emoji")
 telescope.load_extension("media_files")
 telescope.load_extension("ui-select")
 telescope.load_extension("file_browser")
+telescope.load_extension('project')
+-- telescope.load_extension('frecency')

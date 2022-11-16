@@ -13,7 +13,7 @@ local SETTINGS = {
 		"tsserver",
 		-- "jdtls",
 		"emmet_ls",
-		-- "bashls",
+		"bashls",
 		"sqls",
 		"sumneko_lua",
 		"jsonls",

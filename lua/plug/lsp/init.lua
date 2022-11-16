@@ -26,13 +26,16 @@ end
 
 lsp.html.setup({})
 -- lsp.jdtls.setup({})
--- lsp.bashls.setup({})
 lsp.eslint.setup({})
 lsp.pyright.setup({})
 lsp.tsserver.setup({})
 lsp.tailwindcss.setup({})
 lsp.sqls.setup(require("plug.lsp.servers.sqls"))
+-- lsp.bashls.setup(require("plug.lsp.servers.bashls"))
 lsp.jsonls.setup(require("plug.lsp.servers.jsonls"))
 lsp.clangd.setup(require("plug.lsp.servers.clangd"))
 lsp.emmet_ls.setup(require("plug.lsp.servers.emmet-ls"))
 lsp.sumneko_lua.setup(require("plug.lsp.servers.sumneko-lua"))
+
+-- Highlight Groups for Diagnostics (Dimmed Colored)
+require("plug.lsp.diagnostics-highlight-override")

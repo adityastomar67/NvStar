@@ -14,7 +14,8 @@ local SETTINGS = {
     fps        = 60,
     max_height = 5,
     max_widht  = 10,
-    render     = "minimal"
+    render     = "minimal",
+    background_colour = "#000000",
 }
 
 notify.setup(SETTINGS)

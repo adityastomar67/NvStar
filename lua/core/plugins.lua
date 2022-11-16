@@ -56,6 +56,8 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope-media-files.nvim")
     use("nvim-telescope/telescope-ui-select.nvim")
     use("nvim-telescope/telescope-file-browser.nvim")
+    use("nvim-telescope/telescope-project.nvim")
+    use("nvim-telescope/telescope-frecency.nvim")
 
     -- More Navigation
     use("ibhagwan/fzf-lua")
@@ -125,12 +127,21 @@ return packer.startup(function(use)
     use("alpha2phi/cmp-openai-codex")
     use("kristijanhusak/vim-dadbod-completion")
 
+    -- Docker
+    use({"skanehira/denops-docker.vim", requires = { { "vim-denops/denops.vim" } } })
+    use("jamestthompson3/nvim-remote-containers")
+    use("kkvh/vim-docker-tools")
+
     -- Others
     use("kg8m/vim-simple-align")
     use("norcalli/nvim-colorizer.lua")
     use("terrortylor/nvim-comment")
     use("phaazon/hop.nvim")
     use("windwp/nvim-autopairs")
+    use {
+    'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim',
+}
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

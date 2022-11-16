@@ -1,9 +1,25 @@
 local Wave = {}
 local Theme = {}
+local ts_colors = {
+    white = "#ffffff",
+    yellow = "#cfcf60",
+    red = "#af3030",
+    green = "#303fa0",
+    darker_black = "#070a0e",
+    black = '#0a0d11',
+    black2 = "#171b20",
+}
 local c = {
     white = '#ffffff',
     black = '#000000',
     none  = 'NONE',
+    wavealt = '#18181a',
+    wavealt2 = '#dfdee0',
+    col9 = '#ec6e74',
+    col3 = '#e1b56a',
+    col4 = '#6d92b7',
+    col5 = '#be67d5',
+    col6 = '#679ca6',
   }
 
   if vim.o.background == 'dark' then
@@ -232,7 +248,7 @@ Theme.editor = function ()
     DiffRemoved       = { fg = c.vcs_removed },
     DiffText          = { bg = c.vcs_diff_text },
     Directory         = { fg = c.func },
-    ErrorMsg          = { fg = c.white, bg = c.error, style = 'standout' },
+    ErrorMsg          = { fg = c.error},
     FloatBorder       = { fg = c.panel_border, bg = c.bg },
     FoldColumn        = { bg = c.bg },
     Folded            = { fg = c.fg_idle, bg = c.panel_bg },
@@ -418,16 +434,21 @@ end
 
 Theme.plugins = function()
   local telescope = {
-    TelescopeBorder        = { fg = c.bg },
-    TelescopeNormal        = { bg = c.bg },
-    TelescopePromptBorder  = { fg = c.fg_idle , bg = c.fg_idle },
-    TelescopePromptPrefix  = { fg = c.accent  , bg = c.fg_idle },
-    TelescopePromptTitle   = { fg = c.bg      , bg = c.accent },
-    TelescopePromptNormal  = { fg = c.fg      , bg = c.fg_idle },
-    TelescopePreviewBorder = { fg = c.bg      , bg = c.bg },
-    TelescopePreviewTitle  = { fg = c.bg      , bg = c.bg },
-    TelescopeResultsTitle  = { fg = c.bg      , bg = c.bg },
-    TelescopeResultsBorder = { fg = c.bg      , bg = c.bg },
+    TelescopeBorder = { fg = ts_colors.darker_black, bg = ts_colors.darker_black, },
+    TelescopeNormal = { bg = ts_colors.darker_black },
+    TelescopeSelection = { bg = ts_colors.black2, fg = ts_colors.white },
+    TelescopePromptTitle = { fg = ts_colors.white, bg = ts_colors.red, },
+    TelescopePromptBorder = { fg = ts_colors.black2, bg = ts_colors.black2, },
+    TelescopePromptNormal = { fg = ts_colors.white, bg = ts_colors.black2, },
+    TelescopePromptPrefix = { fg = ts_colors.red, bg = ts_colors.black2, },
+    TelescopePreviewTitle = { fg = ts_colors.white, bg = ts_colors.green, },
+    TelescopePreviewBorder = { fg = ts_colors.darker_black, bg = ts_colors.darker_black, },
+    TelescopeResultsTitle = { fg = ts_colors.black, bg = ts_colors.black, },
+    TelescopeResultsNormal = { bg = ts_colors.black, },
+    TelescopeResultsBorder = { fg = ts_colors.black, bg = ts_colors.black, },
+    TelescopeResultsDiffAdd = { fg = ts_colors.green, },
+    TelescopeResultsDiffChange = { fg = ts_colors.yellow, },
+    TelescopeResultsDiffDelete = { fg = ts_colors.red, },
   }
   local whichkey = {
     WhichKey  = { fg = c.fg },
@@ -556,6 +577,28 @@ Theme.plugins = function()
     StartifySlash   = { fg = c.fg_idle,       style = 'italic' },
     StartifySpecial = { fg = c.keyword },
     StartifyVar     = { fg = c.constant },
+  }
+  local notify = {
+    NotifyERRORIcon   = { fg = c.col9 , bg = c.wavealt},
+    NotifyWARNIcon    = { fg = c.col3 , bg = c.wavealt},
+    NotifyINFOIcon    = { fg = c.col4 , bg = c.wavealt},
+    NotifyDEBUGIcon   = { fg = c.col5 , bg = c.wavealt},
+    NotifyTRACEIcon   = { fg = c.col6 , bg = c.wavealt},
+    NotifyERRORTitle  = { fg = c.col9 , bg = c.wavealt},
+    NotifyWARNTitle   = { fg = c.col3 , bg = c.wavealt},
+    NotifyINFOTitle   = { fg = c.col4 , bg = c.wavealt},
+    NotifyDEBUGTitle  = { fg = c.col5 , bg = c.wavealt},
+    NotifyTRACETitle  = { fg = c.col6 , bg = c.wavealt},
+    NotifyERRORBorder = { fg = c.wavealt, bg = c.wavealt},
+    NotifyWARNBorder  = { fg = c.wavealt, bg = c.wavealt},
+    NotifyINFOBorder  = { fg = c.wavealt, bg = c.wavealt},
+    NotifyDEBUGBorder = { fg = c.wavealt, bg = c.wavealt},
+    NotifyTRACEBorder = { fg = c.wavealt, bg = c.wavealt},
+    NotifyERRORBody   = { fg = c.wavealt2, bg = c.wavealt},
+    NotifyWARNBody    = { fg = c.wavealt2, bg = c.wavealt},
+    NotifyINFOBody    = { fg = c.wavealt2, bg = c.wavealt},
+    NotifyDEBUGBody   = { fg = c.wavealt2, bg = c.wavealt},
+    NotifyTRACEBody   = { fg = c.wavealt2, bg = c.wavealt},
   }
   local termdebug = {
     debugPC         = { fg = c.none,          bg = c.guide_active },

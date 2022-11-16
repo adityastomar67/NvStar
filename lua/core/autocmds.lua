@@ -142,6 +142,7 @@ vim.cmd([[command! SaveAsRoot w !doas tee %]])
 vim.cmd([[cmap w!! w !doas tee % >/dev/null]]) -- save as root, in my case I use the command 'doas'
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[au BufNewFile,BufRead *.ejs set filetype=html]])
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
 -- vim.cmd([[autocmd BufEnter *\(.out\|NvimTree*\)\@<! echo expand('%:t')]])
 -- vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
 -- vim.cmd("hi normal guibg=NONE ctermbg=NONE")

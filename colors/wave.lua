@@ -1,25 +1,26 @@
 local Wave = {}
 local Theme = {}
 local ts_colors = {
-    white = "#ffffff",
-    yellow = "#cfcf60",
-    red = "#af3030",
-    green = "#303fa0",
+    white        = "#ffffff",
+    yellow       = "#cfcf60",
+    red          = "#af3030",
+    green        = "#303fa0",
     darker_black = "#070a0e",
-    black = '#0a0d11',
-    black2 = "#171b20",
+    black        = '#0a0d11',
+    black2       = "#171b20",
 }
 local c = {
-    white = '#ffffff',
-    black = '#000000',
-    none  = 'NONE',
-    wavealt = '#18181a',
+    white    = '#ffffff',
+    black    = '#000000',
+    none     = 'NONE',
+    search   = '#ADE792',
+    wavealt  = '#18181a',
     wavealt2 = '#dfdee0',
-    col9 = '#ec6e74',
-    col3 = '#e1b56a',
-    col4 = '#6d92b7',
-    col5 = '#be67d5',
-    col6 = '#679ca6',
+    col9     = '#ec6e74',
+    col3     = '#e1b56a',
+    col4     = '#6d92b7',
+    col5     = '#be67d5',
+    col6     = '#679ca6',
   }
 
   if vim.o.background == 'dark' then
@@ -174,6 +175,7 @@ Theme.syntax = function ()
     Tag                 = { fg = c.accent },
     Type                = { fg = c.entity },
     Typedef             = { fg = c.accent },
+    IncSearch           = { fg = c.search, bg = c.none },
     Underlined          = { fg = c.tag, style = 'underline', sp = c.tag },
   }
 

@@ -105,6 +105,7 @@ local n_mappings = {
 		c    = { '<cmd>lua require("core.utils.toggle").toggle_cmp()<CR>'                  , "Toggle Completions" }        ,
 		t    = { '<cmd>lua require("core.utils.toggle").toggle_transparency()<CR>'         , "Toggle Transparency" }       ,
 		d    = { "<cmd>lua require('core.utils.toggle').toggle_diagnostics()<CR>"          , "Toggle Inline Diagnostics" } ,
+        u    = { "<cmd>exe 'let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1'<CR>", "Toggle Underline Cursor word" }   ,
 	},
 	q     = {
 		name = "File Options",

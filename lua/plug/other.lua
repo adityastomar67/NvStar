@@ -17,3 +17,7 @@ end
 comment.setup({})
 autopair.setup({})
 hop.setup({ keys = 'etovxqpdygfblzhckisuran' })
+
+require('hlargs').setup {
+    color = '#FFEEAF',
+}

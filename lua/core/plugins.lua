@@ -43,8 +43,8 @@ return packer.startup(function(use)
     use("akinsho/toggleterm.nvim")
     use("kdheepak/lazygit.nvim")
     use("kyazdani42/nvim-tree.lua")
-    use('anuvyklack/hydra.nvim')
-    use('sindrets/winshift.nvim')
+    use("anuvyklack/hydra.nvim")
+    use("sindrets/winshift.nvim")
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter")
@@ -62,7 +62,7 @@ return packer.startup(function(use)
     -- More Navigation
     use("ibhagwan/fzf-lua")
     use("ThePrimeagen/harpoon")
-
+    
     -- UI Elements
     use("junegunn/limelight.vim")
     use("kyazdani42/nvim-web-devicons")
@@ -78,6 +78,7 @@ return packer.startup(function(use)
     use("gorbit99/codewindow.nvim")
     use("folke/noice.nvim")
     use("MunifTanjim/nui.nvim")
+    use("m-demare/hlargs.nvim")
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")
@@ -128,7 +129,8 @@ return packer.startup(function(use)
     use("kristijanhusak/vim-dadbod-completion")
 
     -- Docker
-    use({"skanehira/denops-docker.vim", requires = { { "vim-denops/denops.vim" } } })
+    use("vim-denops/denops.vim")
+    use("skanehira/denops-docker.vim")
     use("jamestthompson3/nvim-remote-containers")
     use("kkvh/vim-docker-tools")
 
@@ -138,10 +140,8 @@ return packer.startup(function(use)
     use("terrortylor/nvim-comment")
     use("phaazon/hop.nvim")
     use("windwp/nvim-autopairs")
-    use {
-    'kosayoda/nvim-lightbulb',
-    requires = 'antoinemadec/FixCursorHold.nvim',
-}
+    use("antoinemadec/FixCursorHold.nvim")
+    use("kosayoda/nvim-lightbulb")
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

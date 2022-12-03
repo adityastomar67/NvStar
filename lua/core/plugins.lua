@@ -62,7 +62,7 @@ return packer.startup(function(use)
     -- More Navigation
     use("ibhagwan/fzf-lua")
     use("ThePrimeagen/harpoon")
-    
+
     -- UI Elements
     use("junegunn/limelight.vim")
     use("kyazdani42/nvim-web-devicons")
@@ -142,6 +142,7 @@ return packer.startup(function(use)
     use("windwp/nvim-autopairs")
     use("antoinemadec/FixCursorHold.nvim")
     use("kosayoda/nvim-lightbulb")
+    use("bennypowers/nvim-regexplainer")
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

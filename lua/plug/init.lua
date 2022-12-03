@@ -24,6 +24,7 @@ for _, source in ipairs({
 	-- "plug.hydra",
 	-- "plug.cheatsheet",
 	"plug.fzf",
+	"plug.regexp",
 	"plug.other",
 
 }) do

@@ -5,7 +5,7 @@
   <a href="https://github.com/adityastomar67/nvstar/blob/main/LICENSE.md">
   <img alt="License" src="https://img.shields.io/github/license/adityastomar67/nvstar?style=flat&color=eee&label="> </a>
 
-  <a href="https://github.com/adityastomar67/nvstar/graphs/contributors">  
+  <a href="https://github.com/adityastomar67/nvstar/graphs/contributors">
   <img alt="People" src="https://img.shields.io/github/contributors/adityastomar67/nvstar?style=flat&color=ffaaf2&label=People"> </a>
 
   <a href="https://github.com/adityastomar67/nvstar/stargazers">
@@ -19,7 +19,7 @@
 
   <a href="https://github.com/adityastomar67/nvstar/pulse">
   <img alt="Last Updated" src="https://img.shields.io/github/last-commit/adityastomar67/nvstar?style=flat&color=e06c75&label="> </a>
-  
+
   [![](https://img.shields.io/badge/Neovim-0.8+-blueviolet.svg?style=for-the-badge&logo=Neovim&color=302D41&logoColor=green)](https://github.com/neovim/neovim)
 
   <h3>Personalized Development Environment ❤️👨‍💻</h3>
@@ -163,6 +163,16 @@ sudo pip install yamlfmt
 ```
 
 ## Additionals
+### Coding Assistance
+#### (Github Copilot)[https://github.com/features/copilot]
+#### (OpenAI Codex)[https://openai.com/blog/openai-codex/]
+#### (StackOverflow)[https://github.com/samtay/so]
+#### (Cht.sh)[https://cht.sh/]
+#### (Navi)[https://github.com/denisidoro/navi]
+#### (Tokei)[https://github.com/XAMPPRocky/tokei]
+#### (howdoi)[https://github.com/gleitz/howdoi]
+#### (howto)[]
+
 ### Adding custom Snippets
 
 The conifg uses [ luasnip ](https://github.com/saadparwaiz1/cmp_luasnip) paired

@@ -170,12 +170,7 @@ Provdes code samples and completions and easily be setted up using the command `
 #### [OpenAI Codex](https://openai.com/blog/openai-codex/)
 It's a premium service, you need access from OpenAI. Then you need to copy your api key from dashboard and paste it into `$HOME/.config/openai-codex/env"`
 
-#### AndckOverflow](https://github.com/samtay/so)
-#### [Cht.sh](https://cht.sh/)
-#### [Navi](https://github.com/denisidoro/navi)
-#### [Tokei](https://github.com/XAMPPRocky/tokei)
-#### [howdoi](https://github.com/gleitz/howdoi)
-#### [howto]()
+#### And Others like [StackOverflow](https://github.com/samtay/so), [Cht.sh](https://cht.sh/), [Navi](https://github.com/denisidoro/navi), [Tokei](https://github.com/XAMPPRocky/tokei), [howdoi](https://github.com/gleitz/howdoi), [howto]()
 
 ### ⭐ Adding custom Snippets
 

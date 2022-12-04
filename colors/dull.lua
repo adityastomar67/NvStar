@@ -1,3 +1,5 @@
+-- Credits for the goes to - https://github.com/Alexis12119/nvim-config
+
 local Dull = {}
 local Theme = {}
 local color = {

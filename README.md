@@ -165,8 +165,12 @@ sudo pip install yamlfmt
 ## Additionals
 ### ⭐ Coding Assistance
 #### [Github Copilot](https://github.com/features/copilot)
+Provdes code samples and completions and easily be setted up using the command `Copilot auth`
+
 #### [OpenAI Codex](https://openai.com/blog/openai-codex/)
-#### [StackOverflow](https://github.com/samtay/so)
+It's a premium service, you need access from OpenAI. Then you need to copy your api key from dashboard and paste it into `$HOME/.config/openai-codex/env"`
+
+#### AndckOverflow](https://github.com/samtay/so)
 #### [Cht.sh](https://cht.sh/)
 #### [Navi](https://github.com/denisidoro/navi)
 #### [Tokei](https://github.com/XAMPPRocky/tokei)

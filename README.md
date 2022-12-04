@@ -163,17 +163,17 @@ sudo pip install yamlfmt
 ```
 
 ## Additionals
-### Coding Assistance
-#### (Github Copilot)[https://github.com/features/copilot]
-#### (OpenAI Codex)[https://openai.com/blog/openai-codex/]
-#### (StackOverflow)[https://github.com/samtay/so]
-#### (Cht.sh)[https://cht.sh/]
-#### (Navi)[https://github.com/denisidoro/navi]
-#### (Tokei)[https://github.com/XAMPPRocky/tokei]
-#### (howdoi)[https://github.com/gleitz/howdoi]
-#### (howto)[]
+### ⭐ Coding Assistance
+#### [Github Copilot](https://github.com/features/copilot)
+#### [OpenAI Codex](https://openai.com/blog/openai-codex/)
+#### [StackOverflow](https://github.com/samtay/so)
+#### [Cht.sh](https://cht.sh/)
+#### [Navi](https://github.com/denisidoro/navi)
+#### [Tokei](https://github.com/XAMPPRocky/tokei)
+#### [howdoi](https://github.com/gleitz/howdoi)
+#### [howto]()
 
-### Adding custom Snippets
+### ⭐ Adding custom Snippets
 
 The conifg uses [ luasnip ](https://github.com/saadparwaiz1/cmp_luasnip) paired
 with [friendly-snippets](https://github.com/adityastomar67/friendly-snippets), my own fork for VS Code style snippets.

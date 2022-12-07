@@ -1,6 +1,4 @@
 -- Credits for this colorscheme goes to - https://github.com/Alexis12119/nvim-config
-package.loaded["user.theme.highlights"] = nil
-
 vim.g.dull_style = "slime" -- night, slime, sunset, transparent(experimental)
 
 local Dull = {}

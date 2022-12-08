@@ -1,5 +1,18 @@
 -- Credits for this colorscheme goes to - https://github.com/Alexis12119/nvim-config
-vim.g.dull_style = "slime" -- night, slime, sunset, transparent(experimental)
+
+-- set colorscheme style based on time
+local colorscheme_by_time = function()
+  local time = tonumber(os.date "%H")
+  if time >= 0 and time <= 15 then
+    return "night"
+  elseif time >= 16 and time <= 17 then
+    return "sunset"
+  else
+    return "night"
+  end
+end
+
+vim.g.dull_style = colorscheme_by_time()
 
 local Dull = {}
 local Color = {}

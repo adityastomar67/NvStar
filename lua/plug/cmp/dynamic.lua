@@ -27,4 +27,4 @@ local SETTINGS = {
     },
 }
 
-dynamic.setup(SETTINGS)
+dynamic.register(SETTINGS)

@@ -251,7 +251,7 @@ M.choose_colors = function()
         finder = finders.new_table({
             "nvstar", "wave", "onedark", "gruvbox", "tokyonight", "nord",
             "monokai", "everforest", "google-light", "edge", "sonokai",
-            "material", "kanagawa"
+            "material", "kanagawa", "dull"
         }),
 
         -- finder = finders.new_table(colors),

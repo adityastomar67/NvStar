@@ -118,6 +118,7 @@ local n_mappings = {
 	},
 	a = {
 		name = "Coding Assistance",
+		a    = { "<cmd>ChatGPT<CR>"                                                              , " ChatGPT" }          ,
 		g    = { "<cmd>Copilot panel<CR>"                                                        , " Copilot Panel" }          ,
 		b    = { "<cmd>Cheatsheet<CR>"                                                           , " Builtin Cheats" }         ,
 		c    = { "<cmd>lua require('core.utils.assistance').cht()<CR>"                           , " Cheat.sh" }               ,

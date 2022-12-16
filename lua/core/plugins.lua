@@ -95,6 +95,7 @@ return packer.startup(function(use)
     use("RishabhRD/popfix")
     use("github/copilot.vim")
     use("sudormrfbin/cheatsheet.nvim")
+    use("jackMort/ChatGPT.nvim")
     use({"tzachar/cmp-tabnine", run='./install.sh'})
 
     -- LSP, Linters, Formatters

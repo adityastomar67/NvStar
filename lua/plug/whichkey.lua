@@ -118,7 +118,7 @@ local n_mappings = {
 	},
 	a = {
 		name = "Coding Assistance",
-		a    = { "<cmd>ChatGPT<CR>"                                                              , " ChatGPT" }          ,
+		a    = { "<cmd>ChatGPT<CR>"                                                              , " ChatGPT" }          ,
 		g    = { "<cmd>Copilot panel<CR>"                                                        , " Copilot Panel" }          ,
 		b    = { "<cmd>Cheatsheet<CR>"                                                           , " Builtin Cheats" }         ,
 		c    = { "<cmd>lua require('core.utils.assistance').cht()<CR>"                           , " Cheat.sh" }               ,
@@ -163,6 +163,7 @@ local n_mappings = {
 		t    = { "<cmd>TroubleToggle document_diagnostics<CR>"                      , " Trouble" }                   ,
 		L    = { "<cmd>lua vim.lsp.codelens.refresh()<CR>"                          , " Refresh CodeLens" }          ,
 		l    = { "<cmd>lua vim.lsp.codelens.run()<CR>"                              , " Run CodeLens" }              ,
+		m    = { "<cmd>Mason<CR>"                                                   , " Mason" }              ,
 	},
 	f = {
 		name     = "Telescope"                                                  ,

@@ -21,5 +21,3 @@ hop.setup({ keys = 'etovxqpdygfblzhckisuran' })
 require('hlargs').setup {
     color = '#FFEEAF',
 }
-require("chatgpt").setup({})
-

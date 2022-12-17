@@ -25,6 +25,7 @@ for _, source in ipairs({
 	-- "plug.cheatsheet",
 	"plug.fzf",
 	"plug.regexp",
+    "plug.chatgpt",
 	"plug.other",
 
 }) do

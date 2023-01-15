@@ -3,11 +3,6 @@ if impatient_ok then
     impatient.enable_profile()
 end
 
-local status_ok, notify = pcall(require, "notify")
-if not status_ok then
-    return
-end
-
 for _, source in ipairs({
 
     -- CORE

@@ -37,7 +37,7 @@ opt.background     = "dark"                    -- set the background color
 opt.fillchars      = { eob = " " }             -- set the fill character for the end of the line
 opt.laststatus     = 0                         -- set the last status line to 0
 opt.hidden         = true                      -- hide the status line
-opt.cole           = 1                         -- Conceal applied
+opt.cole           = 2                         -- Conceal applied
 opt.cursorline     = true                      -- highlight the current line
 opt.cursorlineopt  = "number"                  -- show the line numbers highlighted
 opt.foldmethod     = "indent"

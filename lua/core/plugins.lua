@@ -79,6 +79,7 @@ return packer.startup(function(use)
     use("folke/noice.nvim")
     use("MunifTanjim/nui.nvim")
     use("m-demare/hlargs.nvim")
+    use("Jxstxs/conceal.nvim")
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")
@@ -130,10 +131,10 @@ return packer.startup(function(use)
     use("kristijanhusak/vim-dadbod-completion")
 
     -- Docker
-    use("vim-denops/denops.vim")
-    use("skanehira/denops-docker.vim")
-    use("jamestthompson3/nvim-remote-containers")
-    use("kkvh/vim-docker-tools")
+    -- use("vim-denops/denops.vim")
+    -- use("skanehira/denops-docker.vim")
+    -- use("jamestthompson3/nvim-remote-containers")
+    -- use("kkvh/vim-docker-tools")
 
     -- Others
     use("kg8m/vim-simple-align")
@@ -144,6 +145,7 @@ return packer.startup(function(use)
     use("antoinemadec/FixCursorHold.nvim")
     use("kosayoda/nvim-lightbulb")
     use("bennypowers/nvim-regexplainer")
+    use("abecodes/tabout.nvim")
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

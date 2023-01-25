@@ -27,6 +27,7 @@ for _, source in ipairs({
 	"plug.regexp",
     "plug.chatgpt",
 	"plug.other",
+	"plug.tabout",
 
 }) do
 	local status_ok, fault = pcall(require, source)

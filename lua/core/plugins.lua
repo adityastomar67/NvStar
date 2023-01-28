@@ -78,6 +78,7 @@ return packer.startup(function(use)
     use("gorbit99/codewindow.nvim")
     use("folke/noice.nvim")
     use("MunifTanjim/nui.nvim")
+    use("ElPiloto/significant.nvim")
     use("m-demare/hlargs.nvim")
     use("Jxstxs/conceal.nvim")
 
@@ -97,6 +98,7 @@ return packer.startup(function(use)
     use("github/copilot.vim")
     use("sudormrfbin/cheatsheet.nvim")
     use("jackMort/ChatGPT.nvim")
+    use("dense-analysis/neural")
     use({"tzachar/cmp-tabnine", run='./install.sh'})
 
     -- LSP, Linters, Formatters

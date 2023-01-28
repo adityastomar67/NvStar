@@ -208,6 +208,15 @@ function M.complete(v)
 end
 
 
+-- Neural
+local api = get_api_key()
+require('neural').setup({
+    open_ai = {
+        api_key = api
+    }
+})
+
+
 -- Tokei
 local project_info = TERMINAL:new{
     cmd           = "tokei",

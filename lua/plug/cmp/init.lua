@@ -10,20 +10,20 @@ require("plug.cmp.luasnip")
 vim.opt.completeopt = "menuone,noselect"
 
 local function load_snippets()
-	local snippets_dir1 = vim.fn.stdpath("plug") .. "luasnip_snippets"
-	local snippets_dir2 = vim.fn.stdpath("plug") .. "friendly-snippets"
-	local snippets_dir3 = vim.fn.stdpath("plug") .. "snippets"
+	local snippets_dir1 = vim.fn.stdpath("config") .. "/bin/luasnip_snippets"
+	local snippets_dir2 = vim.fn.stdpath("config") .. "/bin/friendly-snippets"
+	local snippets_dir3 = vim.fn.stdpath("config") .. "/bin/snippets"
 
 	if vim.fn.isdirectory(snippets_dir1) == 0 then
-		print("Cloning snippets to" .. snippets_dir1)
+		print("Cloning snippets to " .. snippets_dir1)
 		vim.fn.system({"git", "clone", "https://github.com/adityastomar67/LuaSnip-snippets.nvim.git", snippets_dir1})
 	end
 	if vim.fn.isdirectory(snippets_dir2) == 0 then
-		print("Cloning snippets to" .. snippets_dir2)
+		print("Cloning snippets to " .. snippets_dir2)
 		vim.fn.system({"git", "clone", "https://github.com/adityastomar67/friendly-snippets.git", snippets_dir2})
 	end
 
-	require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir1 .. "/lua/luasnip_snippets" } })
+	require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir1 } })
 	require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir2 } })
 	-- require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir3 } })
 end

@@ -17,14 +17,6 @@ vim.cmd([[
 	  command! -nargs=0 Syn call Syn()
 ]])
 
-local old_stdpath = vim.fn.stdpath
-vim.fn.stdpath = function(value)
-    if value == "plug" then
-        return "bin/"
-    end
-    return old_stdpath(value)
-end
-
 local M = {}
 
 ---@param c  string

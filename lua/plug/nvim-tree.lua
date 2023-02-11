@@ -82,7 +82,7 @@ local SETTINGS = {
                 {key = "R", action = "refresh"},
                 {key = "=", action = "preview"},
                 {key = "X", action = "xdg_open", action_cb = xdg_open},
-                {key = "d", action = "remove"}, 
+                {key = "d", action = "remove"},
                 {key = "r", action = "rename"},
                 {key = "y", action = "copy_name"},
                 {key = "Y", action = "copy_path"},
@@ -96,7 +96,7 @@ local SETTINGS = {
             }
         }
     },
-    open_on_setup = true
+    -- open_on_setup = true
 }
 
 nvim_tree.setup(SETTINGS)

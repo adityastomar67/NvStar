@@ -21,3 +21,10 @@ hop.setup({ keys = 'etovxqpdygfblzhckisuran' })
 require('hlargs').setup {
     color = '#FFEEAF',
 }
+
+local api = require("core.utils").get_api_key()
+require('neural').setup({
+    open_ai = {
+        api_key = api
+    }
+})

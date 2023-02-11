@@ -1,9 +1,9 @@
 local JOB          = require "plenary.job"
 local TERMINAL     = require("toggleterm.terminal").Terminal
 local TRIM         = require("core.utils").trim
-local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
 local OPENAI_URL   = "https://api.openai.com/v1/engines/davinci-codex/completions" -- {cushman-codex / davinci-codex}
 local MAX_TOKENS   = 300
+local API          = require("core.utils").get_api_key()
 local M            = {}
 
 
@@ -136,21 +136,12 @@ local interactive_cheatsheet = TERMINAL:new{
 function M.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
 
 
--- OpenAI Codex
-local function get_api_key()
-    local file = io.open(API_KEY_FILE, "rb")
-    if not file then return nil end
-    local content = file:read "*a"
-    content = TRIM(content)
-    file:close()
-    return content
-end
 function M.complete(v)
     v = v or true
     local ft = vim.bo.filetype
     local buf = vim.api.nvim_get_current_buf()
 
-    local api_key = get_api_key()
+    local api_key = API
     if api_key == nil then
         vim.notify "OpenAI API key not found"
         return
@@ -208,15 +199,6 @@ function M.complete(v)
 end
 
 
--- Neural
-local api = get_api_key()
-require('neural').setup({
-    open_ai = {
-        api_key = api
-    }
-})
-
-
 -- Tokei
 local project_info = TERMINAL:new{
     cmd           = "tokei",
@@ -228,6 +210,26 @@ local project_info = TERMINAL:new{
 }
 
 function M.project_info_toggle() project_info:toggle() end
+
+
+-- Shell-GPT
+function M.shell_gpt()
+    local buf = vim.api.nvim_get_current_buf()
+    file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+    vim.ui.input({prompt = "What you want to do in " .. file_type .. " language? "}, function(input)
+        local cmd = ""
+        if input == "" or not input then
+            return
+        elseif input == "h" or input == "help" then
+            cmd = "--help"
+            M.open_term("sgpt --help" , {direction = 'float'})
+            return
+        else
+            cmd = input
+        end
+        M.open_term("cat | sgpt --code \"" .. cmd .. " " .. "using " .. file_type .. "\"", {direction = 'float'})
+    end) 
+end
 
 
 -- howdoi

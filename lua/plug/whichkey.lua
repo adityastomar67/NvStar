@@ -118,16 +118,18 @@ local n_mappings = {
 	},
 	a = {
 		name = "Coding Assistance",
-		a    = { "<cmd>ChatGPT<CR>"                                                              , " ChatGPT" }          ,
+		a    = { "<cmd>ChatGPT<CR>"                                                              , " ChatGPT" }                ,
 		g    = { "<cmd>Copilot panel<CR>"                                                        , " Copilot Panel" }          ,
 		b    = { "<cmd>Cheatsheet<CR>"                                                           , " Builtin Cheats" }         ,
+		n    = { "<cmd>NeuralPrompt<CR>"                                                         , " NeuralPrompt" }           ,
 		c    = { "<cmd>lua require('core.utils.assistance').cht()<CR>"                           , " Cheat.sh" }               ,
+		e    = { "<cmd>lua require('core.utils.assistance').shell_gpt()<CR>"                     , " Shell-GPT" }               ,
 		s    = { "<cmd>lua require('core.utils.assistance').so_input()<CR>"                      , " StackOverflow" }          ,
 		i    = { "<cmd>lua require('core.utils.assistance').interactive_cheatsheet_toggle()<CR>" , " Interactive Cheatsheet" } ,
 		o    = { "<cmd>lua require('core.utils.assistance').complete()<CR>"                      , " OpenAI Codex"}             ,
 		t    = { "<cmd>lua require('core.utils.assistance').howto()<CR>"                         , " HowTo (Shell Helper and other!)" },
 		h    = { "<cmd>lua require('core.utils.assistance').howdoi()<CR>"                        , " HowDoI" }                  ,
-		p    = { "<cmd>lua require('core.utils.assistance').project_info_toggle()<CR>"           , "冷Project Info" }
+		p    = { "<cmd>lua require('core.utils.assistance').project_info_toggle()<CR>"           , "冷 Project Info" }
 	},
 	t = {
 		name = "Terminal",

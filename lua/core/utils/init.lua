@@ -1,12 +1,13 @@
-local execute = vim.api.nvim_command
-local vim     = vim
-local opt     = vim.opt -- global
-local g       = vim.g   -- global for let options
-local wo      = vim.wo  -- window local
-local bo      = vim.bo  -- buffer local
-local fn      = vim.fn  -- access vim functions
-local cmd     = vim.cmd -- vim commands
-local api     = vim.api -- access vim api
+local execute      = vim.api.nvim_command
+local vim          = vim
+local opt          = vim.opt -- global
+local g            = vim.g   -- global for let options
+local wo           = vim.wo  -- window local
+local bo           = vim.bo  -- buffer local
+local fn           = vim.fn  -- access vim functions
+local cmd          = vim.cmd -- vim commands
+local api          = vim.api -- access vim api
+local API_KEY_FILE = vim.env.HOME .. "/.config/openai-codex/env"
 
 vim.cmd([[
 	function! Syn()
@@ -39,6 +40,15 @@ function M.blend(foreground, background, alpha)
 	end
 
 	return string.format("#%02x%02x%02x", blendChannel(1), blendChannel(2), blendChannel(3))
+end
+
+function M.get_api_key()
+    local file = io.open(API_KEY_FILE, "rb")
+    if not file then return nil end
+    local content = file:read "*a"
+    content = string.gsub(content, "^%s*(.-)%s*$", "%1")
+    file:close()
+    return content
 end
 
 function M.trim(s)

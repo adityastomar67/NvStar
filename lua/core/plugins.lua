@@ -148,6 +148,7 @@ return packer.startup(function(use)
     use("kosayoda/nvim-lightbulb")
     use("bennypowers/nvim-regexplainer")
     use("abecodes/tabout.nvim")
+    use("windwp/nvim-spectre")
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then require("packer").sync() end -- Put this at the end after all plugins

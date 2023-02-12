@@ -151,6 +151,7 @@ local n_mappings = {
 		name = "Something Else",
 		-- h    = { "<cmd>!chmod +x % && source %<CR>"                 , "Run Shell Script" }    ,
 		o    = { "<cmd>lua require('core.utils').source_file()<CR>" , "Source Current File" } ,
+		s    = { "<cmd>lua require(\"spectre\").open()<CR>", "Smart Replace" },
 	},
 	l = {
 		name = "LSP",

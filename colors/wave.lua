@@ -436,21 +436,21 @@ end
 
 Theme.plugins = function()
   local telescope = {
-    TelescopeBorder = { fg = ts_colors.darker_black, bg = ts_colors.darker_black, },
-    TelescopeNormal = { bg = ts_colors.darker_black },
-    TelescopeSelection = { bg = ts_colors.black2, fg = ts_colors.white },
-    TelescopePromptTitle = { fg = ts_colors.white, bg = ts_colors.red, },
-    TelescopePromptBorder = { fg = ts_colors.black2, bg = ts_colors.black2, },
-    TelescopePromptNormal = { fg = ts_colors.white, bg = ts_colors.black2, },
-    TelescopePromptPrefix = { fg = ts_colors.red, bg = ts_colors.black2, },
-    TelescopePreviewTitle = { fg = ts_colors.white, bg = ts_colors.green, },
-    TelescopePreviewBorder = { fg = ts_colors.darker_black, bg = ts_colors.darker_black, },
-    TelescopeResultsTitle = { fg = ts_colors.black, bg = ts_colors.black, },
-    TelescopeResultsNormal = { bg = ts_colors.black, },
-    TelescopeResultsBorder = { fg = ts_colors.black, bg = ts_colors.black, },
-    TelescopeResultsDiffAdd = { fg = ts_colors.green, },
-    TelescopeResultsDiffChange = { fg = ts_colors.yellow, },
-    TelescopeResultsDiffDelete = { fg = ts_colors.red, },
+    TelescopeBorder            = { fg = ts_colors.darker_black   , bg = ts_colors.darker_black    , } ,
+    TelescopeNormal            = { bg = ts_colors.darker_black } ,
+    TelescopeSelection         = { bg = ts_colors.black2         , fg = ts_colors.white } ,
+    TelescopePromptTitle       = { fg = ts_colors.white          , bg = ts_colors.red, } ,
+    TelescopePromptBorder      = { fg = ts_colors.black2         , bg = ts_colors.black2, } ,
+    TelescopePromptNormal      = { fg = ts_colors.white          , bg = ts_colors.black2, } ,
+    TelescopePromptPrefix      = { fg = ts_colors.red            , bg = ts_colors.black2, } ,
+    TelescopePreviewTitle      = { fg = ts_colors.white          , bg = ts_colors.green, } ,
+    TelescopePreviewBorder     = { fg = ts_colors.darker_black   , bg = ts_colors.darker_black, } ,
+    TelescopeResultsTitle      = { fg = ts_colors.black          , bg = ts_colors.black, } ,
+    TelescopeResultsNormal     = { bg = ts_colors.black          , } ,
+    TelescopeResultsBorder     = { fg = ts_colors.black          , bg = ts_colors.black, } ,
+    TelescopeResultsDiffAdd    = { fg = ts_colors.green          , } ,
+    TelescopeResultsDiffChange = { fg = ts_colors.yellow         , } ,
+    TelescopeResultsDiffDelete = { fg = ts_colors.red            , } ,
   }
   local whichkey = {
     WhichKey  = { fg = c.fg },
@@ -681,6 +681,7 @@ function Wave.apply()
     highlight(group, color)
   end
   async:send()
+  vim.cmd("hi @field guifg=#e1b56a")
 end
 
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")

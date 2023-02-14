@@ -33,17 +33,18 @@ This is a v2 of my previous Neovim config - [Nvdots](https://github.com/adityast
 ![Screenshot_Dashboard](https://user-images.githubusercontent.com/33474611/200270455-d1fc848e-3109-49f1-902a-a7909fb00661.png)
 > For **Wallpaper**, Go to _[this](https://github.com/adityastomar67/Wallpapers)_ <br>Terminal is **ST**, for config go _[here](https://github.com/adityastomar67/.dotfiles/tree/master/.config/st)_ <br> For other stuff checkout my [Profile](https://github.com/adityastomar67)
 
+<details>
+<summary><strong>Before we proceed, File Structure is like</strong>
 
-#### Before we proceed, File Structure is like
-
-If the reader is well versed or, has a general experience with shell scripting, Lua language or, know what they are doing then they may skip this section. But it advised to take a good understanding of the file structure before making any changes.
-
+If the reader is well versed or, has a general experience with shell scripting, Lua language or, know what they are doing then they may skip this section. But it advised to take a good understanding of the file structure before making any changes.</summary>
+   
 ```
 nvim
-├── after
-│   ├── queries
-│   └── syntax
+|
 ├── bin
+│   ├── friendly-snippets
+│   ├── luasnip_snippets
+│   └── snippets
 ├── colors
 ├── init.lua
 ├── lua
@@ -58,20 +59,59 @@ nvim
 │   │   ├── plugins.lua
 │   │   ├── user.lua
 │   │   └── utils
+│   │       ├── assistance.lua
+│   │       ├── docker.lua
+│   │       ├── init.lua
+│   │       ├── notify.lua
+│   │       └── toggle.lua
 │   └── plug
+│       ├── chatgpt.lua
 │       ├── cheatsheet.lua
 │       ├── cmp
+│       │   ├── dynamic.lua
+│       │   ├── init.lua
+│       │   ├── luasnip.lua
+│       │   └── tabnine.lua
 │       ├── colorizer.lua
 │       ├── fzf.lua
 │       ├── hydra
+│       │   ├── dap.lua
+│       │   ├── git.lua
+│       │   ├── init.lua
+│       │   ├── options.lua
+│       │   ├── spelling.lua
+│       │   ├── telescope.lua
+│       │   └── windows.lua
 │       ├── init.lua
 │       ├── lsp
+│       │   ├── diagnostics-highlight-override.lua
+│       │   ├── init.lua
+│       │   ├── lsp-installer.lua
+│       │   ├── null-ls.lua
 │       │   └── servers
+│       │       ├── bashls.lua
+│       │       ├── clangd.lua
+│       │       ├── emmet-ls.lua
+│       │       ├── gopls.lua
+│       │       ├── itex.lua
+│       │       ├── jsonls.lua
+│       │       ├── marksman.lua
+│       │       ├── pyright.lua
+│       │       ├── sqls.lua
+│       │       ├── sumneko-lua.lua
+│       │       ├── taplo.lua
+│       │       ├── texlab.lua
+│       │       ├── vimls.lua
+│       │       └── yamlls.lua
 │       ├── lspkind.lua
 │       ├── mason.lua
 │       ├── nvim-tree.lua
 │       ├── other.lua
+│       ├── regexp.lua
+│       ├── tabout.lua
 │       ├── telescope
+│       │   ├── init.lua
+│       │   └── options.lua
 │       ├── terminal.lua
 │       ├── todo-comments.lua
 │       ├── toggle.lua
@@ -89,6 +129,7 @@ nvim
 │       └── whichkey.lua
 └── plugin
 ```
+</details>
 
 ## 🚀 Install language servers
 

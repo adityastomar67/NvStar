@@ -30,7 +30,7 @@ local function load_snippets()
 
 	require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir1 } })
 	require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir2 } })
-	-- require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir3 } })
+	require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets_dir3 } })
 end
 load_snippets()
 
@@ -107,6 +107,11 @@ local SETTINGS = {
 				dynamic          = "[Dynamic]",
 			},
 		}),
+      -- Max Width of Popup Menu
+      --   format = function(entry, vim_item)
+      --       vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
+      --       return vim_item
+      -- end,
 	},
 	sources = {
 		{ name = "luasnip", group_index = 2 },

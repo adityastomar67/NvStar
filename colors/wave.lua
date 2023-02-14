@@ -192,13 +192,13 @@ Theme.syntax = function ()
     syntax.String         = { fg = c.string }
     syntax.Todo           = { fg = c.markup,  style = 'bold' }
   else
-    syntax.Character      = { fg = c.markup,  style = 'italic' }
+    syntax.Character      = { fg = c.markup}
     syntax.Comment        = { fg = c.comment, style = 'italic' }
     syntax.Conditional    = { fg = c.keyword, style = 'italic' }
-    syntax.Function       = { fg = c.func,    style = 'italic' }
+    syntax.Function       = { fg = c.func,  }
     syntax.Identifier     = { fg = c.entity,  style = 'italic' }
-    syntax.Keyword        = { fg = c.keyword, style = 'italic' }
-    syntax.Repeat         = { fg = c.keyword, style = 'italic' }
+    syntax.Keyword        = { fg = c.keyword }
+    syntax.Repeat         = { fg = c.keyword }
     syntax.SpecialChar    = { fg = c.keyword, style = 'italic' }
     syntax.SpecialComment = { fg = c.entity,  style = 'italic' }
     syntax.String         = { fg = c.string,  style = 'italic' }

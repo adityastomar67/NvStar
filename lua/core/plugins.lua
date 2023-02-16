@@ -81,6 +81,7 @@ return packer.startup(function(use)
     use("ElPiloto/significant.nvim")
     use("m-demare/hlargs.nvim")
     use("Jxstxs/conceal.nvim")
+    use("echasnovski/mini.indentscope")
 
     -- Colorscheme
     use("rebelot/kanagawa.nvim")

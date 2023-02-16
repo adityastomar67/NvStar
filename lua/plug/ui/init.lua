@@ -16,6 +16,7 @@ for _, source in ipairs({
 	"plug.ui.git-sign",
 	"plug.ui.minimap",
 	"plug.ui.statusline",
+	"plug.ui.indentscope",
 	-- "plug.ui.noice",
 
 }) do

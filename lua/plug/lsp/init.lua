@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 require("plug.lsp.lsp-installer")
-require('lspsaga').setup({})  -- Special symbols for moere info about buffer in winbar...MUST TRY!!
+-- require('lspsaga').setup({})  -- Special symbols for moere info about buffer in winbar...MUST TRY!!
 require("plug.lsp.null-ls")
 
 vim.diagnostic.config({ virtual_text = true })

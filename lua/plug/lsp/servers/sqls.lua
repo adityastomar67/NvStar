@@ -3,7 +3,7 @@ local SETTINGS = {
         connections = {
           {
             driver = 'mysql',
-            dataSourceName = "Server=localhost;Database=employees;User Id=adi;Password=singh;",
+            dataSourceName = "Server=localhost;Database=employees;User Id=;Password=;",
           },
           {
             driver = 'postgresql',

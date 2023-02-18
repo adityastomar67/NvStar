@@ -53,9 +53,9 @@ keymap("n", "<CR>", ":noh<CR><CR>", opts)
 keymap("n", "U", "<C-r>", opts)
 
 -- Better Hoping then numerous keystrokes
-keymap("n" , "fw"     , ":HopWord<CR>"      , opts)
-keymap("n" , "fl"     , ":HopLine<CR>"      , opts)
-keymap("i" , "<C-F>"  , "<ESC>:HopLine<CR>" , opts)
+-- keymap("n" , "fw"     , ":HopWord<CR>"      , opts)
+-- keymap("n" , "fl"     , ":HopLine<CR>"      , opts)
+-- keymap("i" , "<C-F>"  , "<ESC>:HopLine<CR>" , opts)
 
 -- For not yanking when deleting chars
 keymap('n', 'x', '"_x', opts)

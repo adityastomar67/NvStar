@@ -190,6 +190,14 @@ local n_mappings = {
 		I    = { "<cmd>Telescope lsp_implementations<CR>"     , "Implementation" }  ,
 		b    = { "<cmd>lua vim.lsp.buf.type_definition()<CR>" , "Type Definition" } ,
 	},
+    -- Database
+x = {
+  name = "Database",
+  u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+  f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+  r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+  q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
+},
 }
 
 local function code_keymap()

@@ -37,3 +37,6 @@ for _, source in ipairs({
 		notify(err, "error", {title = "Require Error"})
 	end
 end
+
+
+require("plug.dadbod").setup()

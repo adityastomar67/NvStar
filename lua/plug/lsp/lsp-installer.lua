@@ -14,7 +14,7 @@ local SETTINGS = {
 		-- "jdtls",
 		"emmet_ls",
 		"bashls",
-		"sqls",
+		"sqlls",
 		"sumneko_lua",
 		"jsonls",
 		"eslint",

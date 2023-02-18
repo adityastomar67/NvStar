@@ -130,6 +130,10 @@ return packer.startup(function(use)
     use("uga-rosa/cmp-dynamic")
     use("saadparwaiz1/cmp_luasnip")
     use("alpha2phi/cmp-openai-codex")
+
+    -- Databases
+    use("kristijanhusak/vim-dadbod-ui")
+    use("tpope/vim-dadbod")
     use("kristijanhusak/vim-dadbod-completion")
 
     -- Docker
@@ -142,7 +146,8 @@ return packer.startup(function(use)
     use("kg8m/vim-simple-align")
     use("norcalli/nvim-colorizer.lua")
     use("terrortylor/nvim-comment")
-    use("phaazon/hop.nvim")
+    use("ggandor/leap.nvim")
+    use("ggandor/flit.nvim")
     use("windwp/nvim-autopairs")
     use("antoinemadec/FixCursorHold.nvim")
     use("kosayoda/nvim-lightbulb")

@@ -26,5 +26,3 @@ local SETTINGS = {
 }
 
 return SETTINGS
-
--- vim:ft=lua
